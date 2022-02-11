@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1648,6 +1649,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      woodTextures_45: -3837005424968703163
+      woodTextures_11: -801988842871113455
+      woodTextures_47: 8621886108598649272
+      woodTextures_19: -2062576419808650082
+      woodTextures_22: -8461643148617429717
+      woodTextures_2: 2532017456241615506
+      woodTextures_59: 4155523352230915796
+      woodTextures_55: -1804157204438163238
+      woodTextures_37: 8782226295986982173
+      woodTextures_31: -6010563133253491980
+      woodTextures_62: 3151125770331142435
+      woodTextures_56: -3026913531401961822
+      woodTextures_14: 5998401959995992281
+      woodTextures_54: 2621101741291103533
+      woodTextures_12: -280396001142608834
+      woodTextures_21: 8265459443507382769
+      woodTextures_57: 2482907764471738096
+      woodTextures_26: -4517023575928136695
+      woodTextures_58: -5291764328779177337
+      woodTextures_8: 7979291697174048719
+      woodTextures_46: 8428608341505226788
+      woodTextures_30: 3414738826544687030
+      woodTextures_36: -8133841528462341706
+      woodTextures_7: -6865833693235971829
+      woodTextures_53: -1461450964969010496
+      woodTextures_60: 8743939552822381278
+      woodTextures_32: -8029239592883290748
+      woodTextures_3: -4903643319398984136
+      woodTextures_51: 9134629519033040742
+      woodTextures_41: -7446598221437028014
+      woodTextures_15: -207533980071524898
+      woodTextures_52: -4566081835708336451
+      woodTextures_0: -1236139290347909466
+      woodTextures_4: 2678608791182685519
+      woodTextures_61: -7586800548234974994
+      woodTextures_25: -5111574937654861846
+      woodTextures_40: 1747887889043907696
+      woodTextures_10: 3536334725728226351
+      woodTextures_48: -8520789052495603839
+      woodTextures_38: 9015321580271561189
+      woodTextures_23: 864114156329957648
+      woodTextures_24: 1640105099496291592
+      woodTextures_43: -1338777917438544200
+      woodTextures_33: -7088837909450199585
+      woodTextures_50: -8506697761756959782
+      woodTextures_42: -8681378205066318715
+      woodTextures_16: -2685257922689178782
+      woodTextures_28: 1269704391956314912
+      woodTextures_39: -7678906655827044811
+      woodTextures_63: 3836100685677444294
+      woodTextures_34: 7615829642171216051
+      woodTextures_1: -2005648860642052394
+      woodTextures_13: -6190542854008372601
+      woodTextures_27: -6793816448173736512
+      woodTextures_17: -3431511960284205996
+      woodTextures_49: 5034451916264609637
+      woodTextures_44: -8922835844779881058
+      woodTextures_20: 3112196012638580898
+      woodTextures_35: 6731058756876275302
+      woodTextures_18: 6256227217496156767
+      woodTextures_29: -4070841738976749985
+      woodTextures_9: 8091252684913870789
+      woodTextures_6: -3370555130182398580
+      woodTextures_5: 7897453017829609282
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

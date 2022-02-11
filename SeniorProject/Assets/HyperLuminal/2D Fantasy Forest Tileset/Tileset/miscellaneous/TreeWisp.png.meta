@@ -69,6 +69,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -448,6 +449,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      TreeWisp_10: -7746797528195216443
+      TreeWisp_9: 4105837693289455838
+      TreeWisp_11: 1478932955381494098
+      TreeWisp_8: -7949164991791925148
+      TreeWisp_4: 258894564557522283
+      TreeWisp_3: -656079086687531631
+      TreeWisp_13: 3570331951358204836
+      TreeWisp_1: -1925742771875984690
+      TreeWisp_12: -1778231613681509500
+      TreeWisp_5: -3023769061395096657
+      TreeWisp_6: -6879872708751988664
+      TreeWisp_2: -549825548291572755
+      TreeWisp_7: -6230814885991659432
+      TreeWisp_14: -2259383669172111946
+      TreeWisp_0: -7241275632015354139
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
