@@ -13509,7 +13509,7 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 5
+  m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
   m_TargetMovementOnly: 1
@@ -13520,8 +13520,8 @@ MonoBehaviour:
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0
+  m_SoftZoneHeight: 0
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -13592,9 +13592,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 32.985046, y: 18.005392}
       - {x: -9.019646, y: 18.025291}
-      - {x: -9.051324, y: -13.075512}
-      - {x: -8.796415, y: -13.100345}
-      - {x: 33.030735, y: -13.050052}
+      - {x: -8.991034, y: -12.985076}
+      - {x: -8.932069, y: -12.979764}
+      - {x: 32.974995, y: -12.966442}
 --- !u!4 &754366153
 Transform:
   m_ObjectHideFlags: 0
@@ -13760,13 +13760,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869118864}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0c217e6624c4426c9d1811dc1ded650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 949337}
-  smoothing: 1
+  smoothing: 0.5
 --- !u!114 &1869118869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13886,5 +13886,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BoundingShape2D: {fileID: 754366152}
-  m_Damping: 0.5
+  m_Damping: 0
   m_MaxWindowSize: -1
