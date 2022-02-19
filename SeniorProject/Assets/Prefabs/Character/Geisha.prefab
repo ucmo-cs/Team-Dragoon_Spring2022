@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3969922577209610097}
   - component: {fileID: 319970483726334901}
+  - component: {fileID: -2598237357758018362}
+  - component: {fileID: -633958935956605657}
   m_Layer: 0
   m_Name: Geisha
   m_TagString: Untagged
@@ -50,11 +52,37 @@ MonoBehaviour:
   unitLevel: 4
   maxHP: 20
   currentHP: 20
+  maxKI: 0
+  currentKI: 0
   characterPortrait: {fileID: 21300000, guid: c80b1a88a4afa5344bb068424fe04ab2, type: 3}
   attack1: {fileID: 0}
   attack2: {fileID: 0}
   attack3: {fileID: 0}
   attack4: {fileID: 0}
+--- !u!114 &-2598237357758018362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170256066786928609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a14ef1e91e24be4d8a9830c51856a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-633958935956605657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2170256066786928609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfb4e109524a8146bf2424f311b5ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2701414332293514140
 GameObject:
   m_ObjectHideFlags: 0
