@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -601292423
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4438abbb3e76d6409e867eeaf17389c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,8 +129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3784d07922914418bbddcae19d2742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 0}
   unitName: Yakuza Lackey
   unitLevel: 2
-  damage: 5
   maxHP: 30
   currentHP: 30
+  characterPortrait: {fileID: 21300000, guid: f4438abbb3e76d6409e867eeaf17389c, type: 3}
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}
+  attack3: {fileID: 0}
+  attack4: {fileID: 0}

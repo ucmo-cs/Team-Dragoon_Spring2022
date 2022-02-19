@@ -45,11 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3784d07922914418bbddcae19d2742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 0}
   unitName: Samurai
   unitLevel: 5
-  damage: 10
   maxHP: 40
   currentHP: 40
+  characterPortrait: {fileID: 21300000, guid: 190cba590c0183a46b116c35514ed518, type: 3}
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}
+  attack3: {fileID: 0}
+  attack4: {fileID: 0}
 --- !u!1 &3399656943999622666
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,8 +125,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -601292423
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: df657cc91edcf6d4abb3b36ab9b9864e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
