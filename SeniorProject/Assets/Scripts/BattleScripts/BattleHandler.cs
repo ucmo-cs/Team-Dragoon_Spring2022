@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleHandler : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class BattleHandler : MonoBehaviour
     private CharacterBattle enemyCharacterBattle;
     private CharacterBattle activeCharacterBattle;
     private State state;
+    public SceneChanger sceneChanger;
+    private GameObject[] DontDestroyOnLoadObjects;
 
     private enum State
     {
@@ -39,6 +42,8 @@ public class BattleHandler : MonoBehaviour
         enemyCharacterBattle = SpawnCharacter(false);
         SetActiveCharacterBattle(playerCharacterBattle);
         state = State.WaitngForPlayer;
+        DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
+        sceneChanger = DontDestroyOnLoadObjects[0].GetComponent<SceneChanger>();
     }
 
     private void Update()
@@ -121,8 +126,29 @@ public class BattleHandler : MonoBehaviour
         {
             //Enemy dead, player wins
             Debug.Log("Player wins");
+            sceneChanger.PreviousScene();
             return true;
         }
         return false;
+    }
+
+    public static GameObject[] GetDontDestroyOnLoadObjects()
+    {
+        GameObject temp = null;
+        try
+        {
+            temp = new GameObject();
+            Object.DontDestroyOnLoad(temp);
+            UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
+            Object.DestroyImmediate(temp);
+            temp = null;
+
+            return dontDestroyOnLoad.GetRootGameObjects();
+        }
+        finally
+        {
+            if (temp != null)
+                Object.DestroyImmediate(temp);
+        }
     }
 }

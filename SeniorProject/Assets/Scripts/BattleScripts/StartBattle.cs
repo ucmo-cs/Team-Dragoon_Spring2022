@@ -8,16 +8,20 @@ public class StartBattle : MonoBehaviour
     [SerializeField] private GameObject enemyEncounterPrefab;
 
     private bool spawning = false;
+    public string sceneName;
+    private SceneChanger sceneChanger;
+    public GameObject sceneManager;
 
     private void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        sceneChanger = sceneManager.GetComponent<SceneChanger>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Battle")
+        if (scene.name == sceneName)
         {
             if (this.spawning)
             {
@@ -34,7 +38,8 @@ public class StartBattle : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             this.spawning = true;
-            SceneManager.LoadScene("Battle");
+            sceneChanger.LoadScene(sceneName);
+            //SceneManager.LoadScene(sceneName);
         }
     }
 }
