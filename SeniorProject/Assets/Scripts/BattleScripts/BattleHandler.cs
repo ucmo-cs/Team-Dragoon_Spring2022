@@ -16,6 +16,17 @@ public class BattleHandler : MonoBehaviour
     public Texture2D playerSpritesheet;
     public Texture2D enemySpritesheet;
 
+    private CharacterBattle playerCharacterBattle;
+    private CharacterBattle enemyCharacterBattle;
+    private CharacterBattle activeCharacterBattle;
+    private State state;
+
+    private enum State
+    {
+        WaitngForPlayer,
+        Busy
+    }
+
 
     private void Awake()
     {
@@ -24,19 +35,28 @@ public class BattleHandler : MonoBehaviour
 
     private void Start()
     {
-        SpawnCharacter(true);
-        SpawnCharacter(false);
+        playerCharacterBattle = SpawnCharacter(true);
+        enemyCharacterBattle = SpawnCharacter(false);
+        SetActiveCharacterBattle(playerCharacterBattle);
+        state = State.WaitngForPlayer;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (state == State.WaitngForPlayer)
         {
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                state = State.Busy;
+                playerCharacterBattle.Attack(enemyCharacterBattle, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
         }
     }
 
-    private void SpawnCharacter(bool isPlayerTeam)
+    private CharacterBattle SpawnCharacter(bool isPlayerTeam)
     {
         Vector3 position;
         if (isPlayerTeam)
@@ -51,5 +71,58 @@ public class BattleHandler : MonoBehaviour
         Transform characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity);
         CharacterBattle characterBattle = characterTransform.GetComponent<CharacterBattle>();
         characterBattle.Setup(isPlayerTeam);
+
+        return characterBattle;
+    }
+
+    private void SetActiveCharacterBattle(CharacterBattle characterBattle)
+    {
+        if (activeCharacterBattle != null)
+        {
+            activeCharacterBattle.HideSelectionCircle();
+        }
+        
+        activeCharacterBattle = characterBattle;
+        activeCharacterBattle.showSelectionCircle();
+    }
+
+    private void ChooseNextActiveCharacter()
+    {
+        if (TestBattleOver())
+        {
+            return;
+        }
+        if (activeCharacterBattle == playerCharacterBattle)
+        {
+            SetActiveCharacterBattle(enemyCharacterBattle);
+            state = State.Busy; 
+
+            enemyCharacterBattle.Attack(playerCharacterBattle, () =>
+            {
+                ChooseNextActiveCharacter();
+            });
+        }
+        else
+        {
+            SetActiveCharacterBattle(playerCharacterBattle);
+            state = State.WaitngForPlayer;
+        }
+    }
+
+    private bool TestBattleOver()
+    {
+        if (playerCharacterBattle.IsDead())
+        {
+            //Player dead, enemy wins
+            Debug.Log("Enemy wins");
+            return true;
+        }
+        if (enemyCharacterBattle.IsDead())
+        {
+            //Enemy dead, player wins
+            Debug.Log("Player wins");
+            return true;
+        }
+        return false;
     }
 }
