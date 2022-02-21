@@ -56,11 +56,8 @@ MonoBehaviour:
   currentHP: 20
   maxKI: 0
   currentKI: 0
+  damage: 5
   characterPortrait: {fileID: 21300000, guid: c80b1a88a4afa5344bb068424fe04ab2, type: 3}
-  attack1: {fileID: 0}
-  attack2: {fileID: 0}
-  attack3: {fileID: 0}
-  attack4: {fileID: 0}
 --- !u!114 &-2598237357758018362
 MonoBehaviour:
   m_ObjectHideFlags: 0

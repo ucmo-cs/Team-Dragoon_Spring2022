@@ -16,12 +16,16 @@ public class DoorManager : MonoBehaviour
     public float exitPosX;
     public float exitPosY;
 
+    private SceneChanger sceneChanger;
+    public GameObject sceneManager;
+
     //add private variable to save the character that enters door
 
 
     // Start is called before the first frame update
     void Start()
     {
+        sceneChanger = sceneManager.GetComponent<SceneChanger>();
         doorExitPos.x = exitPosX;
         doorExitPos.y = exitPosY;
     }
@@ -31,7 +35,8 @@ public class DoorManager : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Door/Player collision");
-            SceneManager.LoadScene(sceneName);
+            sceneChanger.LoadScene(sceneName);
+            //SceneManager.LoadScene(sceneName);
             collision.gameObject.transform.position = doorExitPos;
         }
     }

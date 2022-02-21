@@ -14,10 +14,12 @@ public class Unit : MonoBehaviour
     public int maxKI;
     public int currentKI;
 
+    public int damage;
+
     public Sprite characterPortrait;
 
-    public AttackInformation attack1;
+    /*public AttackInformation attack1;
     public AttackInformation attack2;
     public AttackInformation attack3;
-    public AttackInformation attack4;
+    public AttackInformation attack4;*/
 }

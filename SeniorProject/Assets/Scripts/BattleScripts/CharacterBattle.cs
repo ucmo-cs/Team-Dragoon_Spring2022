@@ -15,6 +15,7 @@ public class CharacterBattle : MonoBehaviour
     private GameObject selectionCircleGameObject;
     private HealthSystem healthSystem;
     private Slider healthSlider;
+    private Unit characterStats;
     private enum State
     {
         Idle,
@@ -30,6 +31,7 @@ public class CharacterBattle : MonoBehaviour
         healthSlider = transform.Find("HealthBar").gameObject.GetComponent<Slider>();
         HideSelectionCircle();
         state = State.Idle;
+        characterStats = GetComponent<Unit>();
     }
 
     public void Setup(bool isPlayerTeam)
@@ -127,7 +129,7 @@ public class CharacterBattle : MonoBehaviour
              * }); */
             state = State.Busy;
 
-            targetCharacterBattle.Damage(40);
+            targetCharacterBattle.Damage(characterStats.damage);
             SlideToPosition(startingPosition, () =>
             {
                 state = State.Idle;

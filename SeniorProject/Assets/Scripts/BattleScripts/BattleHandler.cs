@@ -14,15 +14,19 @@ public class BattleHandler : MonoBehaviour
     }
 
     [SerializeField] private Transform pfCharacterBattle;
+    [SerializeField] private Transform[] pfCharacterBattles;
     public Texture2D playerSpritesheet;
     public Texture2D enemySpritesheet;
 
     private CharacterBattle playerCharacterBattle;
     private CharacterBattle enemyCharacterBattle;
+
+    public CharacterBattle[] playerCharacterBattles;
     private CharacterBattle activeCharacterBattle;
     private State state;
     public SceneChanger sceneChanger;
     private GameObject[] DontDestroyOnLoadObjects;
+    private Unit characterStats;
 
     private enum State
     {
@@ -38,8 +42,12 @@ public class BattleHandler : MonoBehaviour
 
     private void Start()
     {
-        playerCharacterBattle = SpawnCharacter(true);
-        enemyCharacterBattle = SpawnCharacter(false);
+        /*for (int i = 0; i < playerCharacterBattles.Length; i++)
+        {
+            playerCharacterBattles[i] = SpawnCharacter(true, i); 
+        }*/
+        playerCharacterBattle = SpawnCharacter(true, 1);
+        enemyCharacterBattle = SpawnCharacter(false, 1);
         SetActiveCharacterBattle(playerCharacterBattle);
         state = State.WaitngForPlayer;
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
@@ -61,19 +69,22 @@ public class BattleHandler : MonoBehaviour
         }
     }
 
-    private CharacterBattle SpawnCharacter(bool isPlayerTeam)
+    private CharacterBattle SpawnCharacter(bool isPlayerTeam, int unitPlacement)
     {
         Vector3 position;
+        Transform characterTransform;
         if (isPlayerTeam)
         {
-            position = new Vector3(-5, 0);
+            position = new Vector3(-5 * -(unitPlacement / 2), 0);
+            characterTransform = Instantiate(pfCharacterBattles[unitPlacement], position, Quaternion.identity);
         }
         else
         {
             position = new Vector3(+5, 0);
+            characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity);
         }
 
-        Transform characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity);
+        //Transform characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity);
         CharacterBattle characterBattle = characterTransform.GetComponent<CharacterBattle>();
         characterBattle.Setup(isPlayerTeam);
 
