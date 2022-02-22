@@ -13,20 +13,25 @@ public class BattleHandler : MonoBehaviour
         return instance;
     }
 
-    [SerializeField] private Transform pfCharacterBattle;
+    [SerializeField] private Transform pfCharacterBattle1;
+    [SerializeField] private Transform pfCharacterBattle2;
+    [SerializeField] private Transform pfCharacterBattle3;
     [SerializeField] private Transform[] pfCharacterBattles;
     public Texture2D playerSpritesheet;
     public Texture2D enemySpritesheet;
 
-    private CharacterBattle playerCharacterBattle;
+    private CharacterBattle playerCharacterBattle1;
+    private CharacterBattle playerCharacterBattle2;
+    private CharacterBattle playerCharacterBattle3;
     private CharacterBattle enemyCharacterBattle;
 
-    public CharacterBattle[] playerCharacterBattles;
+    //public CharacterBattle[] playerCharacterBattles;
     private CharacterBattle activeCharacterBattle;
     private State state;
     public SceneChanger sceneChanger;
     private GameObject[] DontDestroyOnLoadObjects;
     private Unit characterStats;
+    private int partyMemberTurn;
 
     private enum State
     {
@@ -37,6 +42,7 @@ public class BattleHandler : MonoBehaviour
 
     private void Awake()
     {
+        partyMemberTurn = 1;
         instance = this;
     }
 
@@ -46,9 +52,11 @@ public class BattleHandler : MonoBehaviour
         {
             playerCharacterBattles[i] = SpawnCharacter(true, i); 
         }*/
-        playerCharacterBattle = SpawnCharacter(true, 1);
-        enemyCharacterBattle = SpawnCharacter(false, 1);
-        SetActiveCharacterBattle(playerCharacterBattle);
+        playerCharacterBattle1 = SpawnCharacter(true);
+        playerCharacterBattle2 = SpawnCharacter(true);
+        playerCharacterBattle3 = SpawnCharacter(true);
+        enemyCharacterBattle = SpawnCharacter(false);
+        SetActiveCharacterBattle(playerCharacterBattle1);
         state = State.WaitngForPlayer;
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
         sceneChanger = DontDestroyOnLoadObjects[0].GetComponent<SceneChanger>();
@@ -58,10 +66,26 @@ public class BattleHandler : MonoBehaviour
     {
         if (state == State.WaitngForPlayer)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && partyMemberTurn == 1)
             {
                 state = State.Busy;
-                playerCharacterBattle.Attack(enemyCharacterBattle, () =>
+                playerCharacterBattle1.Attack(enemyCharacterBattle, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && partyMemberTurn == 2)
+            {
+                state = State.Busy;
+                playerCharacterBattle2.Attack(enemyCharacterBattle, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && partyMemberTurn == 3)
+            {
+                state = State.Busy;
+                playerCharacterBattle3.Attack(enemyCharacterBattle, () =>
                 {
                     ChooseNextActiveCharacter();
                 });
@@ -69,19 +93,33 @@ public class BattleHandler : MonoBehaviour
         }
     }
 
-    private CharacterBattle SpawnCharacter(bool isPlayerTeam, int unitPlacement)
+    private CharacterBattle SpawnCharacter(bool isPlayerTeam)
     {
         Vector3 position;
         Transform characterTransform;
-        if (isPlayerTeam)
+        if (isPlayerTeam && partyMemberTurn == 1)
         {
-            position = new Vector3(-5 * -(unitPlacement / 2), 0);
-            characterTransform = Instantiate(pfCharacterBattles[unitPlacement], position, Quaternion.identity);
+            position = new Vector3(-5, 0);
+            characterTransform = Instantiate(pfCharacterBattle1, position, Quaternion.identity);
+            partyMemberTurn += 1;
+        }
+        else if(isPlayerTeam && partyMemberTurn == 2)
+        {
+            position = new Vector3(-6, 1);
+            characterTransform = Instantiate(pfCharacterBattle2, position, Quaternion.identity);
+            partyMemberTurn += 1;
+        }
+        else if(isPlayerTeam && partyMemberTurn == 3)
+        {
+            position = new Vector3(-7, -1);
+            characterTransform = Instantiate(pfCharacterBattle3, position, Quaternion.identity);
+
+            partyMemberTurn = 1;
         }
         else
         {
             position = new Vector3(+5, 0);
-            characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity);
+            characterTransform = Instantiate(pfCharacterBattle1, position, Quaternion.identity);
         }
 
         //Transform characterTransform = Instantiate(pfCharacterBattle, position, Quaternion.identity);
@@ -108,26 +146,55 @@ public class BattleHandler : MonoBehaviour
         {
             return;
         }
-        if (activeCharacterBattle == playerCharacterBattle)
+        if (activeCharacterBattle == playerCharacterBattle1 && partyMemberTurn == 1)
+        {
+            SetActiveCharacterBattle(playerCharacterBattle2);
+
+            partyMemberTurn += 1;
+
+            state = State.WaitngForPlayer;
+            //state = State.Busy; 
+
+            /*enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
+            {
+                ChooseNextActiveCharacter();
+            });*/
+        }
+        else if (activeCharacterBattle == playerCharacterBattle2 && partyMemberTurn == 2)
+        {
+            SetActiveCharacterBattle(playerCharacterBattle3);
+
+            partyMemberTurn += 1;
+
+            state = State.WaitngForPlayer;
+            //state = State.Busy;
+
+            /*enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
+            {
+                ChooseNextActiveCharacter();
+            });*/
+        }
+        else if (activeCharacterBattle == playerCharacterBattle3 && partyMemberTurn == 3)
         {
             SetActiveCharacterBattle(enemyCharacterBattle);
-            state = State.Busy; 
+            partyMemberTurn = 1;
+            state = State.Busy;
 
-            enemyCharacterBattle.Attack(playerCharacterBattle, () =>
+            enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
             {
                 ChooseNextActiveCharacter();
             });
         }
         else
         {
-            SetActiveCharacterBattle(playerCharacterBattle);
+            SetActiveCharacterBattle(playerCharacterBattle1);
             state = State.WaitngForPlayer;
         }
     }
 
     private bool TestBattleOver()
     {
-        if (playerCharacterBattle.IsDead())
+        if (playerCharacterBattle1.IsDead())
         {
             //Player dead, enemy wins
             Debug.Log("Enemy wins");

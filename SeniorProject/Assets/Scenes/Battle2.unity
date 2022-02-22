@@ -152,17 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e6dfe21e748dd41a2f363e82c1b843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfCharacterBattle: {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
+  pfCharacterBattle1: {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
+  pfCharacterBattle2: {fileID: 8322565142183082412, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
+  pfCharacterBattle3: {fileID: 4414834349944951527, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
   pfCharacterBattles:
   - {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
   - {fileID: 8322565142183082412, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
   - {fileID: 4414834349944951527, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
   playerSpritesheet: {fileID: 0}
   enemySpritesheet: {fileID: 0}
-  playerCharacterBattles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   sceneChanger: {fileID: 0}
 --- !u!4 &71383291
 Transform:
