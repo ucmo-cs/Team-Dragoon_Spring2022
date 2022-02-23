@@ -144,6 +144,7 @@ public class BattleHandler : MonoBehaviour
     {
         if (TestBattleOver())
         {
+            sceneChanger.PreviousScene();
             return;
         }
         if (activeCharacterBattle == playerCharacterBattle1 && partyMemberTurn == 1)
@@ -204,7 +205,7 @@ public class BattleHandler : MonoBehaviour
         {
             //Enemy dead, player wins
             Debug.Log("Player wins");
-            sceneChanger.PreviousScene();
+            
             return true;
         }
         return false;
