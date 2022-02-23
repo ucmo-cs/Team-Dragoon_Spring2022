@@ -60,4 +60,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951677848e260b84db13062e50163f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneHistory: []
+  sceneHistory:
+  - PlayerHouse

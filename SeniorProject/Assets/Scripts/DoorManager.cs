@@ -36,7 +36,6 @@ public class DoorManager : MonoBehaviour
         {
             Debug.Log("Door/Player collision");
             sceneChanger.LoadScene(sceneName);
-            //SceneManager.LoadScene(sceneName);
             collision.gameObject.transform.position = doorExitPos;
         }
     }
