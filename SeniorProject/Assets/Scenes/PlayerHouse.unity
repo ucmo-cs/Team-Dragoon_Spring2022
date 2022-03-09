@@ -6414,9 +6414,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: PastOverworld
-  exitPosX: -5.42
+  exitPosX: -4.78
   exitPosY: 0
   sceneManager: {fileID: 1149329800}
+  playerChar: {fileID: 0}
 --- !u!1 &1721220238
 GameObject:
   m_ObjectHideFlags: 0
@@ -7081,14 +7082,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5428764994372278908, guid: cfea461abb96ddd45bd8beefa3265490, type: 3}
-      propertyPath: emptyTable
-      value: 
-      objectReference: {fileID: 999633492}
-    - target: {fileID: 5428764994372278908, guid: cfea461abb96ddd45bd8beefa3265490, type: 3}
-      propertyPath: emptyArmorStand
-      value: 
-      objectReference: {fileID: 1961675526}
     - target: {fileID: 9100064872518016004, guid: cfea461abb96ddd45bd8beefa3265490, type: 3}
       propertyPath: m_RootOrder
       value: 5

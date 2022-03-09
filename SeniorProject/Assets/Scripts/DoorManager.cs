@@ -18,6 +18,7 @@ public class DoorManager : MonoBehaviour
 
     private SceneChanger sceneChanger;
     public GameObject sceneManager;
+    public GameObject playerChar;
 
     //add private variable to save the character that enters door
 
@@ -34,9 +35,11 @@ public class DoorManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            playerChar = collision.gameObject;
+            DontDestroyOnLoad(playerChar);
             Debug.Log("Door/Player collision");
             sceneChanger.LoadScene(sceneName);
-            collision.gameObject.transform.position = doorExitPos;
+            playerChar.transform.position = doorExitPos;
         }
     }
 }

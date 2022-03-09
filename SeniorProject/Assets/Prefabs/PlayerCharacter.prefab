@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9100064872518016006}
   - component: {fileID: 9100064872518016005}
   - component: {fileID: 5428764994372278908}
+  - component: {fileID: 14021109479697597}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -31,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: -2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -89,7 +91,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &9100064872518016058
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,6 +104,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -166,9 +169,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  currPlayer: 0
   canSwitch: 0
   canInteract: 0
   canMove: 0
   interactableObject: {fileID: 0}
-  emptyArmorStand: {fileID: 0}
-  emptyTable: {fileID: 0}
+--- !u!114 &14021109479697597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100064872518016057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4819ca195961d17428e6da8a4de50721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

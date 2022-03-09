@@ -9,7 +9,7 @@ public class CharacterOverworldController : MonoBehaviour
     private Rigidbody2D myBody;
     private Animator anim;
     int idleFrameCt;
-    int currPlayer;
+    public int currPlayer;
     public bool canSwitch, canInteract = true, canMove = true;
     bool isDressed;
     public GameObject interactableObject;
@@ -22,6 +22,7 @@ public class CharacterOverworldController : MonoBehaviour
         }
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        DontDestroyOnLoad(this);
         idleFrameCt = 0;
         currPlayer = 0;
         canSwitch = false;
@@ -161,6 +162,12 @@ public class CharacterOverworldController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SceneChangeCharUpdate(int charNum)
+    {
+        anim.SetInteger("CharSelect", charNum);
+        currPlayer = charNum;
     }
 
 }
