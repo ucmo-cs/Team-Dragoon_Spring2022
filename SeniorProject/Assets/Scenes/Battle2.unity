@@ -155,13 +155,14 @@ MonoBehaviour:
   pfCharacterBattle1: {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
   pfCharacterBattle2: {fileID: 8322565142183082412, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
   pfCharacterBattle3: {fileID: 4414834349944951527, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
-  pfCharacterBattles:
-  - {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
-  - {fileID: 8322565142183082412, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
-  - {fileID: 4414834349944951527, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
   playerSpritesheet: {fileID: 0}
   enemySpritesheet: {fileID: 0}
+  pfEnemyBattle1: {fileID: 1178916395498000014, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
+  pfEnemyBattle2: {fileID: 1178916395498000014, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
+  pfEnemyBattle3: {fileID: 1178916395498000014, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
+  pfEnemyBattle4: {fileID: 1178916395498000014, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
   sceneChanger: {fileID: 0}
+  physicalAttackButton: {fileID: 0}
 --- !u!4 &71383291
 Transform:
   m_ObjectHideFlags: 0
@@ -271,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &567540336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -778,7 +779,7 @@ GameObject:
   - component: {fileID: 1757321512}
   m_Layer: 5
   m_Name: Physical Attack Button
-  m_TagString: Untagged
+  m_TagString: PhysicalAttackButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

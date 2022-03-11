@@ -12,14 +12,20 @@ public class StartBattle : MonoBehaviour
     private SceneChanger sceneChanger;
     public GameObject sceneManager;
 
-    private GameObject[] DontDestroyOnLoadObjects;
+    public int enemyIndexInPool;
+
+    public static StartBattle instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         //DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
-        DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-        sceneChanger = DontDestroyOnLoadObjects[1].GetComponent<SceneChanger>();
+        gameObject.SetActive(ObjectPooling.instance.canSpawn[enemyIndexInPool]);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -41,28 +47,8 @@ public class StartBattle : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             this.spawning = true;
+            SceneChanger.instance.LoadScene(sceneName);
             gameObject.SetActive(false);
-            sceneChanger.LoadScene(sceneName);
-            //SceneManager.LoadScene(sceneName);
-        }
-    }
-    public static GameObject[] GetDontDestroyOnLoadObjects()
-    {
-        GameObject temp = null;
-        try
-        {
-            temp = new GameObject();
-            Object.DontDestroyOnLoad(temp);
-            UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
-            Object.DestroyImmediate(temp);
-            temp = null;
-
-            return dontDestroyOnLoad.GetRootGameObjects();
-        }
-        finally
-        {
-            if (temp != null)
-                Object.DestroyImmediate(temp);
         }
     }
 }

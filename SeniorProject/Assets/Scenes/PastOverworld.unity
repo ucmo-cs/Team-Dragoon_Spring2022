@@ -13612,7 +13612,6 @@ GameObject:
   - component: {fileID: 800164641}
   - component: {fileID: 800164642}
   - component: {fileID: 800164643}
-  - component: {fileID: 800164644}
   m_Layer: 6
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -13677,19 +13676,7 @@ MonoBehaviour:
   enemyEncounterPrefab: {fileID: 0}
   sceneName: Battle2
   sceneManager: {fileID: 0}
---- !u!114 &800164644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800164640}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 951677848e260b84db13062e50163f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneHistory: []
+  enemyIndexInPool: 0
 --- !u!1001 &1148080864849231664
 PrefabInstance:
   m_ObjectHideFlags: 0
