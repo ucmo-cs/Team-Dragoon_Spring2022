@@ -19,7 +19,7 @@ public class StartBattle : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-        sceneChanger = DontDestroyOnLoadObjects[0].GetComponent<SceneChanger>();
+        sceneChanger = DontDestroyOnLoadObjects[1].GetComponent<SceneChanger>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -41,6 +41,7 @@ public class StartBattle : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             this.spawning = true;
+            //Destory(this.gameObject);
             sceneChanger.LoadScene(sceneName);
             //SceneManager.LoadScene(sceneName);
         }

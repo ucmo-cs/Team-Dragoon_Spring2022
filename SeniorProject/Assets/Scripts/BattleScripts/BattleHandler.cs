@@ -33,6 +33,11 @@ public class BattleHandler : MonoBehaviour
     private Unit characterStats;
     private int partyMemberTurn;
 
+
+    //Overworld Items
+    private GameObject playerFromOverworld;
+    private GameObject enemyFromOverworld;
+
     private enum State
     {
         WaitngForPlayer,
@@ -59,7 +64,11 @@ public class BattleHandler : MonoBehaviour
         SetActiveCharacterBattle(playerCharacterBattle1);
         state = State.WaitngForPlayer;
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-        sceneChanger = DontDestroyOnLoadObjects[0].GetComponent<SceneChanger>();
+        sceneChanger = DontDestroyOnLoadObjects[1].GetComponent<SceneChanger>();
+        playerFromOverworld = DontDestroyOnLoadObjects[0];
+        playerFromOverworld.SetActive(false);
+        enemyFromOverworld = DontDestroyOnLoadObjects[2];
+        enemyFromOverworld.SetActive(false);
     }
 
     private void Update()
@@ -144,6 +153,7 @@ public class BattleHandler : MonoBehaviour
     {
         if (TestBattleOver())
         {
+            playerFromOverworld.SetActive(true);
             sceneChanger.PreviousScene();
             return;
         }

@@ -9,21 +9,16 @@ public class SceneChanger : MonoBehaviour
     public List<string> sceneHistory = new List<string>();  //running history of scenes
                                                             //The last string in the list is always the current scene running
 
-    private void Awake()
-    {
-
-        //LoadScene(SceneManager.GetActiveScene().name);
-    }
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);  //Allow this object to persist between scene changes
-        //LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //Call this whenever you want to load a new scene
     //It will add the new scene to the sceneHistory list
     public void LoadScene(string newScene)
     {
+        PlayerPrefs.SetInt("OldScene", SceneManager.GetActiveScene().buildIndex);
         sceneHistory.Add(newScene);
         SceneManager.LoadScene(newScene);
     }
@@ -45,6 +40,7 @@ public class SceneChanger : MonoBehaviour
             returnValue = true;
             sceneHistory.RemoveAt(sceneHistory.Count - 1);
             SceneManager.LoadScene(sceneHistory[sceneHistory.Count - 1]);
+            //SceneManager.LoadScene(PlayerPrefs.GetInt("OldScene"));
         }
 
         return returnValue;
