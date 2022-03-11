@@ -41,7 +41,7 @@ public class StartBattle : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             this.spawning = true;
-            //Destory(this.gameObject);
+            gameObject.SetActive(false);
             sceneChanger.LoadScene(sceneName);
             //SceneManager.LoadScene(sceneName);
         }
