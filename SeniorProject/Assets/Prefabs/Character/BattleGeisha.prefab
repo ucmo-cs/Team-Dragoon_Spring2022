@@ -70,6 +70,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a14ef1e91e24be4d8a9830c51856a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partyMemberIndex: 1
+  partyMember1Damage: 0
+  partyMember2Damage: 0
+  partyMember3Damage: 0
+  partyMember4Damage: 0
 --- !u!114 &7669586427874123407
 MonoBehaviour:
   m_ObjectHideFlags: 0

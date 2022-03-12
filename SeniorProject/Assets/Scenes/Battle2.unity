@@ -155,6 +155,7 @@ MonoBehaviour:
   pfCharacterBattle1: {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
   pfCharacterBattle2: {fileID: 8322565142183082412, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
   pfCharacterBattle3: {fileID: 4414834349944951527, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
+  pfCharacterBattle4: {fileID: 3969922577209610097, guid: c3c9d7d61f6fb344fa52ba3ad76a465d, type: 3}
   playerSpritesheet: {fileID: 0}
   enemySpritesheet: {fileID: 0}
   pfEnemyBattle1: {fileID: 1178916395498000014, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}

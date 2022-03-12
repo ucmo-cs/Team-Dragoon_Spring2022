@@ -16,6 +16,10 @@ public class CharacterBattle : MonoBehaviour
     private HealthSystem healthSystem;
     private Slider healthSlider;
     private Unit characterStats;
+
+    // Damage values from player party. For enemies determining who to attack
+    [SerializeField] private int partyMemberIndex;
+    public int[] partyMembersDamage = new int[4];
     private enum State
     {
         Idle,
@@ -128,6 +132,26 @@ public class CharacterBattle : MonoBehaviour
              *      onAttackComplete();
              * }); */
             state = State.Busy;
+
+            if (isPlayerTeam)
+            {
+                if (partyMemberIndex == 1)
+                {
+                    targetCharacterBattle.partyMembersDamage[0] += characterStats.damage;
+                }
+                else if (partyMemberIndex == 2)
+                {
+                    targetCharacterBattle.partyMembersDamage[1] += characterStats.damage;
+                }
+                else if (partyMemberIndex == 3)
+                {
+                    targetCharacterBattle.partyMembersDamage[2] += characterStats.damage;
+                }
+                else if (partyMemberIndex == 4)
+                {
+                    targetCharacterBattle.partyMembersDamage[3] += characterStats.damage;
+                }
+            }
 
             targetCharacterBattle.Damage(characterStats.damage);
             SlideToPosition(startingPosition, () =>

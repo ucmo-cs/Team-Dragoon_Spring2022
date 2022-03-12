@@ -18,12 +18,14 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] private Transform pfCharacterBattle1;
     [SerializeField] private Transform pfCharacterBattle2;
     [SerializeField] private Transform pfCharacterBattle3;
+    [SerializeField] private Transform pfCharacterBattle4;
     //[SerializeField] private Transform[] pfCharacterBattles;
     public Texture2D playerSpritesheet;
 
     private CharacterBattle playerCharacterBattle1;
     private CharacterBattle playerCharacterBattle2;
     private CharacterBattle playerCharacterBattle3;
+    private CharacterBattle playerCharacterBattle4;
 
     // Enemy's party and information
     public Texture2D enemySpritesheet;
@@ -74,6 +76,7 @@ public class BattleHandler : MonoBehaviour
         playerCharacterBattle1 = SpawnCharacter(true);
         playerCharacterBattle2 = SpawnCharacter(true);
         playerCharacterBattle3 = SpawnCharacter(true);
+        playerCharacterBattle4 = SpawnCharacter(true);
         enemyCharacterBattle = SpawnCharacter(false);
         enemyCharacterBattle2 = SpawnCharacter(false);
         enemyCharacterBattle3 = SpawnCharacter(false);
@@ -131,6 +134,15 @@ public class BattleHandler : MonoBehaviour
                             ChooseNextActiveCharacter();
                         });
                     }
+                    else if (partyMemberTurn == 4 && hit.collider != null)
+                    {
+                        state = State.Busy;
+                        physicalAttackButtonIsClicked = false;
+                        playerCharacterBattle4.Attack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
+                        {
+                            ChooseNextActiveCharacter();
+                        });
+                    }
                     if (hit.collider != null)
                     {
                         Debug.Log(hit.collider.gameObject.name);
@@ -160,6 +172,13 @@ public class BattleHandler : MonoBehaviour
         {
             position = new Vector3(-7, -1);
             characterTransform = Instantiate(pfCharacterBattle3, position, Quaternion.identity);
+
+            partyMemberTurn += 1;
+        }
+        else if (isPlayerTeam && partyMemberTurn == 4)
+        {
+            position = new Vector3(-8, 0);
+            characterTransform = Instantiate(pfCharacterBattle4, position, Quaternion.identity);
 
             partyMemberTurn = 1;
         }
@@ -233,14 +252,45 @@ public class BattleHandler : MonoBehaviour
         }
         else if (activeCharacterBattle == playerCharacterBattle3 && partyMemberTurn == 3)
         {
+            SetActiveCharacterBattle(playerCharacterBattle4);
+            partyMemberTurn += 1;
+
+            state = State.WaitngForPlayer;
+        }
+        else if (activeCharacterBattle == playerCharacterBattle4 && partyMemberTurn == 4)
+        {
             SetActiveCharacterBattle(enemyCharacterBattle);
             partyMemberTurn = 1;
             state = State.Busy;
 
-            enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
+            if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 0)
             {
-                ChooseNextActiveCharacter();
-            });
+                enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 1)
+            {
+                enemyCharacterBattle.Attack(playerCharacterBattle2, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 2)
+            {
+                enemyCharacterBattle.Attack(playerCharacterBattle3, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 3)
+            {
+                enemyCharacterBattle.Attack(playerCharacterBattle4, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
         }
         else if (activeCharacterBattle == enemyCharacterBattle && enemyPartyMemberTurn == 1)
         {
@@ -248,10 +298,34 @@ public class BattleHandler : MonoBehaviour
             enemyPartyMemberTurn++;
             state = State.Busy;
 
-            enemyCharacterBattle2.Attack(playerCharacterBattle1, () =>
+            if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 0)
             {
-                ChooseNextActiveCharacter();
-            });
+                enemyCharacterBattle2.Attack(playerCharacterBattle1, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 1)
+            {
+                enemyCharacterBattle2.Attack(playerCharacterBattle2, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 2)
+            {
+                enemyCharacterBattle2.Attack(playerCharacterBattle3, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 3)
+            {
+                enemyCharacterBattle2.Attack(playerCharacterBattle4, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
         }
         else if (activeCharacterBattle == enemyCharacterBattle2 && enemyPartyMemberTurn == 2)
         {
@@ -259,10 +333,34 @@ public class BattleHandler : MonoBehaviour
             enemyPartyMemberTurn++;
             state = State.Busy;
 
-            enemyCharacterBattle3.Attack(playerCharacterBattle1, () =>
+            if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 0)
             {
-                ChooseNextActiveCharacter();
-            });
+                enemyCharacterBattle3.Attack(playerCharacterBattle1, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 1)
+            {
+                enemyCharacterBattle3.Attack(playerCharacterBattle2, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 2)
+            {
+                enemyCharacterBattle3.Attack(playerCharacterBattle3, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 3)
+            {
+                enemyCharacterBattle3.Attack(playerCharacterBattle4, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
         }
         else if (activeCharacterBattle == enemyCharacterBattle3 && enemyPartyMemberTurn == 3)
         {
@@ -270,10 +368,34 @@ public class BattleHandler : MonoBehaviour
             enemyPartyMemberTurn = 1;
             state = State.Busy;
 
-            enemyCharacterBattle4.Attack(playerCharacterBattle1, () =>
+            if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 0)
             {
-                ChooseNextActiveCharacter();
-            });
+                enemyCharacterBattle4.Attack(playerCharacterBattle1, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 1)
+            {
+                enemyCharacterBattle4.Attack(playerCharacterBattle2, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 2)
+            {
+                enemyCharacterBattle4.Attack(playerCharacterBattle3, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
+            else if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 3)
+            {
+                enemyCharacterBattle4.Attack(playerCharacterBattle4, () =>
+                {
+                    ChooseNextActiveCharacter();
+                });
+            }
         }
         else
         {
@@ -284,13 +406,13 @@ public class BattleHandler : MonoBehaviour
 
     private bool TestBattleOver()
     {
-        if (playerCharacterBattle1.IsDead())
+        if (playerCharacterBattle1.IsDead() && playerCharacterBattle2.IsDead() && playerCharacterBattle3.IsDead() && playerCharacterBattle4.IsDead())
         {
             //Player dead, enemy wins
             Debug.Log("Enemy wins");
             return true;
         }
-        if (enemyCharacterBattle.IsDead())
+        if (enemyCharacterBattle.IsDead() && enemyCharacterBattle2.IsDead() && enemyCharacterBattle3.IsDead() && enemyCharacterBattle4.IsDead())
         {
             //Enemy dead, player wins
             Debug.Log("Player wins");
@@ -318,5 +440,22 @@ public class BattleHandler : MonoBehaviour
             if (temp != null)
                 Object.DestroyImmediate(temp);
         }
+    }
+
+    private int AIDetermineAttack(int[] partyMemberDamage)
+    {
+        int index = 0;
+        var max = partyMemberDamage[0];
+        for (int i = 1; i < partyMemberDamage.Length; i++)
+        {
+            if (partyMemberDamage[i] > max)
+            {
+                max = partyMemberDamage[i];
+                index = i;
+            }
+        }
+        Debug.Log("The party member that dealt the most damage was" + index);
+        return index;
+
     }
 }
