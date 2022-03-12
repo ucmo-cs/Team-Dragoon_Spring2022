@@ -366,8 +366,8 @@ MonoBehaviour:
   character: {fileID: 0}
   unitName: Yakuza Lackey
   unitLevel: 2
-  maxHP: 30
-  currentHP: 30
+  maxHP: 10
+  currentHP: 10
   maxKI: 0
   currentKI: 0
   damage: 9
@@ -396,6 +396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a14ef1e91e24be4d8a9830c51856a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partyMemberIndex: 0
+  partyMembersDamage: 00000000000000000000000000000000
 --- !u!61 &5022610053819850664
 BoxCollider2D:
   m_ObjectHideFlags: 0

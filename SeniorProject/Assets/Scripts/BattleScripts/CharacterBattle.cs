@@ -56,7 +56,7 @@ public class CharacterBattle : MonoBehaviour
             */
         }
 
-        healthSystem = new HealthSystem(100);
+        healthSystem = new HealthSystem(characterStats.maxHP);
 
         PlayAnimIdle();
     }
@@ -107,6 +107,7 @@ public class CharacterBattle : MonoBehaviour
 
         if (healthSystem.IsDead())
         {
+            //Destroy(gameObject);
             // Character has died
             //characterBase.PlayAnimLyingUp();
         }
