@@ -14,14 +14,19 @@ public class BattleHandler : MonoBehaviour
         return instance;
     }
 
+    //Information from spawner in the overworld
+    private StartBattle startBattle;
+
     // Player's party and information
     [SerializeField] private Transform pfCharacterBattle1;
     [SerializeField] private Transform pfCharacterBattle2;
     [SerializeField] private Transform pfCharacterBattle3;
     [SerializeField] private Transform pfCharacterBattle4;
-    //[SerializeField] private Transform[] pfCharacterBattles;
+
+    // Sprite element
     public Texture2D playerSpritesheet;
 
+    // Player party member battle logic and script
     private CharacterBattle playerCharacterBattle1;
     private CharacterBattle playerCharacterBattle2;
     private CharacterBattle playerCharacterBattle3;
@@ -30,10 +35,13 @@ public class BattleHandler : MonoBehaviour
     // Enemy's party and information
     public Texture2D enemySpritesheet;
 
+    // Locations to spawn the Prefabs of the enemy
     [SerializeField] private Transform pfEnemyBattle1;
     [SerializeField] private Transform pfEnemyBattle2;
     [SerializeField] private Transform pfEnemyBattle3;
     [SerializeField] private Transform pfEnemyBattle4;
+
+    // Enemey party member battle logic and script
     private CharacterBattle enemyCharacterBattle;
     private CharacterBattle enemyCharacterBattle2;
     private CharacterBattle enemyCharacterBattle3;
@@ -77,10 +85,12 @@ public class BattleHandler : MonoBehaviour
         playerCharacterBattle2 = SpawnCharacter(true);
         playerCharacterBattle3 = SpawnCharacter(true);
         playerCharacterBattle4 = SpawnCharacter(true);
-        enemyCharacterBattle = SpawnCharacter(false);
+        enemyCharacterBattle = startBattle.enemyEncounterPrefab1.GetComponent<CharacterBattle>();
+        
+        /*enemyCharacterBattle = SpawnCharacter(false);
         enemyCharacterBattle2 = SpawnCharacter(false);
         enemyCharacterBattle3 = SpawnCharacter(false);
-        enemyCharacterBattle4 = SpawnCharacter(false);
+        enemyCharacterBattle4 = SpawnCharacter(false);*/
         SetActiveCharacterBattle(playerCharacterBattle1);
         state = State.WaitngForPlayer;
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();

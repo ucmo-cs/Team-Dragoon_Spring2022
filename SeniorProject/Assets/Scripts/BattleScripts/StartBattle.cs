@@ -5,9 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class StartBattle : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyEncounterPrefab;
+    // Enemies to spawn in the battle
+    [SerializeField] public GameObject enemyEncounterPrefab1;
+    [SerializeField] public GameObject enemyEncounterPrefab2;
+    [SerializeField] public GameObject enemyEncounterPrefab3;
+    [SerializeField] public GameObject enemyEncounterPrefab4;
 
+    // Determine if the character should spawn or not
     private bool spawning = false;
+    // Variables to load the battle scene
     public string sceneName;
     private SceneChanger sceneChanger;
     public GameObject sceneManager;
@@ -34,7 +40,7 @@ public class StartBattle : MonoBehaviour
         {
             if (this.spawning)
             {
-                Instantiate(enemyEncounterPrefab);
+                Instantiate(enemyEncounterPrefab1);
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
