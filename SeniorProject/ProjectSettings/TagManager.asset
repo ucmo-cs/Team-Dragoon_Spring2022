@@ -9,6 +9,8 @@ TagManager:
   - SceneManager
   - ObjectPool
   - PhysicalAttackButton
+  - BattleHandler
+  - Spawner
   layers:
   - Default
   - TransparentFX

@@ -42,10 +42,10 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] private Transform pfEnemyBattle4;
 
     // Enemey party member battle logic and script
-    private CharacterBattle enemyCharacterBattle;
-    private CharacterBattle enemyCharacterBattle2;
-    private CharacterBattle enemyCharacterBattle3;
-    private CharacterBattle enemyCharacterBattle4;
+    public static CharacterBattle enemyCharacterBattle;
+    public static CharacterBattle enemyCharacterBattle2;
+    public static CharacterBattle enemyCharacterBattle3;
+    public static CharacterBattle enemyCharacterBattle4;
 
     // Determine which character in the battle should be active
     private CharacterBattle activeCharacterBattle;
@@ -53,6 +53,7 @@ public class BattleHandler : MonoBehaviour
 
     // Scene management
     public SceneChanger sceneChanger;
+    private Spawner spawner;
     private GameObject[] DontDestroyOnLoadObjects;
     private Unit characterStats;
     private int partyMemberTurn;
@@ -81,21 +82,28 @@ public class BattleHandler : MonoBehaviour
 
     private void Start()
     {
+
+        DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
         playerCharacterBattle1 = SpawnCharacter(true);
         playerCharacterBattle2 = SpawnCharacter(true);
         playerCharacterBattle3 = SpawnCharacter(true);
         playerCharacterBattle4 = SpawnCharacter(true);
-        enemyCharacterBattle = startBattle.enemyEncounterPrefab1.GetComponent<CharacterBattle>();
-        
-        /*enemyCharacterBattle = SpawnCharacter(false);
+
+        spawner = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Spawner").GetComponent<Spawner>();
+
+        pfEnemyBattle1 = spawner.enemyEncounterPrefab1.transform;
+        pfEnemyBattle2 = spawner.enemyEncounterPrefab2.transform;
+        pfEnemyBattle3 = spawner.enemyEncounterPrefab3.transform;
+        pfEnemyBattle4 = spawner.enemyEncounterPrefab4.transform;
+
+        enemyCharacterBattle = SpawnCharacter(false);
         enemyCharacterBattle2 = SpawnCharacter(false);
         enemyCharacterBattle3 = SpawnCharacter(false);
-        enemyCharacterBattle4 = SpawnCharacter(false);*/
+        enemyCharacterBattle4 = SpawnCharacter(false);
         SetActiveCharacterBattle(playerCharacterBattle1);
         state = State.WaitngForPlayer;
-        DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-        sceneChanger = DontDestroyOnLoadObjects[1].GetComponent<SceneChanger>();
-        playerFromOverworld = DontDestroyOnLoadObjects[0];
+        sceneChanger = ReturnObjectFromArray(DontDestroyOnLoadObjects, "SceneManager").GetComponent<SceneChanger>();
+        playerFromOverworld = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Player");
         playerFromOverworld.SetActive(false);
         physicalAttackButton = GameObject.FindGameObjectWithTag("PhysicalAttackButton").GetComponent<Button>();
         physicalAttackButton.onClick.AddListener(TaskOnClick);
@@ -466,6 +474,18 @@ public class BattleHandler : MonoBehaviour
             if (temp != null)
                 Object.DestroyImmediate(temp);
         }
+    }
+
+    public static GameObject ReturnObjectFromArray(GameObject[] array, string tag)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i].gameObject.tag == tag)
+            {
+                return array[i];
+            }
+        }
+        return null;
     }
 
     private int AIDetermineAttack(int[] partyMemberDamage)

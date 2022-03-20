@@ -13673,7 +13673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e608db02a9c694c935ed8e0b898a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyEncounterPrefab: {fileID: 0}
+  enemyEncounterPrefab1: {fileID: 4131465377866819102, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
+  enemyEncounterPrefab2: {fileID: 4131465377866819102, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
+  enemyEncounterPrefab3: {fileID: 2170256066786928609, guid: c3c9d7d61f6fb344fa52ba3ad76a465d, type: 3}
+  enemyEncounterPrefab4: {fileID: 4131465377866819102, guid: 3ec239cc7cbd5c44b9404b49b66f8445, type: 3}
   sceneName: Battle2
   sceneManager: {fileID: 0}
   enemyIndexInPool: 0

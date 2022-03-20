@@ -10,6 +10,8 @@ public class StartBattle : MonoBehaviour
     [SerializeField] public GameObject enemyEncounterPrefab2;
     [SerializeField] public GameObject enemyEncounterPrefab3;
     [SerializeField] public GameObject enemyEncounterPrefab4;
+    private GameObject[] DontDestroyOnLoadObjects;
+    private Spawner spawner;
 
     // Determine if the character should spawn or not
     private bool spawning = false;
@@ -40,7 +42,7 @@ public class StartBattle : MonoBehaviour
         {
             if (this.spawning)
             {
-                Instantiate(enemyEncounterPrefab1);
+                //Instantiate(enemyEncounterPrefab1);
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -52,9 +54,45 @@ public class StartBattle : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
+            spawner = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Spawner").GetComponent<Spawner>();
+            spawner.SetSpawns(enemyEncounterPrefab1, enemyEncounterPrefab2, enemyEncounterPrefab3, enemyEncounterPrefab4);
+            Debug.Log("Add to Don't Destroy on Load");
             this.spawning = true;
+            Debug.Log("Load new scene");
             SceneChanger.instance.LoadScene(sceneName);
             gameObject.SetActive(false);
         }
+    }
+    public static GameObject[] GetDontDestroyOnLoadObjects()
+    {
+        GameObject temp = null;
+        try
+        {
+            temp = new GameObject();
+            Object.DontDestroyOnLoad(temp);
+            UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
+            Object.DestroyImmediate(temp);
+            temp = null;
+
+            return dontDestroyOnLoad.GetRootGameObjects();
+        }
+        finally
+        {
+            if (temp != null)
+                Object.DestroyImmediate(temp);
+        }
+    }
+
+    public static GameObject ReturnObjectFromArray(GameObject[] array, string tag)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i].gameObject.tag == tag)
+            {
+                return array[i];
+            }
+        }
+        return null;
     }
 }
