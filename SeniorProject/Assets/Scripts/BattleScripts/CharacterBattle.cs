@@ -10,21 +10,25 @@ public class CharacterBattle : MonoBehaviour
     private Character_Base characterBase;
     private State state;
     private Vector3 slideTargetPosition;
+    private Vector3 projectileTargetPosition;
     private Action onSlideComplete;
+    private Action onProjectileComplete;
     private bool isPlayerTeam;
     private GameObject selectionCircleGameObject;
     private HealthSystem healthSystem;
     private Slider healthSlider;
     private Unit characterStats;
+    private GameObject projectileClone;
 
-    // Damage values from player party. For enemies determining who to attack
-    [SerializeField] private int partyMemberIndex;
+// Damage values from player party. For enemies determining who to attack
+[SerializeField] private int partyMemberIndex;
     public int[] partyMembersDamage = new int[4];
     private enum State
     {
         Idle,
         Sliding,
         Busy,
+        Throwing,
     }
 
     private void Awake()
@@ -80,6 +84,20 @@ public class CharacterBattle : MonoBehaviour
                     transform.position = slideTargetPosition;
                     onSlideComplete();
                 }
+                break;
+            case State.Throwing:
+                float throwSpeed = 1f;
+                projectileClone.transform.position += (projectileTargetPosition - GetPosition()) * throwSpeed * Time.deltaTime;
+                reachedDistance = 1f;
+                if (Vector3.Distance(projectileClone.transform.position, projectileTargetPosition) < reachedDistance)
+                {
+                    Debug.Log("Throw Complete");
+                    // Arriced to slide target position
+                    projectileClone.transform.position = projectileTargetPosition;
+                    //Destroy(projectile);
+                    onProjectileComplete();
+                }
+
                 break;
         }
 
@@ -161,9 +179,59 @@ public class CharacterBattle : MonoBehaviour
                 onAttackComplete();
             });
         });
+    }
 
+    public void Heal()
+    {
+        healthSystem.Heal(5);
+    }
 
-        
+    public void KIAttack(CharacterBattle targetCharacterBattle, Action onAttackComplete)
+    {
+        Vector3 projectileTargetPosition = targetCharacterBattle.GetPosition() + (GetPosition() - targetCharacterBattle.GetPosition()).normalized;
+        Vector3 startingPosition = GetPosition();
+
+        projectileClone = Instantiate(characterStats.projectile, transform.position, transform.rotation);
+        ThrowObject(projectileTargetPosition, () =>
+        {
+            //Instert animation here;
+            /*
+            Vector3 attackDir = (targetCharacterBattle.GetPosition() - GetPosition()).normalized;
+
+            characterBase.PlayAnimAttack(attackDir, null, () => {
+             *      characterBase.PlayAnimIdle(attackDir);
+             *      onAttackComplete();
+             * }); */
+            state = State.Busy;
+
+            if (isPlayerTeam)
+            {
+                if (partyMemberIndex == 1)
+                {
+                    targetCharacterBattle.partyMembersDamage[0] += characterStats.KIdamage;
+                }
+                else if (partyMemberIndex == 2)
+                {
+                    targetCharacterBattle.partyMembersDamage[1] += characterStats.KIdamage;
+                }
+                else if (partyMemberIndex == 3)
+                {
+                    targetCharacterBattle.partyMembersDamage[2] += characterStats.KIdamage;
+                }
+                else if (partyMemberIndex == 4)
+                {
+                    targetCharacterBattle.partyMembersDamage[3] += characterStats.KIdamage;
+                }
+            }
+
+            targetCharacterBattle.Damage(characterStats.KIdamage);
+            ThrowObject(projectileTargetPosition, () =>
+            {
+                state = State.Idle;
+                onAttackComplete();
+            });
+            Destroy(projectileClone);
+        });
     }
 
     private void SlideToPosition(Vector3 slideTargetPosition, Action onSlideComplete)
@@ -180,7 +248,13 @@ public class CharacterBattle : MonoBehaviour
         {
             characterBase.PlayAnimSlideLeft();
         }*/
+    }
 
+    private void ThrowObject(Vector3 projectileTargetPosition, Action onProjectileComplete)
+    {
+        this.projectileTargetPosition = projectileTargetPosition;
+        this.onProjectileComplete = onProjectileComplete;
+        state = State.Throwing;
     }
 
     public void HideSelectionCircle()

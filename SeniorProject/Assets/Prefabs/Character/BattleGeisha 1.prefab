@@ -58,7 +58,9 @@ MonoBehaviour:
   maxKI: 0
   currentKI: 0
   damage: 5
+  KIdamage: 0
   characterPortrait: {fileID: 21300000, guid: c80b1a88a4afa5344bb068424fe04ab2, type: 3}
+  projectile: {fileID: 6789996616825130488, guid: ff7d53c9915138145b8515301c4816e6, type: 3}
 --- !u!114 &-2598237357758018362
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4618595485368782184}
   - component: {fileID: 6334641770856673722}
   - component: {fileID: 961470869953918912}
+  - component: {fileID: 3305871477463223537}
   m_Layer: 0
   m_Name: BattleNinja
   m_TagString: Untagged
@@ -133,7 +134,9 @@ MonoBehaviour:
   maxKI: 0
   currentKI: 0
   damage: 10
+  KIdamage: 0
   characterPortrait: {fileID: 21300000, guid: 50d0a702296b34c4db85cfc7e1faa48a, type: 3}
+  projectile: {fileID: 6690745111676895240, guid: 470660dccb43f434b9865dab36305b22, type: 3}
 --- !u!114 &6334641770856673722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,10 +162,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partyMemberIndex: 2
-  partyMember1Damage: 0
-  partyMember2Damage: 0
-  partyMember3Damage: 0
-  partyMember4Damage: 0
+  partyMembersDamage: 00000000000000000000000000000000
+--- !u!61 &3305871477463223537
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518400873151303996}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.031112373, y: 1.0923901}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.495288, y: 2.1477013}
+  m_EdgeRadius: 0
 --- !u!1 &6995521166102115649
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.9858}
+  m_AnchoredPosition: {x: 0, y: 2.341}
   m_SizeDelta: {x: 1.2361, y: 0.1464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &92617290923196779
@@ -415,7 +441,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3449136861717480762
 MonoBehaviour:
   m_ObjectHideFlags: 0

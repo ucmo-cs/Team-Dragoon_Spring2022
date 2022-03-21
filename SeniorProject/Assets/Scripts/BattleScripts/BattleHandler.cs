@@ -62,6 +62,8 @@ public class BattleHandler : MonoBehaviour
     // UI Elements
     public Button physicalAttackButton;
     private bool physicalAttackButtonIsClicked;
+    public Button KIAttackButton;
+    private bool KIAttackButtonIsClicked;
 
 
     //Overworld Items
@@ -106,12 +108,18 @@ public class BattleHandler : MonoBehaviour
         playerFromOverworld = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Player");
         playerFromOverworld.SetActive(false);
         physicalAttackButton = GameObject.FindGameObjectWithTag("PhysicalAttackButton").GetComponent<Button>();
-        physicalAttackButton.onClick.AddListener(TaskOnClick);
+        physicalAttackButton.onClick.AddListener(TaskOnClickPhysical);
+        KIAttackButton = GameObject.FindGameObjectWithTag("KIAttackButton").GetComponent<Button>();
+        KIAttackButton.onClick.AddListener(TaskOnClickKI);
     }
 
-    void TaskOnClick()
+    void TaskOnClickPhysical()
     {
         physicalAttackButtonIsClicked = true;
+    }
+    void TaskOnClickKI()
+    {
+        KIAttackButtonIsClicked = true;
     }
 
     private void Update()
@@ -127,6 +135,10 @@ public class BattleHandler : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
                     if (partyMemberTurn == 1 && hit.collider != null)
                     {
+                        if (playerCharacterBattle1.IsDead())
+                        {
+                            ChooseNextActiveCharacter();
+                        }
                         state = State.Busy;
                         physicalAttackButtonIsClicked = false;
                         playerCharacterBattle1.Attack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -157,6 +169,55 @@ public class BattleHandler : MonoBehaviour
                         state = State.Busy;
                         physicalAttackButtonIsClicked = false;
                         playerCharacterBattle4.Attack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
+                        {
+                            ChooseNextActiveCharacter();
+                        });
+                    }
+                    if (hit.collider != null)
+                    {
+                        Debug.Log(hit.collider.gameObject.name);
+                    }
+                }
+            }
+            else if (KIAttackButtonIsClicked)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                    if (partyMemberTurn == 1 && hit.collider != null)
+                    {
+                        state = State.Busy;
+                        physicalAttackButtonIsClicked = false;
+                        playerCharacterBattle1.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
+                        {
+                            ChooseNextActiveCharacter();
+                        });
+                    }
+                    else if (partyMemberTurn == 2 && hit.collider != null)
+                    {
+                        state = State.Busy;
+                        physicalAttackButtonIsClicked = false;
+                        playerCharacterBattle2.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
+                        {
+                            ChooseNextActiveCharacter();
+                        });
+                    }
+                    else if (partyMemberTurn == 3 && hit.collider != null)
+                    {
+                        state = State.Busy;
+                        physicalAttackButtonIsClicked = false;
+                        playerCharacterBattle3.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
+                        {
+                            ChooseNextActiveCharacter();
+                        });
+                    }
+                    else if (partyMemberTurn == 4 && hit.collider != null)
+                    {
+                        state = State.Busy;
+                        physicalAttackButtonIsClicked = false;
+                        playerCharacterBattle4.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
                         {
                             ChooseNextActiveCharacter();
                         });
@@ -283,31 +344,63 @@ public class BattleHandler : MonoBehaviour
 
             if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 0 && !enemyCharacterBattle.IsDead())
             {
-                enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
+                if (playerCharacterBattle1.IsDead())
                 {
+                    enemyCharacterBattle.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle.Attack(playerCharacterBattle1, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 1 && !enemyCharacterBattle.IsDead())
             {
-                enemyCharacterBattle.Attack(playerCharacterBattle2, () =>
+                if (playerCharacterBattle2.IsDead())
                 {
+                    enemyCharacterBattle.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle.Attack(playerCharacterBattle2, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 2 && !enemyCharacterBattle.IsDead())
             {
-                enemyCharacterBattle.Attack(playerCharacterBattle3, () =>
+                if (playerCharacterBattle3.IsDead())
                 {
+                    enemyCharacterBattle.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle.Attack(playerCharacterBattle3, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle.partyMembersDamage) == 3 && !enemyCharacterBattle.IsDead())
             {
-                enemyCharacterBattle.Attack(playerCharacterBattle4, () =>
+                if (playerCharacterBattle4.IsDead())
                 {
+                    enemyCharacterBattle.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle.Attack(playerCharacterBattle4, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else
             {
@@ -322,31 +415,63 @@ public class BattleHandler : MonoBehaviour
 
             if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 0 && !enemyCharacterBattle2.IsDead())
             {
-                enemyCharacterBattle2.Attack(playerCharacterBattle1, () =>
+                if (playerCharacterBattle1.IsDead())
                 {
+                    enemyCharacterBattle2.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle2.Attack(playerCharacterBattle1, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 1 && !enemyCharacterBattle2.IsDead())
             {
-                enemyCharacterBattle2.Attack(playerCharacterBattle2, () =>
+                if (playerCharacterBattle2.IsDead())
                 {
+                    enemyCharacterBattle2.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle2.Attack(playerCharacterBattle2, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 2 && !enemyCharacterBattle2.IsDead())
             {
-                enemyCharacterBattle2.Attack(playerCharacterBattle3, () =>
+                if (playerCharacterBattle3.IsDead())
                 {
+                    enemyCharacterBattle2.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle2.Attack(playerCharacterBattle3, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle2.partyMembersDamage) == 3 && !enemyCharacterBattle2.IsDead())
             {
-                enemyCharacterBattle2.Attack(playerCharacterBattle4, () =>
+                if (playerCharacterBattle4.IsDead())
                 {
+                    enemyCharacterBattle2.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle2.Attack(playerCharacterBattle4, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else
             {
@@ -361,31 +486,63 @@ public class BattleHandler : MonoBehaviour
 
             if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 0 && !enemyCharacterBattle3.IsDead())
             {
-                enemyCharacterBattle3.Attack(playerCharacterBattle1, () =>
+                if (playerCharacterBattle1.IsDead())
                 {
+                    enemyCharacterBattle3.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle3.Attack(playerCharacterBattle1, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 1 && !enemyCharacterBattle3.IsDead())
             {
-                enemyCharacterBattle3.Attack(playerCharacterBattle2, () =>
+                if (playerCharacterBattle2.IsDead())
                 {
+                    enemyCharacterBattle3.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle3.Attack(playerCharacterBattle2, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 2 && !enemyCharacterBattle3.IsDead())
             {
-                enemyCharacterBattle3.Attack(playerCharacterBattle3, () =>
+                if (playerCharacterBattle3.IsDead())
                 {
+                    enemyCharacterBattle3.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle3.Attack(playerCharacterBattle3, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle3.partyMembersDamage) == 3 && !enemyCharacterBattle3.IsDead())
             {
-                enemyCharacterBattle3.Attack(playerCharacterBattle4, () =>
+                if (playerCharacterBattle4.IsDead())
                 {
+                    enemyCharacterBattle3.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle3.Attack(playerCharacterBattle4, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else
             {
@@ -400,31 +557,63 @@ public class BattleHandler : MonoBehaviour
 
             if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 0 && !enemyCharacterBattle4.IsDead())
             {
-                enemyCharacterBattle4.Attack(playerCharacterBattle1, () =>
+                if (playerCharacterBattle1.IsDead())
                 {
+                    enemyCharacterBattle4.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle4.Attack(playerCharacterBattle1, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 1 && !enemyCharacterBattle4.IsDead())
             {
-                enemyCharacterBattle4.Attack(playerCharacterBattle2, () =>
+                if (playerCharacterBattle2.IsDead())
                 {
+                    enemyCharacterBattle4.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle4.Attack(playerCharacterBattle2, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 2 && !enemyCharacterBattle4.IsDead())
             {
-                enemyCharacterBattle4.Attack(playerCharacterBattle3, () =>
+                if (playerCharacterBattle3.IsDead())
                 {
+                    enemyCharacterBattle4.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle4.Attack(playerCharacterBattle3, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else if (AIDetermineAttack(enemyCharacterBattle4.partyMembersDamage) == 3 && !enemyCharacterBattle4.IsDead())
             {
-                enemyCharacterBattle4.Attack(playerCharacterBattle4, () =>
+                if (playerCharacterBattle4.IsDead())
                 {
+                    enemyCharacterBattle4.Heal();
                     ChooseNextActiveCharacter();
-                });
+                }
+                else
+                {
+                    enemyCharacterBattle4.Attack(playerCharacterBattle4, () =>
+                    {
+                        ChooseNextActiveCharacter();
+                    });
+                }
             }
             else
             {

@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 567540337}
   m_Layer: 5
   m_Name: KI Attack Button
-  m_TagString: Untagged
+  m_TagString: KIAttackButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
