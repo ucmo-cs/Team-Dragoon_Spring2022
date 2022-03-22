@@ -16,8 +16,10 @@ public class CharacterBattle : MonoBehaviour
     private bool isPlayerTeam;
     private GameObject selectionCircleGameObject;
     private HealthSystem healthSystem;
+    private KISystem kiSystem;
     private Slider healthSlider;
-    private Unit characterStats;
+    private Slider kiSlider;
+    public Unit characterStats;
     private GameObject projectileClone;
 
 // Damage values from player party. For enemies determining who to attack
@@ -27,8 +29,8 @@ public class CharacterBattle : MonoBehaviour
     {
         Idle,
         Sliding,
-        Busy,
         Throwing,
+        Busy,
     }
 
     private void Awake()
@@ -37,6 +39,7 @@ public class CharacterBattle : MonoBehaviour
         characterBase = GetComponent<Character_Base>();
         selectionCircleGameObject = transform.Find("SelectionCircle").gameObject;
         healthSlider = transform.Find("HealthBar").gameObject.GetComponent<Slider>();
+        kiSlider = transform.Find("KIBar").gameObject.GetComponent<Slider>();
         HideSelectionCircle();
         state = State.Idle;
         characterStats = GetComponent<Unit>();
@@ -60,7 +63,8 @@ public class CharacterBattle : MonoBehaviour
             */
         }
 
-        healthSystem = new HealthSystem(characterStats.maxHP);
+        healthSystem = new HealthSystem(characterStats.currentHP);
+        kiSystem = new KISystem(characterStats.currentKI);
 
         PlayAnimIdle();
     }
@@ -74,7 +78,7 @@ public class CharacterBattle : MonoBehaviour
             case State.Busy:
                 break;
             case State.Sliding:
-                float slideSpeed = 10f;
+                float slideSpeed = 5f;
                 transform.position += (slideTargetPosition - GetPosition()) * slideSpeed * Time.deltaTime;
 
                 float reachedDistance = 1f;
@@ -86,18 +90,16 @@ public class CharacterBattle : MonoBehaviour
                 }
                 break;
             case State.Throwing:
-                float throwSpeed = 1f;
-                projectileClone.transform.position += (projectileTargetPosition - GetPosition()) * throwSpeed * Time.deltaTime;
-                reachedDistance = 1f;
-                if (Vector3.Distance(projectileClone.transform.position, projectileTargetPosition) < reachedDistance)
+                float throwSpeed = 3f;
+                characterStats.projectile.transform.position += (projectileTargetPosition - characterStats.projectile.transform.position) * throwSpeed * Time.deltaTime;
+
+                float reachedDistance2 = 1f;
+                if (Vector3.Distance(characterStats.projectile.transform.position, projectileTargetPosition) < reachedDistance2)
                 {
-                    Debug.Log("Throw Complete");
                     // Arriced to slide target position
-                    projectileClone.transform.position = projectileTargetPosition;
-                    //Destroy(projectile);
+                    characterStats.projectile.transform.position = projectileTargetPosition;
                     onProjectileComplete();
                 }
-
                 break;
         }
 
@@ -122,6 +124,7 @@ public class CharacterBattle : MonoBehaviour
         healthSystem.Damage(damageAmount);
         Debug.Log("Hit " + healthSystem.GetHealthAmount());
         healthSlider.value = healthSystem.GetHealthPercent();
+        characterStats.currentHP = healthSystem.GetHealthAmount();
 
         if (healthSystem.IsDead())
         {
@@ -190,8 +193,10 @@ public class CharacterBattle : MonoBehaviour
     {
         Vector3 projectileTargetPosition = targetCharacterBattle.GetPosition() + (GetPosition() - targetCharacterBattle.GetPosition()).normalized;
         Vector3 startingPosition = GetPosition();
+        kiSystem.Drain(characterStats.KICost);
+        characterStats.currentKI = kiSystem.GetKIAmount();
+        kiSlider.value = kiSystem.GetKIPercent();
 
-        projectileClone = Instantiate(characterStats.projectile, transform.position, transform.rotation);
         ThrowObject(projectileTargetPosition, () =>
         {
             //Instert animation here;
@@ -208,29 +213,28 @@ public class CharacterBattle : MonoBehaviour
             {
                 if (partyMemberIndex == 1)
                 {
-                    targetCharacterBattle.partyMembersDamage[0] += characterStats.KIdamage;
+                    targetCharacterBattle.partyMembersDamage[0] += characterStats.KIDamage;
                 }
                 else if (partyMemberIndex == 2)
                 {
-                    targetCharacterBattle.partyMembersDamage[1] += characterStats.KIdamage;
+                    targetCharacterBattle.partyMembersDamage[1] += characterStats.KIDamage;
                 }
                 else if (partyMemberIndex == 3)
                 {
-                    targetCharacterBattle.partyMembersDamage[2] += characterStats.KIdamage;
+                    targetCharacterBattle.partyMembersDamage[2] += characterStats.KIDamage;
                 }
                 else if (partyMemberIndex == 4)
                 {
-                    targetCharacterBattle.partyMembersDamage[3] += characterStats.KIdamage;
+                    targetCharacterBattle.partyMembersDamage[3] += characterStats.KIDamage;
                 }
             }
 
-            targetCharacterBattle.Damage(characterStats.KIdamage);
-            ThrowObject(projectileTargetPosition, () =>
+            targetCharacterBattle.Damage(characterStats.KIDamage);
+            ThrowObject(startingPosition, () =>
             {
                 state = State.Idle;
                 onAttackComplete();
             });
-            Destroy(projectileClone);
         });
     }
 

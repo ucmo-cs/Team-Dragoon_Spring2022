@@ -179,7 +179,7 @@ public class BattleHandler : MonoBehaviour
                     }
                 }
             }
-            else if (KIAttackButtonIsClicked)
+            else if (KIAttackButtonIsClicked && activeCharacterBattle.characterStats.currentKI > 0)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

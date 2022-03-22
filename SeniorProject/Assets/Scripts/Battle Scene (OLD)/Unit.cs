@@ -15,7 +15,8 @@ public class Unit : MonoBehaviour
     public int currentKI;
 
     public int damage;
-    public int KIdamage;
+    public int KIDamage;
+    public int KICost;
 
     public Sprite characterPortrait;
     public GameObject projectile;
