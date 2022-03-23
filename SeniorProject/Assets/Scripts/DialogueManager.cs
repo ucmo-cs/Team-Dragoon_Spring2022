@@ -11,7 +11,8 @@ public class DialogueManager : MonoBehaviour
     public int currentSentenceNum;
     private Dialogue myDialogue;
     public Button nextButton;
-    public float dialogueSpeed;
+    public float dialogueSpeed, storePCSpeed;
+    public bool isDialogueShown;
 
     public string[] sentences;
     // Start is called before the first frame update
@@ -19,13 +20,21 @@ public class DialogueManager : MonoBehaviour
     {
         currentSentenceNum = 0;
         dialogueSpeed = 0.03f;
+        isDialogueShown = false;
     }
+
+    void Update()
+    {
+        SpaceToContinue();
+    } 
 
     public void StartDialogue(Dialogue dialogue)
     {
-        CharacterOverworldController.instance.canMove = false;
+        storePCSpeed = CharacterOverworldController.instance.speed;
+        CharacterOverworldController.instance.FreezeChar2s(storePCSpeed);
         myDialogue = dialogue;
         anim.SetBool("isOpen", true);
+        isDialogueShown = true;
 
         if (nameText != null)
         {
@@ -37,6 +46,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue()
     {
+        Debug.Log("Continue Dialogue func");
         if (currentSentenceNum == sentences.Length + 1)
         {
             EndDialogue();
@@ -54,19 +64,37 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueText.text = "";
         char[] arr = sentence.ToCharArray();
+        Invoke("EnableNext", 2f);
         for (int i = 0; i<arr.Length; i++)
         {
             dialogueText.text += arr[i];
             yield return new WaitForSeconds(dialogueSpeed);
-            if (i >= 0.5 * arr.Length)
+        }
+    }
+
+    void SpaceToContinue()
+    {
+        if (isDialogueShown)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                nextButton.enabled = true;
+                if (nextButton.enabled)
+                {
+                    nextButton.onClick.Invoke();
+                }
             }
         }
     }
+
+    public void EnableNext()
+    {
+        nextButton.enabled = true;
+        Debug.Log("Enabled Next button");
+    }
+
     public void EndDialogue()
     {
         anim.SetBool("isOpen", false);
-        CharacterOverworldController.instance.canMove = true;
+        Start();
     }
 }

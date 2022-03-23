@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InteractionScript : MonoBehaviour
 {
     public Text toolText;
-    public bool canInteract, isDeactivated;
+    public bool canInteract, isDeactivated, isTouchDialogueTrigger;
     public GameObject exclamation_mark, inactiveVersion;
     public DialogueTrigger dialogueTrigger;
 
@@ -18,7 +18,10 @@ public class InteractionScript : MonoBehaviour
         {
             toolText.enabled = false;
         }
-        exclamation_mark.SetActive(false);
+        if (exclamation_mark != null)
+        {
+            exclamation_mark.SetActive(false);
+        }
         if (inactiveVersion != null)
         {
             inactiveVersion.SetActive(false);
@@ -44,14 +47,23 @@ public class InteractionScript : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                if (toolText != null)
+                if (isTouchDialogueTrigger)
                 {
-                    toolText.enabled = true;
+                    dialogueTrigger.TriggerDialogue();
+                    isDeactivated = true;
+                    Invoke("ReactivateObject", 3f);
                 }
-                canInteract = true;
-                CharacterOverworldController.instance.canInteract = true;
-                CharacterOverworldController.instance.interactableObject = this.gameObject;
-                exclamation_mark.SetActive(true);
+                else
+                {
+                    if (toolText != null)
+                    {
+                        toolText.enabled = true;
+                    }
+                    canInteract = true;
+                    CharacterOverworldController.instance.canInteract = true;
+                    CharacterOverworldController.instance.interactableObject = this.gameObject;
+                    exclamation_mark.SetActive(true);
+                }
             }
         }
     }
@@ -79,5 +91,10 @@ public class InteractionScript : MonoBehaviour
         isDeactivated = true;
         inactiveVersion.SetActive(true);
         this.gameObject.SetActive(false);
+    }
+
+    public void ReactivateObject()
+    {
+        isDeactivated = false;
     }
 }

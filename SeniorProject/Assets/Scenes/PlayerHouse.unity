@@ -2526,7 +2526,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4062,7 +4062,7 @@ PrefabInstance:
     - target: {fileID: 6854040062915922107, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 1484192841}
+      objectReference: {fileID: 0}
     - target: {fileID: 6854040062915922108, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
       propertyPath: m_Name
       value: Player Cam
@@ -5586,11 +5586,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
---- !u!4 &1484192841 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9100064872518016004, guid: cfea461abb96ddd45bd8beefa3265490, type: 3}
-  m_PrefabInstance: {fileID: 5428764993512516802}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486521028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,6 +5963,7 @@ MonoBehaviour:
   toolText: {fileID: 1488291500}
   canInteract: 0
   isDeactivated: 0
+  isTouchDialogueTrigger: 0
   exclamation_mark: {fileID: 1675316790}
   inactiveVersion: {fileID: 1961675526}
   dialogueTrigger: {fileID: 0}
@@ -6293,6 +6289,7 @@ MonoBehaviour:
   toolText: {fileID: 0}
   canInteract: 0
   isDeactivated: 0
+  isTouchDialogueTrigger: 0
   exclamation_mark: {fileID: 754171768}
   inactiveVersion: {fileID: 999633492}
   dialogueTrigger: {fileID: 1702383786}
@@ -6472,8 +6469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: PastOverworld
-  exitPosX: -4.78
-  exitPosY: 0
+  exitPosX: -4.5
+  exitPosY: 1.4
   sceneManager: {fileID: 1149329800}
   playerChar: {fileID: 0}
 --- !u!1 &1721220238
