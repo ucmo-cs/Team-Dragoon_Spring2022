@@ -3553,6 +3553,25 @@ Transform:
   m_Father: {fileID: 360074983}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &747691627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6854040062915922108, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
+  m_PrefabInstance: {fileID: 1001017469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &747691631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747691627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c217e6624c4426c9d1811dc1ded650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tPlayer: {fileID: 0}
+  tFollowTarget: {fileID: 0}
 --- !u!1 &754171768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5933873874686144638, guid: 78eba564ec10ae64eb1bc2648713133c, type: 3}
@@ -3670,6 +3689,8 @@ MonoBehaviour:
   currentSentenceNum: 0
   nextButton: {fileID: 175232340}
   dialogueSpeed: 0
+  storePCSpeed: 0
+  isDialogueShown: 0
   sentences: []
 --- !u!1 &943979866
 GameObject:
