@@ -581,6 +581,8 @@ MonoBehaviour:
   currentSentenceNum: 0
   nextButton: {fileID: 112746383}
   dialogueSpeed: 0
+  storePCSpeed: 0
+  isDialogueShown: 0
   sentences: []
 --- !u!1 &551001565
 GameObject:
@@ -20721,8 +20723,8 @@ PolygonCollider2D:
     - - {x: 32.985046, y: 18.005392}
       - {x: -9.019646, y: 18.025291}
       - {x: -8.991034, y: -12.985076}
-      - {x: -8.932069, y: -12.979764}
-      - {x: 32.974995, y: -12.966442}
+      - {x: -8.932069, y: -28.979763}
+      - {x: 32.974995, y: -29.216442}
 --- !u!4 &754366153
 Transform:
   m_ObjectHideFlags: 0
