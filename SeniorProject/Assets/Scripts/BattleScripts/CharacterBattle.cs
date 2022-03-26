@@ -50,6 +50,8 @@ public class CharacterBattle : MonoBehaviour
         this.isPlayerTeam = isPlayerTeam;
         if (isPlayerTeam)
         {
+            projectileClone = GameObject.FindGameObjectWithTag("Projectile");
+            projectileClone.active = false;
             /* Setting Animations and Sprites
             characterBase.SetAnimsSwordTwoHandedBack();
             characterBase.GetMaterial().mainTexture = BattleHandler.GetInstance.playerSpritesheet;
@@ -78,7 +80,7 @@ public class CharacterBattle : MonoBehaviour
             case State.Busy:
                 break;
             case State.Sliding:
-                float slideSpeed = 5f;
+                float slideSpeed = 8f;
                 transform.position += (slideTargetPosition - GetPosition()) * slideSpeed * Time.deltaTime;
 
                 float reachedDistance = 1f;
@@ -90,11 +92,11 @@ public class CharacterBattle : MonoBehaviour
                 }
                 break;
             case State.Throwing:
-                float throwSpeed = 3f;
+                float throwSpeed = 5f;
                 characterStats.projectile.transform.position += (projectileTargetPosition - characterStats.projectile.transform.position) * throwSpeed * Time.deltaTime;
 
                 float reachedDistance2 = 1f;
-                if (Vector3.Distance(characterStats.projectile.transform.position, projectileTargetPosition) < reachedDistance2)
+                if (Vector3.Distance(characterStats.projectile.transform.position, projectileTargetPosition) < .1)
                 {
                     // Arriced to slide target position
                     characterStats.projectile.transform.position = projectileTargetPosition;
@@ -196,6 +198,8 @@ public class CharacterBattle : MonoBehaviour
         kiSystem.Drain(characterStats.KICost);
         characterStats.currentKI = kiSystem.GetKIAmount();
         kiSlider.value = kiSystem.GetKIPercent();
+        projectileClone.active = true;
+
 
         ThrowObject(projectileTargetPosition, () =>
         {
@@ -229,6 +233,7 @@ public class CharacterBattle : MonoBehaviour
                 }
             }
 
+            projectileClone.active = false;
             targetCharacterBattle.Damage(characterStats.KIDamage);
             ThrowObject(startingPosition, () =>
             {

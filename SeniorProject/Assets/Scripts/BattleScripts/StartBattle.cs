@@ -32,7 +32,7 @@ public class StartBattle : MonoBehaviour
     private void Start()
     {
         //DontDestroyOnLoad(this.gameObject);
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
         gameObject.SetActive(ObjectPooling.instance.canSpawn[enemyIndexInPool]);
     }
 
@@ -46,7 +46,6 @@ public class StartBattle : MonoBehaviour
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            Destroy(this.gameObject);
         }
     }
 
@@ -55,13 +54,14 @@ public class StartBattle : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
+            Debug.Log("Add to Don't Destroy on Load");
             spawner = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Spawner").GetComponent<Spawner>();
             spawner.SetSpawns(enemyEncounterPrefab1, enemyEncounterPrefab2, enemyEncounterPrefab3, enemyEncounterPrefab4);
-            Debug.Log("Add to Don't Destroy on Load");
+            spawner.SetIndex(enemyIndexInPool);
+            Debug.Log("Set Spawns");
             this.spawning = true;
             Debug.Log("Load new scene");
             SceneChanger.instance.LoadScene(sceneName);
-            gameObject.SetActive(false);
         }
     }
     public static GameObject[] GetDontDestroyOnLoadObjects()
@@ -72,7 +72,7 @@ public class StartBattle : MonoBehaviour
             temp = new GameObject();
             Object.DontDestroyOnLoad(temp);
             UnityEngine.SceneManagement.Scene dontDestroyOnLoad = temp.scene;
-            Object.DestroyImmediate(temp);
+            Object.Destroy(temp);
             temp = null;
 
             return dontDestroyOnLoad.GetRootGameObjects();
@@ -80,7 +80,7 @@ public class StartBattle : MonoBehaviour
         finally
         {
             if (temp != null)
-                Object.DestroyImmediate(temp);
+                Object.Destroy(temp);
         }
     }
 

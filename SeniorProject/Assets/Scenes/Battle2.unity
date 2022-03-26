@@ -476,6 +476,38 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfEnemyBattle1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfEnemyBattle2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfEnemyBattle3
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfEnemyBattle4
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfCharacterBattle1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfCharacterBattle2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfCharacterBattle3
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: pfCharacterBattle4
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: physicalAttackButton
       value: 
       objectReference: {fileID: 1757321512}

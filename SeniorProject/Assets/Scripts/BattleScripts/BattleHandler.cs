@@ -86,17 +86,24 @@ public class BattleHandler : MonoBehaviour
     {
 
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-        playerCharacterBattle1 = SpawnCharacter(true);
-        playerCharacterBattle2 = SpawnCharacter(true);
-        playerCharacterBattle3 = SpawnCharacter(true);
-        playerCharacterBattle4 = SpawnCharacter(true);
 
         spawner = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Spawner").GetComponent<Spawner>();
+
+        pfCharacterBattle1 = spawner.playerEncounterPrefab1.transform;
+        pfCharacterBattle2 = spawner.playerEncounterPrefab2.transform;
+        pfCharacterBattle3 = spawner.playerEncounterPrefab3.transform;
+        pfCharacterBattle4 = spawner.playerEncounterPrefab4.transform;
 
         pfEnemyBattle1 = spawner.enemyEncounterPrefab1.transform;
         pfEnemyBattle2 = spawner.enemyEncounterPrefab2.transform;
         pfEnemyBattle3 = spawner.enemyEncounterPrefab3.transform;
         pfEnemyBattle4 = spawner.enemyEncounterPrefab4.transform;
+
+
+        playerCharacterBattle1 = SpawnCharacter(true);
+        playerCharacterBattle2 = SpawnCharacter(true);
+        playerCharacterBattle3 = SpawnCharacter(true);
+        playerCharacterBattle4 = SpawnCharacter(true);
 
         enemyCharacterBattle = SpawnCharacter(false);
         enemyCharacterBattle2 = SpawnCharacter(false);
@@ -308,7 +315,7 @@ public class BattleHandler : MonoBehaviour
     {
         if (TestBattleOver())
         {
-            ObjectPooling.instance.canSpawn[StartBattle.instance.enemyIndexInPool] = false;
+            ObjectPooling.instance.canSpawn[spawner.ObjectPoolIndex] = false;
             playerFromOverworld.SetActive(true);
             sceneChanger.PreviousScene();
             return;

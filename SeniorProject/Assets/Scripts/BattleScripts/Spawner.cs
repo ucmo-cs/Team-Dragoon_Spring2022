@@ -6,12 +6,17 @@ public class Spawner : MonoBehaviour
 {
     private BattleHandler battleHandler;
 
+    public GameObject playerEncounterPrefab1;
+    public GameObject playerEncounterPrefab2;
+    public GameObject playerEncounterPrefab3;
+    public GameObject playerEncounterPrefab4;
 
     // Enemies to spawn in the battle
-    [SerializeField] public GameObject enemyEncounterPrefab1;
-    [SerializeField] public GameObject enemyEncounterPrefab2;
-    [SerializeField] public GameObject enemyEncounterPrefab3;
-    [SerializeField] public GameObject enemyEncounterPrefab4;
+    public GameObject enemyEncounterPrefab1;
+    public GameObject enemyEncounterPrefab2;
+    public GameObject enemyEncounterPrefab3;
+    public GameObject enemyEncounterPrefab4;
+    public int ObjectPoolIndex;
 
 
     private void Start()
@@ -25,5 +30,9 @@ public class Spawner : MonoBehaviour
         enemyEncounterPrefab2 = enemy2;
         enemyEncounterPrefab3 = enemy3;
         enemyEncounterPrefab4 = enemy4;
+    }
+    public void SetIndex(int index)
+    {
+        ObjectPoolIndex = index;
     }
 }
