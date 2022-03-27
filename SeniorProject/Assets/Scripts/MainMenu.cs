@@ -9,8 +9,13 @@ public class MainMenu : MonoBehaviour
     public Slider volumeSlider;
     public TMPro.TextMeshProUGUI pressAnyText;
     public GameObject MainMenuPanel;
+    
+    //used for scripts check/load saves
+    public SaveManager saveManager;
 
-    // Update is called once per frame
+    //used for to check which file to load
+    public GameObject EmptyTxt1, EmptyTxt2, EmptyTxt3;
+
     void Update()
     {
         if (pressAnyText == null || MainMenuPanel == null || volumeSlider == null)
@@ -35,6 +40,7 @@ public class MainMenu : MonoBehaviour
     //changes BG music volume based on the appropriate slider
     public void ChangeMusicVolume()
     {
+        //NEED TO CHANGE TO PLAYER PREFS
         AudioListener.volume = volumeSlider.value;
     }
 
@@ -48,5 +54,85 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    //load save based off of button clicked
+    //also loads the PlayerHouse scene if no save is in the selected file
+    public void LoadSaveFile()
+    {
+        if (gameObject.name == "File1 Button")
+        {
+            if(EmptyTxt1.activeSelf == false)
+            {
+                saveManager.Load(1);
+            }
+            else
+            {
+                SceneManager.LoadScene("PlayerHouse");
+            }
+        }
+        else if (gameObject.name == "File2 Button")
+        {
+            if (EmptyTxt2.activeSelf == false)
+            {
+                saveManager.Load(1);
+            }
+            else
+            {
+                SceneManager.LoadScene("PlayerHouse");
+            }
+        }
+        else if (gameObject.name == "File3 Button")
+        {
+            if (EmptyTxt3.activeSelf == false)
+            {
+                saveManager.Load(1);
+            }
+            else
+            {
+                SceneManager.LoadScene("PlayerHouse");
+            }
+        }
+    }
+    //add function to update file names with corresponding save files when 'Play' button is clicked
+    public void updateSaveNames(){
+        GameObject canvas = GameObject.Find("Canvas");
+        
+        //check if each file name in the persistent path is not null
+        for (int i = 1; i <= 3; i++)
+        {
+            //if file is found set the empty text for it to false
+            if (saveManager.FileCheck(i))
+            {
+                if (i == 1)
+                {
+                    EmptyTxt1.SetActive(false);
+                }
+                else if (i == 2)
+                {
+                    EmptyTxt2.SetActive(false);
+                }
+                else if (i == 3)
+                {
+                    EmptyTxt3.SetActive(false);
+                }
+            }
+            //otherwise set it to show the empty text
+            else
+            {
+                if(i == 1)
+                {
+                    EmptyTxt1.SetActive(true);
+                }
+                else if (i == 2)
+                {
+                    EmptyTxt2.SetActive(true);
+                }
+                else if (i == 3)
+                {
+                    EmptyTxt3.SetActive(true);
+                }
+            }
+        }
     }
 }
