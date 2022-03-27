@@ -114,6 +114,7 @@ public class BattleHandler : MonoBehaviour
         sceneChanger = ReturnObjectFromArray(DontDestroyOnLoadObjects, "SceneManager").GetComponent<SceneChanger>();
         playerFromOverworld = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Player");
         playerFromOverworld.SetActive(false);
+        // TODO: Store Int for player sprite
         physicalAttackButton = GameObject.FindGameObjectWithTag("PhysicalAttackButton").GetComponent<Button>();
         physicalAttackButton.onClick.AddListener(TaskOnClickPhysical);
         KIAttackButton = GameObject.FindGameObjectWithTag("KIAttackButton").GetComponent<Button>();

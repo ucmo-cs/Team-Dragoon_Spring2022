@@ -102,6 +102,10 @@ public class CharacterOverworldController : MonoBehaviour
             }
             myBody.velocity = new Vector2(playerSpeedHor, playerSpeedVert);
         }
+        else
+        {
+            myBody.velocity = new Vector2(0, 0);
+        }
     }
 
     void ChangeDirection(int direction)
