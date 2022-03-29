@@ -8,10 +8,20 @@ using System.Xml.Serialization;
 public class SaveManager : MonoBehaviour
 {
     public SaveData activeSave;
+    public static SaveManager instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -74,7 +84,11 @@ public class SaveData
 
     public Vector3 playerPosition;
 
+    //need scene visited list as well, to not break the system
     public string sceneName;
 
+    //pass volume slider from player prefs after main menu
     public float volumeSlider;
+
+    //arrays for inventory and enemies not fought that are needed to be reloaded
 }

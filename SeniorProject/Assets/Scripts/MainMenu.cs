@@ -40,8 +40,8 @@ public class MainMenu : MonoBehaviour
     //changes BG music volume based on the appropriate slider
     public void ChangeMusicVolume()
     {
-        //NEED TO CHANGE TO PLAYER PREFS
         AudioListener.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("BG Music", volumeSlider.value);
     }
 
     //button in place of file 1 for now, just loads player house scene
