@@ -64,6 +64,9 @@ public class BattleHandler : MonoBehaviour
     private bool physicalAttackButtonIsClicked;
     public Button KIAttackButton;
     private bool KIAttackButtonIsClicked;
+    [SerializeField] private GameObject AttackText;
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider kiSlider;
 
 
     //Overworld Items
@@ -84,6 +87,7 @@ public class BattleHandler : MonoBehaviour
 
     private void Start()
     {
+        AttackText.active = false;
 
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
 
@@ -124,20 +128,27 @@ public class BattleHandler : MonoBehaviour
     void TaskOnClickPhysical()
     {
         physicalAttackButtonIsClicked = true;
+        AttackText.active = true;
     }
     void TaskOnClickKI()
     {
         KIAttackButtonIsClicked = true;
+        AttackText.active = true;
     }
 
     private void Update()
     {
         if (state == State.WaitngForPlayer)
         {
+            if (activeCharacterBattle.IsDead())
+            {
+                ChooseNextActiveCharacter();
+            }
             if (physicalAttackButtonIsClicked)
             {
                 if (Input.GetMouseButtonDown(0))
-                {
+                { 
+                    AttackText.active = false;
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
                     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
@@ -191,6 +202,7 @@ public class BattleHandler : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    AttackText.active = false;
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
                     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
@@ -324,6 +336,8 @@ public class BattleHandler : MonoBehaviour
         if (activeCharacterBattle == playerCharacterBattle1 && partyMemberTurn == 1)
         {
             SetActiveCharacterBattle(playerCharacterBattle2);
+            healthSlider.value = activeCharacterBattle.healthSystem.GetHealthPercent();
+            kiSlider.value = activeCharacterBattle.kiSystem.GetKIPercent();
 
             partyMemberTurn += 1;
 
@@ -332,6 +346,8 @@ public class BattleHandler : MonoBehaviour
         else if (activeCharacterBattle == playerCharacterBattle2 && partyMemberTurn == 2)
         {
             SetActiveCharacterBattle(playerCharacterBattle3);
+            healthSlider.value = activeCharacterBattle.healthSystem.GetHealthPercent();
+            kiSlider.value = activeCharacterBattle.kiSystem.GetKIPercent();
 
             partyMemberTurn += 1;
 
@@ -340,6 +356,8 @@ public class BattleHandler : MonoBehaviour
         else if (activeCharacterBattle == playerCharacterBattle3 && partyMemberTurn == 3)
         {
             SetActiveCharacterBattle(playerCharacterBattle4);
+            healthSlider.value = activeCharacterBattle.healthSystem.GetHealthPercent();
+            kiSlider.value = activeCharacterBattle.kiSystem.GetKIPercent();
             partyMemberTurn += 1;
 
             state = State.WaitngForPlayer;
@@ -631,6 +649,8 @@ public class BattleHandler : MonoBehaviour
         else
         {
             SetActiveCharacterBattle(playerCharacterBattle1);
+            healthSlider.value = activeCharacterBattle.healthSystem.GetHealthPercent();
+            kiSlider.value = activeCharacterBattle.kiSystem.GetKIPercent();
             state = State.WaitngForPlayer;
         }
     }

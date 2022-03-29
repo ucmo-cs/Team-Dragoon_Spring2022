@@ -34,7 +34,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1475305026754344969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -317,7 +317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a14ef1e91e24be4d8a9830c51856a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSystem: {fileID: 0}
+  kiSystem: {fileID: 0}
   characterStats: {fileID: 0}
+  spriteRenderer: {fileID: 1620680528422034896}
   partyMemberIndex: 2
   partyMembersDamage: 00000000000000000000000000000000
 --- !u!61 &3305871477463223537
@@ -464,7 +467,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -609,7 +612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3642832617081371049
 RectTransform:
   m_ObjectHideFlags: 0

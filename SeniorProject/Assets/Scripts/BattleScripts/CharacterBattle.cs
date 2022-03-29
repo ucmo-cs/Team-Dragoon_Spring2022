@@ -15,15 +15,14 @@ public class CharacterBattle : MonoBehaviour
     private Action onProjectileComplete;
     private bool isPlayerTeam;
     private GameObject selectionCircleGameObject;
-    private HealthSystem healthSystem;
-    private KISystem kiSystem;
-    private Slider healthSlider;
-    private Slider kiSlider;
+    public HealthSystem healthSystem;
+    public KISystem kiSystem;
     public Unit characterStats;
     private GameObject projectileClone;
+    [SerializeField]private SpriteRenderer spriteRenderer;
 
-// Damage values from player party. For enemies determining who to attack
-[SerializeField] private int partyMemberIndex;
+    // Damage values from player party. For enemies determining who to attack
+    [SerializeField] private int partyMemberIndex;
     public int[] partyMembersDamage = new int[4];
     private enum State
     {
@@ -38,8 +37,6 @@ public class CharacterBattle : MonoBehaviour
         //Animation script goes here
         characterBase = GetComponent<Character_Base>();
         selectionCircleGameObject = transform.Find("SelectionCircle").gameObject;
-        healthSlider = transform.Find("HealthBar").gameObject.GetComponent<Slider>();
-        kiSlider = transform.Find("KIBar").gameObject.GetComponent<Slider>();
         HideSelectionCircle();
         state = State.Idle;
         characterStats = GetComponent<Unit>();
@@ -125,7 +122,6 @@ public class CharacterBattle : MonoBehaviour
     {
         healthSystem.Damage(damageAmount);
         Debug.Log("Hit " + healthSystem.GetHealthAmount());
-        healthSlider.value = healthSystem.GetHealthPercent();
         characterStats.currentHP = healthSystem.GetHealthAmount();
 
         if (healthSystem.IsDead())
@@ -133,6 +129,7 @@ public class CharacterBattle : MonoBehaviour
             //Destroy(gameObject);
             // Character has died
             //characterBase.PlayAnimLyingUp();
+            spriteRenderer.enabled = false;
         }
     }
 
@@ -197,7 +194,6 @@ public class CharacterBattle : MonoBehaviour
         Vector3 startingPosition = GetPosition();
         kiSystem.Drain(characterStats.KICost);
         characterStats.currentKI = kiSystem.GetKIAmount();
-        kiSlider.value = kiSystem.GetKIPercent();
         projectileClone.active = true;
 
 
