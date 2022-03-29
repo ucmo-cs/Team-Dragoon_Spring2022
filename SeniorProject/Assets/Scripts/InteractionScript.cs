@@ -49,9 +49,9 @@ public class InteractionScript : MonoBehaviour
             {
                 if (isTouchDialogueTrigger)
                 {
+                    CancelInvoke();
                     dialogueTrigger.TriggerDialogue();
                     isDeactivated = true;
-                    Invoke("ReactivateObject", 3f);
                 }
                 else
                 {
@@ -70,7 +70,11 @@ public class InteractionScript : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (!isDeactivated)
+        if (isTouchDialogueTrigger)
+        {
+            Invoke("ReactivateObject", 3f);
+        }
+        else if (!isDeactivated)
         {
             if (collision.gameObject.tag == "Player")
             {

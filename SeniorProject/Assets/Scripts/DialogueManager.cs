@@ -30,8 +30,11 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        storePCSpeed = CharacterOverworldController.instance.speed;
-        CharacterOverworldController.instance.FreezeChar2s(storePCSpeed);
+        CharacterOverworldController.instance.canMove = false;
+        CharacterOverworldController.instance.anim.SetBool("isIdle", true);
+        CharacterOverworldController.instance.anim.SetBool("isMoveSide", false);
+        CharacterOverworldController.instance.anim.SetFloat("PlayerSpeedHor", 0);
+        CharacterOverworldController.instance.anim.SetFloat("PlayerSpeedVert", 0);
         myDialogue = dialogue;
         anim.SetBool("isOpen", true);
         isDialogueShown = true;
@@ -95,6 +98,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         anim.SetBool("isOpen", false);
+        CharacterOverworldController.instance.canMove = true;
         Start();
     }
 }

@@ -8,7 +8,7 @@ public class CharacterOverworldController : MonoBehaviour
     public float speed = 4f;
     public float previousSpeed;
     private Rigidbody2D myBody;
-    private Animator anim;
+    public Animator anim;
     int idleFrameCt;
     public int currPlayer;
     public bool canSwitch, canInteract = true, canMove = true;
@@ -175,13 +175,13 @@ public class CharacterOverworldController : MonoBehaviour
         currPlayer = charNum;
     }
 
-    public void FreezeChar2s(float startSpeed)
+    public void FreezeChar(float startSpeed, float duration)
     {
         Debug.Log("Freezing Character");
         previousSpeed = startSpeed;
         speed = 0f;
         canMove = false;
-        Invoke("UnfreezeChar", 2f);
+        Invoke("UnfreezeChar", duration);
     }
 
     public void UnfreezeChar()
