@@ -39,3 +39,6 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide-shm
+SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide-wal
+*.log
