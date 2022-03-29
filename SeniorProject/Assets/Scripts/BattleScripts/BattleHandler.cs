@@ -68,6 +68,9 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Slider kiSlider;
 
+    // Audio Elements
+    [SerializeField] private BattleAudioManager BattleAudioManager;
+
 
     //Overworld Items
     private GameObject playerFromOverworld;
@@ -209,7 +212,7 @@ public class BattleHandler : MonoBehaviour
                     if (partyMemberTurn == 1 && hit.collider != null)
                     {
                         state = State.Busy;
-                        physicalAttackButtonIsClicked = false;
+                        KIAttackButtonIsClicked = false;
                         playerCharacterBattle1.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
                         {
                             ChooseNextActiveCharacter();
@@ -218,7 +221,7 @@ public class BattleHandler : MonoBehaviour
                     else if (partyMemberTurn == 2 && hit.collider != null)
                     {
                         state = State.Busy;
-                        physicalAttackButtonIsClicked = false;
+                        KIAttackButtonIsClicked = false;
                         playerCharacterBattle2.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
                         {
                             ChooseNextActiveCharacter();
@@ -227,7 +230,7 @@ public class BattleHandler : MonoBehaviour
                     else if (partyMemberTurn == 3 && hit.collider != null)
                     {
                         state = State.Busy;
-                        physicalAttackButtonIsClicked = false;
+                        KIAttackButtonIsClicked = false;
                         playerCharacterBattle3.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
                         {
                             ChooseNextActiveCharacter();
@@ -236,7 +239,7 @@ public class BattleHandler : MonoBehaviour
                     else if (partyMemberTurn == 4 && hit.collider != null)
                     {
                         state = State.Busy;
-                        physicalAttackButtonIsClicked = false;
+                        KIAttackButtonIsClicked = false;
                         playerCharacterBattle4.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
                         {
                             ChooseNextActiveCharacter();

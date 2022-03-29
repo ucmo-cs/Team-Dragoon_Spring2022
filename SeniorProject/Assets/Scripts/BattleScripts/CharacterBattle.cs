@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class CharacterBattle : MonoBehaviour
@@ -93,7 +94,7 @@ public class CharacterBattle : MonoBehaviour
                 characterStats.projectile.transform.position += (projectileTargetPosition - characterStats.projectile.transform.position) * throwSpeed * Time.deltaTime;
 
                 float reachedDistance2 = 1f;
-                if (Vector3.Distance(characterStats.projectile.transform.position, projectileTargetPosition) < .1)
+                if (Vector3.Distance(characterStats.projectile.transform.position, projectileTargetPosition) < .1f)
                 {
                     // Arriced to slide target position
                     characterStats.projectile.transform.position = projectileTargetPosition;

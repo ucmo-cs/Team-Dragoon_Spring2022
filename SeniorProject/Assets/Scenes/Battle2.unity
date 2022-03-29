@@ -682,6 +682,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807304085}
   m_CullTransparentMesh: 1
+--- !u!1 &832539755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832539757}
+  - component: {fileID: 832539756}
+  m_Layer: 0
+  m_Name: BattleAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &832539756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832539755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa6eeff81385764e9c576367f9775c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Arrow
+    clip: {fileID: 8300000, guid: 566c3896ff8f89149b1e4113824e6fad, type: 3}
+    volume: 0.502
+    pitch: 1.01
+    source: {fileID: 0}
+  - name: FireBall
+    clip: {fileID: 8300000, guid: 7f8c2ccc331ddc948b5c7c94d1f420c0, type: 3}
+    volume: 0.502
+    pitch: 1.01
+    source: {fileID: 0}
+  - name: Ninja Star
+    clip: {fileID: 8300000, guid: f4937847ac3ca074188dd5ae23cc14ae, type: 3}
+    volume: 0.502
+    pitch: 1.01
+    source: {fileID: 0}
+--- !u!4 &832539757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832539755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.428686, y: 0.22131157, z: -0.42046258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &894701754
 GameObject:
   m_ObjectHideFlags: 0
