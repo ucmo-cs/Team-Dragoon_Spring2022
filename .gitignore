@@ -42,3 +42,6 @@ Thumbs.db
 SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide-shm
 SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide-wal
 *.log
+SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide
+SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide-shm
+SeniorProject/.vs/SeniorProject/v16/Server/sqlite3/storage.ide-wal
