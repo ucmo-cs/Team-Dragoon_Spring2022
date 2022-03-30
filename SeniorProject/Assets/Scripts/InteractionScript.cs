@@ -50,7 +50,7 @@ public class InteractionScript : MonoBehaviour
                 if (isTouchDialogueTrigger)
                 {
                     CancelInvoke();
-                    dialogueTrigger.TriggerDialogue();
+                    dialogueTrigger.TriggerDialogue(false);
                     isDeactivated = true;
                 }
                 else
@@ -93,6 +93,10 @@ public class InteractionScript : MonoBehaviour
     public void DeactivateObject()
     {
         isDeactivated = true;
+        canInteract = false;
+        CharacterOverworldController.instance.canInteract = false;
+        CharacterOverworldController.instance.interactableObject = null;
+        exclamation_mark.SetActive(false);
         inactiveVersion.SetActive(true);
         this.gameObject.SetActive(false);
     }

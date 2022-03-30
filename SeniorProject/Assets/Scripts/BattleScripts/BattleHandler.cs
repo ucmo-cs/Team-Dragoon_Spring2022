@@ -74,6 +74,7 @@ public class BattleHandler : MonoBehaviour
 
     //Overworld Items
     private GameObject playerFromOverworld;
+    private int storeModel;
 
     private enum State
     {
@@ -121,6 +122,8 @@ public class BattleHandler : MonoBehaviour
         sceneChanger = ReturnObjectFromArray(DontDestroyOnLoadObjects, "SceneManager").GetComponent<SceneChanger>();
         playerFromOverworld = ReturnObjectFromArray(DontDestroyOnLoadObjects, "Player");
         playerFromOverworld.SetActive(false);
+        storeModel = CharacterOverworldController.instance.currPlayer;
+        Debug.Log("Model stored is " + storeModel);
         // TODO: Store Int for player sprite
         physicalAttackButton = GameObject.FindGameObjectWithTag("PhysicalAttackButton").GetComponent<Button>();
         physicalAttackButton.onClick.AddListener(TaskOnClickPhysical);
@@ -334,6 +337,9 @@ public class BattleHandler : MonoBehaviour
             ObjectPooling.instance.canSpawn[spawner.ObjectPoolIndex] = false;
             playerFromOverworld.SetActive(true);
             sceneChanger.PreviousScene();
+            Debug.Log("Attempting set model " + storeModel);
+            CharacterOverworldController.instance.SceneChangeCharUpdate(storeModel);
+            Debug.Log("Success");
             return;
         }
         if (activeCharacterBattle == playerCharacterBattle1 && partyMemberTurn == 1)

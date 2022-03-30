@@ -121,23 +121,27 @@ public class CharacterOverworldController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                anim.SetInteger("CharSelect", 1);
-                currPlayer = 1;
+                //anim.SetInteger("CharSelect", 1);
+                //currPlayer = 1;
+                SceneChangeCharUpdate(1);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                anim.SetInteger("CharSelect", 2);
-                currPlayer = 2;
+                //anim.SetInteger("CharSelect", 2);
+                //currPlayer = 2;
+                SceneChangeCharUpdate(2);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                anim.SetInteger("CharSelect", 3);
-                currPlayer = 3;
+                //anim.SetInteger("CharSelect", 3);
+                //currPlayer = 3;
+                SceneChangeCharUpdate(3);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                anim.SetInteger("CharSelect", 4);
-                currPlayer = 4;
+                //anim.SetInteger("CharSelect", 4);
+                //currPlayer = 4;
+                SceneChangeCharUpdate(4);
             }
         }
     }
@@ -150,6 +154,7 @@ public class CharacterOverworldController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    Debug.Log("Attempting Interaction");
                     switch (interactableObject.tag)
                     {
                         case ("ArmorStand"):
@@ -160,8 +165,8 @@ public class CharacterOverworldController : MonoBehaviour
                             interactableObject.GetComponent<InteractionScript>().DeactivateObject();
                             break;
                         case ("Table"):
-                            interactableObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                            interactableObject.GetComponent<InteractionScript>().DeactivateObject();
+                            interactableObject.GetComponent<DialogueTrigger>().TriggerDialogue(true);
+                            //interactableObject.GetComponent<InteractionScript>().DeactivateObject();
                             break;
                     }
                 }
@@ -171,8 +176,12 @@ public class CharacterOverworldController : MonoBehaviour
 
     public void SceneChangeCharUpdate(int charNum)
     {
+        Debug.Log("Set model to " + charNum);
         anim.SetInteger("CharSelect", charNum);
         currPlayer = charNum;
+        anim.SetBool("isDressed", true);
+        canSwitch = true;
+        isDressed = true;
     }
 
     public void FreezeChar(float startSpeed, float duration)

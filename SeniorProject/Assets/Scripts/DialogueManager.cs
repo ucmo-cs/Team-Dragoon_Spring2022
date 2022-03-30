@@ -11,8 +11,9 @@ public class DialogueManager : MonoBehaviour
     public int currentSentenceNum;
     private Dialogue myDialogue;
     public Button nextButton;
+    public GameObject attachedObject;
     public float dialogueSpeed, storePCSpeed;
-    public bool isDialogueShown;
+    public bool isDialogueShown, isObjectDeactivateAfter;
 
     public string[] sentences;
     // Start is called before the first frame update
@@ -21,14 +22,18 @@ public class DialogueManager : MonoBehaviour
         currentSentenceNum = 0;
         dialogueSpeed = 0.03f;
         isDialogueShown = false;
+        isObjectDeactivateAfter = false;
     }
 
     void Update()
     {
-        SpaceToContinue();
+        if (isDialogueShown)
+        {
+            SpaceToContinue();
+        }
     } 
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, bool isDeactivate)
     {
         CharacterOverworldController.instance.canMove = false;
         CharacterOverworldController.instance.anim.SetBool("isIdle", true);
@@ -36,6 +41,7 @@ public class DialogueManager : MonoBehaviour
         CharacterOverworldController.instance.anim.SetFloat("PlayerSpeedHor", 0);
         CharacterOverworldController.instance.anim.SetFloat("PlayerSpeedVert", 0);
         myDialogue = dialogue;
+        isObjectDeactivateAfter = isDeactivate;
         anim.SetBool("isOpen", true);
         isDialogueShown = true;
 
@@ -83,6 +89,7 @@ public class DialogueManager : MonoBehaviour
             {
                 if (nextButton.enabled)
                 {
+                    Debug.Log("Invoking next button");
                     nextButton.onClick.Invoke();
                 }
             }
@@ -97,8 +104,14 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        nextButton.enabled = false;
+        Debug.Log("Ending Dialogue");
         anim.SetBool("isOpen", false);
         CharacterOverworldController.instance.canMove = true;
+        if (isObjectDeactivateAfter)
+        {
+            attachedObject.GetComponent<InteractionScript>().DeactivateObject();
+        }
         Start();
     }
 }
