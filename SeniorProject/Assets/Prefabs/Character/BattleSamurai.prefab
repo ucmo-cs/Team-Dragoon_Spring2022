@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3763925707322803163}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 6437518383675362692}
   m_Layer: 0
   m_Name: BattleSamurai
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   kiSystem: {fileID: 0}
   characterStats: {fileID: 0}
   spriteRenderer: {fileID: 6360987917641021083}
+  healthBar: {fileID: 593827592808015369}
   partyMemberIndex: 3
   partyMembersDamage: 00000000000000000000000000000000
 --- !u!61 &8404951422585793281
@@ -285,7 +286,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 566c3896ff8f89149b1e4113824e6fad, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

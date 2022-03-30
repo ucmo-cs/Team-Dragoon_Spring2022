@@ -151,9 +151,9 @@ public class BattleHandler : MonoBehaviour
                 ChooseNextActiveCharacter();
             }
             if (physicalAttackButtonIsClicked)
-            {
+            { 
                 if (Input.GetMouseButtonDown(0))
-                { 
+                {
                     AttackText.active = false;
                     Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -214,6 +214,7 @@ public class BattleHandler : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
                     if (partyMemberTurn == 1 && hit.collider != null)
                     {
+                        BattleAudioManager.Play("FireBall");
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle1.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -223,6 +224,8 @@ public class BattleHandler : MonoBehaviour
                     }
                     else if (partyMemberTurn == 2 && hit.collider != null)
                     {
+
+                        BattleAudioManager.Play("Ninja Star");
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle2.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -232,6 +235,8 @@ public class BattleHandler : MonoBehaviour
                     }
                     else if (partyMemberTurn == 3 && hit.collider != null)
                     {
+
+                        BattleAudioManager.Play("Arrow");
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle3.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -241,6 +246,7 @@ public class BattleHandler : MonoBehaviour
                     }
                     else if (partyMemberTurn == 4 && hit.collider != null)
                     {
+                        BattleAudioManager.Play("FireBall");
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle4.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>

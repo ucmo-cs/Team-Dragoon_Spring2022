@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 458900355782611511}
   m_Layer: 0
   m_Name: BattleNinja
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   kiSystem: {fileID: 0}
   characterStats: {fileID: 0}
   spriteRenderer: {fileID: 1620680528422034896}
+  healthBar: {fileID: 0}
   partyMemberIndex: 2
   partyMembersDamage: 00000000000000000000000000000000
 --- !u!61 &3305871477463223537
@@ -361,7 +362,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f4937847ac3ca074188dd5ae23cc14ae, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -705,7 +706,7 @@ GameObject:
   - component: {fileID: 5209898681920866442}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

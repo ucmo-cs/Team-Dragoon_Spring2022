@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: -1310143244881151927}
   m_Layer: 0
   m_Name: BattleGeisha 1
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   kiSystem: {fileID: 0}
   characterStats: {fileID: 0}
   spriteRenderer: {fileID: 5914808716699626253}
+  healthSlider: {fileID: 3006872041977086824}
   partyMemberIndex: 4
   partyMembersDamage: 00000000000000000000000000000000
 --- !u!114 &7669586427874123407
@@ -469,11 +470,11 @@ GameObject:
   - component: {fileID: 3006872041977086824}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3108306024700150459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -801,7 +802,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

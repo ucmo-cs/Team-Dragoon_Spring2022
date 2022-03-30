@@ -21,6 +21,7 @@ public class CharacterBattle : MonoBehaviour
     public Unit characterStats;
     private GameObject projectileClone;
     [SerializeField]private SpriteRenderer spriteRenderer;
+    [SerializeField] private Slider healthSlider;
 
     // Damage values from player party. For enemies determining who to attack
     [SerializeField] private int partyMemberIndex;
@@ -104,7 +105,6 @@ public class CharacterBattle : MonoBehaviour
         }
 
     }
-
     private void PlayAnimIdle()
     {
         /*if (isPlayerTeam)
@@ -124,6 +124,10 @@ public class CharacterBattle : MonoBehaviour
         healthSystem.Damage(damageAmount);
         Debug.Log("Hit " + healthSystem.GetHealthAmount());
         characterStats.currentHP = healthSystem.GetHealthAmount();
+        if (!this.isPlayerTeam)
+        {
+            healthSlider.value = healthSystem.GetHealthPercent();
+        }
 
         if (healthSystem.IsDead())
         {

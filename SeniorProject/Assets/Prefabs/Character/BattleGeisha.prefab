@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 4013593255642877184}
   m_Layer: 0
   m_Name: BattleGeisha
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,6 +310,7 @@ MonoBehaviour:
   kiSystem: {fileID: 0}
   characterStats: {fileID: 0}
   spriteRenderer: {fileID: 5914808716699626253}
+  healthBar: {fileID: 0}
   partyMemberIndex: 1
   partyMembersDamage: 00000000000000000000000000000000
 --- !u!114 &7669586427874123407
@@ -545,7 +546,7 @@ GameObject:
   - component: {fileID: 3006872041977086824}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
