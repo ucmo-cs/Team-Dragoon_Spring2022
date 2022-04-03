@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseCanvas;
+    public GameObject pauseMenuPanel;
+    public bool isPaused;
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown("Escape") && pauseCanvas.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Escape) && !(pauseMenuPanel.activeInHierarchy) && !isPaused)
         {
-            pauseCanvas.SetActive(true);
-        }*/
+            pauseMenuPanel.SetActive(true);
+            isPaused = true;
+        }
+    }
+
+    public void setPauseFalse()
+    {
+        isPaused = false;
     }
 }
