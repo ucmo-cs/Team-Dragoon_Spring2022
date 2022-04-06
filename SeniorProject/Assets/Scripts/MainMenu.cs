@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,30 +71,34 @@ public class MainMenu : MonoBehaviour
             {
                 SceneManager.LoadScene("PlayerHouse");
             }
+            SaveManager.instance.SaveSlot = 1;
         }
         else if (gameObject.name == "File2 Button")
         {
             if (EmptyTxt2.activeSelf == false)
             {
-                saveManager.Load(1);
+                saveManager.Load(2);
             }
             else
             {
                 SceneManager.LoadScene("PlayerHouse");
             }
+            SaveManager.instance.SaveSlot = 2;
         }
         else if (gameObject.name == "File3 Button")
         {
             if (EmptyTxt3.activeSelf == false)
             {
-                saveManager.Load(1);
+                saveManager.Load(3);
             }
             else
             {
                 SceneManager.LoadScene("PlayerHouse");
             }
+            SaveManager.instance.SaveSlot = 3;
         }
     }
+
     //add function to update file names with corresponding save files when 'Play' button is clicked
     public void updateSaveNames(){
         GameObject canvas = GameObject.Find("Canvas");

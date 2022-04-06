@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
 {
     public SaveData activeSave;
     public static SaveManager instance;
+    public int SaveSlot;//1-3
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +23,6 @@ public class SaveManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Save(int saveNum)
