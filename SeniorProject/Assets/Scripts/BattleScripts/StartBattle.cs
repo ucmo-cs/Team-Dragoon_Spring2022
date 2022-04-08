@@ -62,6 +62,8 @@ public class StartBattle : MonoBehaviour
             this.spawning = true;
             Debug.Log("Load new scene");
             SceneChanger.instance.LoadScene(sceneName);
+            Debug.Log("Fade Out Overworld BGM");
+            AudioManager.FadeOut(AudioManager.instance.mainBGM, 2f);
         }
     }
     public static GameObject[] GetDontDestroyOnLoadObjects()

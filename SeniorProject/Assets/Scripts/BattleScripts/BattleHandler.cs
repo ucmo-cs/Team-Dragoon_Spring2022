@@ -345,6 +345,8 @@ public class BattleHandler : MonoBehaviour
             sceneChanger.PreviousScene();
             Debug.Log("Attempting set model " + storeModel);
             CharacterOverworldController.instance.SceneChangeCharUpdate(storeModel);
+            Debug.Log("Resuming main BGM");
+            AudioManager.FadeIn(AudioManager.instance.mainBGM, 2f);
             Debug.Log("Success");
             return;
         }
@@ -735,5 +737,19 @@ public class BattleHandler : MonoBehaviour
         Debug.Log("The party member that dealt the most damage was" + index);
         return index;
 
+    }
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }
