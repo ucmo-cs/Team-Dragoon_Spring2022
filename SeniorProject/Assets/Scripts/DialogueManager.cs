@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         }
     } 
 
-    public void StartDialogue(Dialogue dialogue, bool isDeactivate)
+    public void StartDialogue(Dialogue dialogue, bool isDeactivate, bool onlyShowOneSentence, int numToShow)
     {
         CharacterOverworldController.instance.canMove = false;
         CharacterOverworldController.instance.anim.SetBool("isIdle", true);
@@ -49,8 +49,15 @@ public class DialogueManager : MonoBehaviour
         {
             nameText.text = dialogue.name;
         }
-        ContinueDialogue();
-        
+
+        if (onlyShowOneSentence)
+        {
+            ShowOnlySentence(numToShow);
+        }
+        else
+        {
+            ContinueDialogue();
+        }
     }
 
     public void ContinueDialogue()
@@ -113,5 +120,12 @@ public class DialogueManager : MonoBehaviour
             attachedObject.GetComponent<InteractionScript>().DeactivateObject();
         }
         Start();
+    }
+
+    public void ShowOnlySentence(int num)
+    {
+        StopAllCoroutines();
+        nextButton.enabled = false;
+        StartCoroutine(TypeSentence(myDialogue.sentences[num]));
     }
 }

@@ -14,6 +14,7 @@ public class CharacterOverworldController : MonoBehaviour
     public bool canSwitch, canInteract = true, canMove = true;
     bool isDressed;
     public GameObject interactableObject;
+    public int storyProgress;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class CharacterOverworldController : MonoBehaviour
         canSwitch = false;
         canMove = true;
         isDressed = false;
+        storyProgress = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -162,10 +164,12 @@ public class CharacterOverworldController : MonoBehaviour
                             currPlayer = 1;
                             canSwitch = true;
                             isDressed = true;
+                            storyProgress += 2;
                             interactableObject.GetComponent<InteractionScript>().DeactivateObject();
                             break;
                         case ("Table"):
-                            interactableObject.GetComponent<DialogueTrigger>().TriggerDialogue(true);
+                            storyProgress += 1;
+                            interactableObject.GetComponent<DialogueTrigger>().TriggerDialogue(true, false, 0);
                             //interactableObject.GetComponent<InteractionScript>().DeactivateObject();
                             break;
                     }

@@ -15,6 +15,8 @@ public class DoorManager : MonoBehaviour
     private Vector2 doorExitPos;
     public float exitPosX;
     public float exitPosY;
+    public bool isStoryLocked;
+    public int storyRequirement;
 
     private SceneChanger sceneChanger;
     public GameObject sceneManager;
@@ -35,11 +37,19 @@ public class DoorManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerChar = collision.gameObject;
-            DontDestroyOnLoad(playerChar);
-            Debug.Log("Door/Player collision");
-            sceneChanger.LoadScene(sceneName);
-            playerChar.transform.position = doorExitPos;
+            if (isStoryLocked && CharacterOverworldController.instance.storyProgress < storyRequirement)
+            {
+                //Display dialogue stating what needs to happen
+                //Handled within InteractionScript
+            }
+            else
+            {
+                playerChar = collision.gameObject;
+                DontDestroyOnLoad(playerChar);
+                Debug.Log("Door/Player collision");
+                sceneChanger.LoadScene(sceneName);
+                playerChar.transform.position = doorExitPos;
+            }
         }
     }
 }

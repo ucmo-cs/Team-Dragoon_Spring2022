@@ -7,8 +7,8 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
     public DialogueManager dialogueManager;
 
-    public void TriggerDialogue(bool isDeactivateAfter)
+    public void TriggerDialogue(bool isDeactivateAfter, bool onlyShowOneSentence, int numToShow)
     {
-        dialogueManager.StartDialogue(dialogue, isDeactivateAfter);
+        dialogueManager.StartDialogue(dialogue, isDeactivateAfter, onlyShowOneSentence, numToShow);
     }
 }

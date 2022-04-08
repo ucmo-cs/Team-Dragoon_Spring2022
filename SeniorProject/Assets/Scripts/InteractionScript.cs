@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class InteractionScript : MonoBehaviour
 {
     public Text toolText;
-    public bool canInteract, isDeactivated, isTouchDialogueTrigger;
+    public bool canInteract, isDeactivated, isTouchDialogueTrigger, isStoryLocked;
     public GameObject exclamation_mark, inactiveVersion;
     public DialogueTrigger dialogueTrigger;
+    public int storyRequirement;
 
     private void Awake()
     {
@@ -49,9 +50,23 @@ public class InteractionScript : MonoBehaviour
             {
                 if (isTouchDialogueTrigger)
                 {
-                    CancelInvoke();
-                    dialogueTrigger.TriggerDialogue(false);
-                    isDeactivated = true;
+                    if (isStoryLocked && CharacterOverworldController.instance.storyProgress < storyRequirement)
+                    {
+                        CancelInvoke();
+                        int sentenceToShow = storyRequirement - CharacterOverworldController.instance.storyProgress - 1;
+                        dialogueTrigger.TriggerDialogue(false, true, sentenceToShow);
+                        isDeactivated = true;
+                    }
+                    else if (isStoryLocked && CharacterOverworldController.instance.storyProgress >= storyRequirement)
+                    {
+                        //Do nothing, allow DoorManager to send to new scene
+                    }
+                    else
+                    {
+                        CancelInvoke();
+                        dialogueTrigger.TriggerDialogue(false, false, 0);
+                        isDeactivated = true;
+                    }
                 }
                 else
                 {
