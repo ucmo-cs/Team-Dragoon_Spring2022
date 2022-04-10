@@ -203,5 +203,13 @@ public class CharacterOverworldController : MonoBehaviour
         speed = previousSpeed;
         canMove = true;
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (Input.GetKey(KeyCode.E) && collision.gameObject.tag == "Breakable Rock")
+        {
+            Debug.Log("Destroy the rock");
+            Destroy(collision.gameObject);
+        }
+    }
 
 }

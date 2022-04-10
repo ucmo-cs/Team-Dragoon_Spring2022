@@ -13,6 +13,10 @@ TagManager:
   - Spawner
   - KIAttackButton
   - Projectile
+  - Character
+  - HealthBar
+  - Rock
+  - Breakable Rock
   layers:
   - Default
   - TransparentFX

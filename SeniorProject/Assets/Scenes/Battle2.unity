@@ -1220,6 +1220,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1008732305}
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
+      propertyPath: KIAttackButton
+      value: 
+      objectReference: {fileID: 567540337}
+    - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: pfEnemyBattle1
       value: 
       objectReference: {fileID: 0}
