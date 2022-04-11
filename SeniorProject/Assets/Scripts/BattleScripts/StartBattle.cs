@@ -60,10 +60,12 @@ public class StartBattle : MonoBehaviour
             spawner.SetIndex(enemyIndexInPool);
             Debug.Log("Set Spawns");
             this.spawning = true;
+            Debug.Log("Fade Out Overworld BGM");
+            AudioManager.instance.StartCoroutine(AudioManager.FadeOut(AudioManager.instance.mainBGM, 2f));
+            Debug.Log("Fade in Battle Music");
+            AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.battleMusic, 3f));
             Debug.Log("Load new scene");
             SceneChanger.instance.LoadScene(sceneName);
-            Debug.Log("Fade Out Overworld BGM");
-            AudioManager.FadeOut(AudioManager.instance.mainBGM, 2f);
         }
     }
     public static GameObject[] GetDontDestroyOnLoadObjects()

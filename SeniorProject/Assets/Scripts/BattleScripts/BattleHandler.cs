@@ -214,7 +214,7 @@ public class BattleHandler : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
                     if (partyMemberTurn == 1 && hit.collider != null)
                     {
-                        BattleAudioManager.Play("FireBall");
+                        AudioManager.instance.PlayClip(AudioManager.instance.fireball);
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle1.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -224,8 +224,7 @@ public class BattleHandler : MonoBehaviour
                     }
                     else if (partyMemberTurn == 2 && hit.collider != null)
                     {
-
-                        BattleAudioManager.Play("Ninja Star");
+                        AudioManager.instance.PlayClip(AudioManager.instance.star);
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle2.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -235,8 +234,7 @@ public class BattleHandler : MonoBehaviour
                     }
                     else if (partyMemberTurn == 3 && hit.collider != null)
                     {
-
-                        BattleAudioManager.Play("Arrow");
+                        AudioManager.instance.PlayClip(AudioManager.instance.arrow);
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle3.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -246,7 +244,7 @@ public class BattleHandler : MonoBehaviour
                     }
                     else if (partyMemberTurn == 4 && hit.collider != null)
                     {
-                        BattleAudioManager.Play("FireBall");
+                        AudioManager.instance.PlayClip(AudioManager.instance.slap);
                         state = State.Busy;
                         KIAttackButtonIsClicked = false;
                         playerCharacterBattle4.KIAttack(hit.collider.gameObject.GetComponent<CharacterBattle>(), () =>
@@ -345,8 +343,10 @@ public class BattleHandler : MonoBehaviour
             sceneChanger.PreviousScene();
             Debug.Log("Attempting set model " + storeModel);
             CharacterOverworldController.instance.SceneChangeCharUpdate(storeModel);
+            Debug.Log("Fading out battle music");
+            AudioManager.instance.StartCoroutine(AudioManager.FadeOutAndStop(AudioManager.instance.battleMusic, 3f));
             Debug.Log("Resuming main BGM");
-            AudioManager.FadeIn(AudioManager.instance.mainBGM, 2f);
+            AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.mainBGM, 6f));
             Debug.Log("Success");
             return;
         }
