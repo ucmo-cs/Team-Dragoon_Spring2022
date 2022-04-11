@@ -46,11 +46,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("BG Music", volumeSlider.value);
     }
 
-    //button in place of file 1 for now, just loads player house scene
-    public void PlayGame()
-    {
-        SceneManager.LoadScene("PlayerHouse");
-    }
     //quit button, quits the built version of the game
     //won't work in the unity editor
     public void QuitGame()
@@ -73,6 +68,7 @@ public class MainMenu : MonoBehaviour
             else if (EmptyTxt1.activeSelf == false)
             {
                 SaveManager.instance.Load(1);
+                //Debug.Log("Save file loaded");
                 LoadFirstHalf();
             }
             else
@@ -92,6 +88,7 @@ public class MainMenu : MonoBehaviour
             else if (EmptyTxt2.activeSelf == false)
             {
                 SaveManager.instance.Load(2);
+                LoadFirstHalf();
             }
             else
             {
@@ -110,6 +107,7 @@ public class MainMenu : MonoBehaviour
             else if (EmptyTxt3.activeSelf == false)
             {
                 SaveManager.instance.Load(3);
+                LoadFirstHalf();
             }
             else
             {
@@ -211,8 +209,8 @@ public class MainMenu : MonoBehaviour
     public void LoadFirstHalf()
     {
         //load scene and once in scene we can check which game objects need to be loaded
-        SceneManager.LoadScene(SaveManager.instance.activeSave.sceneName);
-
+        SceneManager.LoadScene(SaveManager.instance.activeSave.sceneName.ToString());
+        Debug.Log(SceneManager.GetActiveScene().name + " 1");
         SaveManager.instance.gamePartialLoad = true;
     }
 }

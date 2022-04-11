@@ -20,6 +20,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        
         //Escape pressed and not paused
         if (Input.GetKeyDown(KeyCode.Escape) && !(pauseMenuPanel.activeInHierarchy) && !isPaused)
         {
@@ -32,10 +33,14 @@ public class PauseMenu : MonoBehaviour
             CharacterOverworldController.instance.canSwitch = false;
         }
         //if BGM slider value is different than the actual levels
-        else if (slider.value != PlayerPrefs.GetFloat("BG Music") || slider.value != AudioManager.instance.mainBGM.volume)
+        else if (slider.value != PlayerPrefs.GetFloat("BG Music"))
         {
             PlayerPrefs.SetFloat("BG Music", slider.value);
-            AudioManager.instance.mainBGM.volume = PlayerPrefs.GetFloat("BG Music");
+            if (slider.value != AudioManager.instance.mainBGM.volume && AudioManager.instance != null)
+            {
+                AudioManager.instance.mainBGM.volume = PlayerPrefs.GetFloat("BG Music");
+            }
+            
         }
         //if game is paused already and Escape is pressed
         else if (isPaused && Input.GetKeyDown(KeyCode.Escape))
@@ -74,11 +79,12 @@ public class PauseMenu : MonoBehaviour
         SaveManager.instance.activeSave.playerPosition.z = CharacterOverworldController.instance.gameObject.transform.position.z;
 
         //get active scene
-        SaveManager.instance.activeSave.sceneName = SceneManager.GetActiveScene().ToString();
+        SaveManager.instance.activeSave.sceneName = SceneManager.GetActiveScene().name;
 
         //get volume levels
         SaveManager.instance.activeSave.BGMSoundLevel = PlayerPrefs.GetFloat("BG Music");
 
-        Debug.Log("game saved!");
+        Debug.Log("game values saved");
+        SaveManager.instance.Save(SaveManager.instance.activeSave.saveNumber);
     }
 }

@@ -12,11 +12,10 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance;
 
     public bool gamePartialLoad = false;
-
-
+ 
     private void Update()
     {
-        if (!(SceneManager.GetActiveScene().ToString() == "MainMenu") && gamePartialLoad)
+        if (SceneManager.GetActiveScene().name == SaveManager.instance.activeSave.sceneName && gamePartialLoad)
         {
             LoadSecondHalf();
         }
@@ -94,8 +93,17 @@ public class SaveManager : MonoBehaviour
     public void LoadSecondHalf()
     {
         gamePartialLoad = false;
-
-        CharacterOverworldController.instance.gameObject.transform.position = instance.activeSave.playerPosition;
+        if (SceneManager.GetActiveScene().name == "PlayerHouse")
+        {
+            GameObject player = GameObject.Find("PlayerCharacter");
+            player.transform.position = SaveManager.instance.activeSave.playerPosition;
+        }
+        else
+        {
+            GameObject player = GameObject.Find("PlayerCharacter");
+            
+            player.transform.position = instance.activeSave.playerPosition;
+        }
 
         PlayerPrefs.SetFloat("BG Music", instance.activeSave.BGMSoundLevel);
     }
