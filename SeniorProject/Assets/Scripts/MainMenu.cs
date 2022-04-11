@@ -8,14 +8,14 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Slider volumeSlider;
-    public TMPro.TextMeshProUGUI pressAnyText;
+    public TMPro.TextMeshProUGUI pressAnyText, deleteTxt;
     public GameObject MainMenuPanel;
-    
-    //used for scripts check/load saves
-    public SaveManager saveManager;
+    public Button file1Btn, file2Btn, file3Btn;
 
-    //used for to check which file to load
+    //used for to check which file to load on button press
     public GameObject EmptyTxt1, EmptyTxt2, EmptyTxt3;
+    private static bool deleteSelected;
+    private ColorBlock colorBlock;
 
     void Update()
     {
@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
             {
                 pressAnyText.enabled = false;
                 MainMenuPanel.SetActive(true);
+                //deleteSelected = false;
             }
             else if (volumeSlider.value != AudioListener.volume)
             {
@@ -63,81 +64,155 @@ public class MainMenu : MonoBehaviour
     {
         if (gameObject.name == "File1 Button")
         {
-            if(EmptyTxt1.activeSelf == false)
+            if (deleteSelected)
             {
-                saveManager.Load(1);
+                SaveManager.instance.DeleteSave(1);
+                updateSaveNames();
+                Debug.Log("File1 deleted");
+            }
+            else if (EmptyTxt1.activeSelf == false)
+            {
+                SaveManager.instance.Load(1);
+                LoadFirstHalf();
             }
             else
             {
                 SceneManager.LoadScene("PlayerHouse");
+                SaveManager.instance.activeSave.saveNumber = 1;
             }
-            SaveManager.instance.SaveSlot = 1;
         }
         else if (gameObject.name == "File2 Button")
         {
-            if (EmptyTxt2.activeSelf == false)
+            if (deleteSelected)
             {
-                saveManager.Load(2);
+                SaveManager.instance.DeleteSave(2);
+                updateSaveNames();
+                Debug.Log("File2 deleted");
+            }
+            else if (EmptyTxt2.activeSelf == false)
+            {
+                SaveManager.instance.Load(2);
             }
             else
             {
                 SceneManager.LoadScene("PlayerHouse");
+                SaveManager.instance.activeSave.saveNumber = 2;
             }
-            SaveManager.instance.SaveSlot = 2;
         }
         else if (gameObject.name == "File3 Button")
         {
-            if (EmptyTxt3.activeSelf == false)
+            if (deleteSelected)
             {
-                saveManager.Load(3);
+                SaveManager.instance.DeleteSave(3);
+                updateSaveNames();
+                Debug.Log("File3 deleted");
+            }
+            else if (EmptyTxt3.activeSelf == false)
+            {
+                SaveManager.instance.Load(3);
             }
             else
             {
                 SceneManager.LoadScene("PlayerHouse");
+                SaveManager.instance.activeSave.saveNumber = 3;
             }
-            SaveManager.instance.SaveSlot = 3;
         }
     }
 
     //add function to update file names with corresponding save files when 'Play' button is clicked
-    public void updateSaveNames(){
+    public void updateSaveNames() {
         GameObject canvas = GameObject.Find("Canvas");
-        
+
         //check if each file name in the persistent path is not null
         for (int i = 1; i <= 3; i++)
         {
             //if file is found set the empty text for it to false
-            if (saveManager.FileCheck(i))
+            if (SaveManager.instance.FileCheck(i))
             {
                 if (i == 1)
                 {
                     EmptyTxt1.SetActive(false);
+                    Debug.Log("file in slot 1");
                 }
                 else if (i == 2)
                 {
                     EmptyTxt2.SetActive(false);
+                    Debug.Log("file in slot 2");
                 }
                 else if (i == 3)
                 {
                     EmptyTxt3.SetActive(false);
+                    Debug.Log("file in slot 3");
                 }
             }
             //otherwise set it to show the empty text
             else
             {
-                if(i == 1)
+                if (i == 1)
                 {
                     EmptyTxt1.SetActive(true);
+                    Debug.Log("no file in slot 1");
                 }
                 else if (i == 2)
                 {
                     EmptyTxt2.SetActive(true);
+                    Debug.Log("no file in slot 2");
                 }
                 else if (i == 3)
                 {
                     EmptyTxt3.SetActive(true);
+                    Debug.Log("no file in slot 3");
                 }
             }
         }
+    }
+
+    public void DeletePressed(){
+        if (!deleteSelected)
+        {
+            DeleteButtonSelected();
+        }
+        else if (deleteSelected)
+        {
+            DeleteButtonUnselected();
+        }
+    }
+
+    private void DeleteButtonSelected()
+    {
+        colorBlock = file1Btn.colors;
+
+        ColorBlock tempCB = colorBlock;
+
+        tempCB.highlightedColor = Color.red;
+
+        file1Btn.colors = tempCB;
+        file2Btn.colors = tempCB;
+        file3Btn.colors = tempCB;
+
+        deleteTxt.text = "Cancel";
+
+        deleteSelected = true;
+        Debug.Log(deleteSelected);
+    }
+
+    private void DeleteButtonUnselected()
+    {
+        file1Btn.colors = colorBlock;
+        file2Btn.colors = colorBlock;
+        file3Btn.colors = colorBlock;
+
+        deleteTxt.text = "Delete";
+
+        deleteSelected = false;
+        Debug.Log(deleteSelected);
+    }
+
+    public void LoadFirstHalf()
+    {
+        //load scene and once in scene we can check which game objects need to be loaded
+        SceneManager.LoadScene(SaveManager.instance.activeSave.sceneName);
+
+        SaveManager.instance.gamePartialLoad = true;
     }
 }

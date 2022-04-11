@@ -483,8 +483,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   pressAnyText: {fileID: 0}
+  deleteTxt: {fileID: 0}
   MainMenuPanel: {fileID: 0}
-  saveManager: {fileID: 0}
+  file1Btn: {fileID: 0}
+  file2Btn: {fileID: 0}
+  file3Btn: {fileID: 0}
   EmptyTxt1: {fileID: 0}
   EmptyTxt2: {fileID: 0}
   EmptyTxt3: {fileID: 0}
@@ -521,7 +524,8 @@ MonoBehaviour:
     saveNumber: 0
     playerPosition: {x: 0, y: 0, z: 0}
     sceneName: 
-    volumeSlider: 0
+    BGMSoundLevel: 0
+  gamePartialLoad: 0
 --- !u!4 &206356554
 Transform:
   m_ObjectHideFlags: 0
@@ -1654,7 +1658,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 584532931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 586301857}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: DeletePressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &584532931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1889,11 +1905,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 341829428}
   pressAnyText: {fileID: 1412437633}
+  deleteTxt: {fileID: 2014374202}
   MainMenuPanel: {fileID: 2027359080}
-  saveManager: {fileID: 0}
-  EmptyTxt1: {fileID: 0}
-  EmptyTxt2: {fileID: 0}
-  EmptyTxt3: {fileID: 0}
+  file1Btn: {fileID: 867771621}
+  file2Btn: {fileID: 660219463}
+  file3Btn: {fileID: 1782498386}
+  EmptyTxt1: {fileID: 538965140}
+  EmptyTxt2: {fileID: 90634846}
+  EmptyTxt3: {fileID: 217721185}
 --- !u!1 &598673198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,8 +2144,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   pressAnyText: {fileID: 0}
+  deleteTxt: {fileID: 0}
   MainMenuPanel: {fileID: 0}
-  saveManager: {fileID: 206356553}
+  file1Btn: {fileID: 0}
+  file2Btn: {fileID: 0}
+  file3Btn: {fileID: 0}
   EmptyTxt1: {fileID: 538965140}
   EmptyTxt2: {fileID: 90634846}
   EmptyTxt3: {fileID: 217721185}
@@ -2833,8 +2855,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   pressAnyText: {fileID: 0}
+  deleteTxt: {fileID: 0}
   MainMenuPanel: {fileID: 0}
-  saveManager: {fileID: 206356553}
+  file1Btn: {fileID: 0}
+  file2Btn: {fileID: 0}
+  file3Btn: {fileID: 0}
   EmptyTxt1: {fileID: 538965140}
   EmptyTxt2: {fileID: 90634846}
   EmptyTxt3: {fileID: 217721185}
@@ -3191,8 +3216,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   pressAnyText: {fileID: 0}
+  deleteTxt: {fileID: 0}
   MainMenuPanel: {fileID: 0}
-  saveManager: {fileID: 206356553}
+  file1Btn: {fileID: 0}
+  file2Btn: {fileID: 0}
+  file3Btn: {fileID: 0}
   EmptyTxt1: {fileID: 538965140}
   EmptyTxt2: {fileID: 90634846}
   EmptyTxt3: {fileID: 217721185}
@@ -4542,8 +4570,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 0}
   pressAnyText: {fileID: 0}
+  deleteTxt: {fileID: 0}
   MainMenuPanel: {fileID: 0}
-  saveManager: {fileID: 206356553}
+  file1Btn: {fileID: 0}
+  file2Btn: {fileID: 0}
+  file3Btn: {fileID: 0}
   EmptyTxt1: {fileID: 538965140}
   EmptyTxt2: {fileID: 90634846}
   EmptyTxt3: {fileID: 217721185}
