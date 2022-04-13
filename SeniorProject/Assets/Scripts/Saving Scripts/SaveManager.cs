@@ -5,11 +5,14 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class SaveManager : MonoBehaviour
 {
     public SaveData activeSave;
     public static SaveManager instance;
+
+    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPool, spawner;
 
     public bool gamePartialLoad = false;
  
@@ -100,12 +103,61 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            GameObject player = GameObject.Find("PlayerCharacter");
-            
-            player.transform.position = instance.activeSave.playerPosition;
+            LoadImportantObjects();
+            SetupCamera();
         }
 
         PlayerPrefs.SetFloat("BG Music", instance.activeSave.BGMSoundLevel);
+    }
+
+    public void LoadImportantObjects()
+    {
+        LoadPlayerCharacter();
+        LoadPlayerPartyPool();
+        LoadSceneManager();
+        LoadAudioManager();
+        LoadOverworldObjectPool();
+        LoadSpawner();
+    }
+
+    public void LoadPlayerCharacter()
+    {
+        Instantiate(playerCharacter);
+        playerCharacter.transform.position = SaveManager.instance.activeSave.playerPosition;
+    }
+
+    public void LoadPlayerPartyPool()
+    {
+        Instantiate(playerPartyPool);
+    }
+
+    public void LoadSceneManager()
+    {
+        Instantiate(sceneManager);
+    }
+
+    public void LoadAudioManager()
+    {
+        Instantiate(audioManager);
+    }
+
+    public void LoadOverworldObjectPool()
+    {
+        Instantiate(overworldObjectPool);
+    }
+
+    public void LoadSpawner()
+    {
+        Instantiate(spawner);
+    }
+
+    public void SetupCamera()
+    {
+        GameObject playerCam = GameObject.Find("Player Cam");
+        playerCam.GetComponent<CameraMovement>().tPlayer = playerCharacter;
+        playerCam.GetComponent<CameraMovement>().tFollowTarget = playerCharacter.transform;
+        playerCam.GetComponent<CinemachineVirtualCamera>().Follow = playerCharacter.transform;
+        playerCam.GetComponent<CinemachineVirtualCamera>().LookAt = playerCharacter.transform;
     }
 }
 

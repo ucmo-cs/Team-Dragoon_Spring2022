@@ -36,9 +36,11 @@ public class PauseMenu : MonoBehaviour
         else if (slider.value != PlayerPrefs.GetFloat("BG Music"))
         {
             PlayerPrefs.SetFloat("BG Music", slider.value);
-            if (slider.value != AudioManager.instance.mainBGM.volume && AudioManager.instance != null)
+            //checks music sources and adjusts according to the slider value
+            if ((slider.value != AudioManager.instance.mainBGM.volume || slider.value != AudioManager.instance.battleMusic.volume) && AudioManager.instance != null)
             {
                 AudioManager.instance.mainBGM.volume = PlayerPrefs.GetFloat("BG Music");
+                AudioManager.instance.battleMusic.volume = PlayerPrefs.GetFloat("BG Music");
             }
             
         }
@@ -52,8 +54,6 @@ public class PauseMenu : MonoBehaviour
             }
             setPauseFalse();
         }
-        //freeze player and inputs available to them
-        
     }
 
     public void setPauseFalse()

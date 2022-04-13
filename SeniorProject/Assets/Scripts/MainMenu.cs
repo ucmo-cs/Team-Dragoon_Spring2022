@@ -63,7 +63,7 @@ public class MainMenu : MonoBehaviour
             {
                 SaveManager.instance.DeleteSave(1);
                 updateSaveNames();
-                Debug.Log("File1 deleted");
+                //Debug.Log("File1 deleted");
             }
             else if (EmptyTxt1.activeSelf == false)
             {
@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
             {
                 SaveManager.instance.DeleteSave(2);
                 updateSaveNames();
-                Debug.Log("File2 deleted");
+                //Debug.Log("File2 deleted");
             }
             else if (EmptyTxt2.activeSelf == false)
             {
@@ -102,7 +102,7 @@ public class MainMenu : MonoBehaviour
             {
                 SaveManager.instance.DeleteSave(3);
                 updateSaveNames();
-                Debug.Log("File3 deleted");
+                //Debug.Log("File3 deleted");
             }
             else if (EmptyTxt3.activeSelf == false)
             {
@@ -130,17 +130,17 @@ public class MainMenu : MonoBehaviour
                 if (i == 1)
                 {
                     EmptyTxt1.SetActive(false);
-                    Debug.Log("file in slot 1");
+                    //Debug.Log("file in slot 1");
                 }
                 else if (i == 2)
                 {
                     EmptyTxt2.SetActive(false);
-                    Debug.Log("file in slot 2");
+                    //Debug.Log("file in slot 2");
                 }
                 else if (i == 3)
                 {
                     EmptyTxt3.SetActive(false);
-                    Debug.Log("file in slot 3");
+                    //Debug.Log("file in slot 3");
                 }
             }
             //otherwise set it to show the empty text
@@ -149,17 +149,17 @@ public class MainMenu : MonoBehaviour
                 if (i == 1)
                 {
                     EmptyTxt1.SetActive(true);
-                    Debug.Log("no file in slot 1");
+                    //Debug.Log("no file in slot 1");
                 }
                 else if (i == 2)
                 {
                     EmptyTxt2.SetActive(true);
-                    Debug.Log("no file in slot 2");
+                    //Debug.Log("no file in slot 2");
                 }
                 else if (i == 3)
                 {
                     EmptyTxt3.SetActive(true);
-                    Debug.Log("no file in slot 3");
+                    //Debug.Log("no file in slot 3");
                 }
             }
         }
@@ -210,7 +210,7 @@ public class MainMenu : MonoBehaviour
     {
         //load scene and once in scene we can check which game objects need to be loaded
         SceneManager.LoadScene(SaveManager.instance.activeSave.sceneName.ToString());
-        Debug.Log(SceneManager.GetActiveScene().name + " 1");
+        //Debug.Log(SceneManager.GetActiveScene().name + " 1");
         SaveManager.instance.gamePartialLoad = true;
     }
 }
