@@ -205,7 +205,7 @@ public class CharacterOverworldController : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (Input.GetKey(KeyCode.E) && collision.gameObject.tag == "Breakable Rock")
+        if (Input.GetKey(KeyCode.E) && collision.gameObject.tag == "Breakable Rock" && currPlayer == 3)
         {
             Debug.Log("Destroy the rock");
             Destroy(collision.gameObject);
