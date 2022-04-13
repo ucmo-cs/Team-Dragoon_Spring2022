@@ -18,8 +18,4 @@ public class CameraMovement : MonoBehaviour
         vcam.LookAt = tFollowTarget;
         vcam.Follow = tFollowTarget;
     }
-
-    private void Update()
-    {
-    }
 }

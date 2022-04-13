@@ -27598,35 +27598,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6854040062915922107, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6854040062915922108, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
       propertyPath: m_Name
       value: Player Cam
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
---- !u!1 &6854040060927434912 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6854040062915922108, guid: 0b1c32bd649d0694dafadc1d507fd219, type: 3}
-  m_PrefabInstance: {fileID: 6854040060927434911}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6854040060927434913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6854040060927434912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c217e6624c4426c9d1811dc1ded650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tPlayer: {fileID: 0}
-  tFollowTarget: {fileID: 0}
 --- !u!1001 &8587762427306231377
 PrefabInstance:
   m_ObjectHideFlags: 0

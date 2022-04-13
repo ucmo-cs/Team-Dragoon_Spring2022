@@ -12,7 +12,8 @@ public class SaveManager : MonoBehaviour
     public SaveData activeSave;
     public static SaveManager instance;
 
-    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPool, spawner;
+    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPool, spawner, camera;
+    [SerializeField] GameObject partyMember1, partyMember2, partyMember3, partyMember4;
 
     public bool gamePartialLoad = false;
  
@@ -118,6 +119,7 @@ public class SaveManager : MonoBehaviour
         LoadAudioManager();
         LoadOverworldObjectPool();
         LoadSpawner();
+        LoadCamera();
     }
 
     public void LoadPlayerCharacter()
@@ -149,15 +151,20 @@ public class SaveManager : MonoBehaviour
     public void LoadSpawner()
     {
         Instantiate(spawner);
+        spawner.GetComponent<Spawner>().playerEncounterPrefab1 = partyMember1;
+    }
+    public void LoadCamera()
+    {
     }
 
     public void SetupCamera()
     {
         GameObject playerCam = GameObject.Find("Player Cam");
-        playerCam.GetComponent<CameraMovement>().tPlayer = playerCharacter;
-        playerCam.GetComponent<CameraMovement>().tFollowTarget = playerCharacter.transform;
-        playerCam.GetComponent<CinemachineVirtualCamera>().Follow = playerCharacter.transform;
-        playerCam.GetComponent<CinemachineVirtualCamera>().LookAt = playerCharacter.transform;
+        GameObject mewPlayer = GameObject.FindGameObjectWithTag("Player");
+        playerCam.GetComponent<CameraMovement>().tPlayer = mewPlayer;
+        playerCam.GetComponent<CameraMovement>().tFollowTarget = mewPlayer.transform;
+        playerCam.GetComponent<CinemachineVirtualCamera>().Follow = mewPlayer.transform;
+        playerCam.GetComponent<CinemachineVirtualCamera>().LookAt = mewPlayer.transform;
     }
 }
 
