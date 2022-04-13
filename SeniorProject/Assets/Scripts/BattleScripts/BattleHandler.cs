@@ -336,7 +336,7 @@ public class BattleHandler : MonoBehaviour
 
     private void ChooseNextActiveCharacter()
     {
-        if (TestBattleOver())
+        if (TestBattleOverPartyWin())
         {
             ObjectPooling.instance.canSpawn[spawner.ObjectPoolIndex] = false;
             playerFromOverworld.SetActive(true);
@@ -349,6 +349,10 @@ public class BattleHandler : MonoBehaviour
             AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.mainBGM, 6f));
             Debug.Log("Success");
             return;
+        }
+        else if (TestBattleOverEnemyWin())
+        {
+            sceneChanger.LoadScene("DeathScene");
         }
         if (activeCharacterBattle == playerCharacterBattle1 && partyMemberTurn == 1)
         {
@@ -672,19 +676,25 @@ public class BattleHandler : MonoBehaviour
         }
     }
 
-    private bool TestBattleOver()
+    private bool TestBattleOverEnemyWin()
     {
         if (playerCharacterBattle1.IsDead() && playerCharacterBattle2.IsDead() && playerCharacterBattle3.IsDead() && playerCharacterBattle4.IsDead())
         {
+            //sceneChanger.LoadScene("DeathScene");
             //Player dead, enemy wins
             Debug.Log("Enemy wins");
             return true;
         }
+        return false;
+    }
+    private bool TestBattleOverPartyWin()
+    {
+
         if (enemyCharacterBattle.IsDead() && enemyCharacterBattle2.IsDead() && enemyCharacterBattle3.IsDead() && enemyCharacterBattle4.IsDead())
         {
             //Enemy dead, player wins
             Debug.Log("Player wins");
-            
+
             return true;
         }
         return false;
