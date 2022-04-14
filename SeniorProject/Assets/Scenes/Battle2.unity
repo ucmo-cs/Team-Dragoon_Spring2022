@@ -1246,19 +1246,19 @@ PrefabInstance:
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: pfCharacterBattle1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3969922577209610097, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: pfCharacterBattle2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8322565142183082412, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: pfCharacterBattle3
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4414834349944951527, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: pfCharacterBattle4
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3969922577209610097, guid: 0327f11761884a141abed4fe6198d642, type: 3}
     - target: {fileID: 2757419989046101637, guid: 44ec16d2afe32fc44b6b7ce10542395a, type: 3}
       propertyPath: physicalAttackButton
       value: 

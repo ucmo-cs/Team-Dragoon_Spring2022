@@ -18,19 +18,19 @@ public class BattleHandler : MonoBehaviour
     private StartBattle startBattle;
 
     // Player's party and information
-    [SerializeField] private Transform pfCharacterBattle1;
-    [SerializeField] private Transform pfCharacterBattle2;
-    [SerializeField] private Transform pfCharacterBattle3;
-    [SerializeField] private Transform pfCharacterBattle4;
+    private Transform pfCharacterBattle1;
+    private Transform pfCharacterBattle2;
+    private Transform pfCharacterBattle3;
+    private Transform pfCharacterBattle4;
 
     // Sprite element
     public Texture2D playerSpritesheet;
 
     // Player party member battle logic and script
-    private CharacterBattle playerCharacterBattle1;
-    private CharacterBattle playerCharacterBattle2;
-    private CharacterBattle playerCharacterBattle3;
-    private CharacterBattle playerCharacterBattle4;
+    [SerializeField] private CharacterBattle playerCharacterBattle1;
+    [SerializeField] private CharacterBattle playerCharacterBattle2;
+    [SerializeField] private CharacterBattle playerCharacterBattle3;
+    [SerializeField] private CharacterBattle playerCharacterBattle4;
 
     // Enemy's party and information
     public Texture2D enemySpritesheet;
@@ -42,10 +42,10 @@ public class BattleHandler : MonoBehaviour
     [SerializeField] private Transform pfEnemyBattle4;
 
     // Enemey party member battle logic and script
-    public static CharacterBattle enemyCharacterBattle;
-    public static CharacterBattle enemyCharacterBattle2;
-    public static CharacterBattle enemyCharacterBattle3;
-    public static CharacterBattle enemyCharacterBattle4;
+    public CharacterBattle enemyCharacterBattle;
+    public CharacterBattle enemyCharacterBattle2;
+    public CharacterBattle enemyCharacterBattle3;
+    public CharacterBattle enemyCharacterBattle4;
 
     // Determine which character in the battle should be active
     private CharacterBattle activeCharacterBattle;
@@ -290,12 +290,16 @@ public class BattleHandler : MonoBehaviour
             characterTransform = Instantiate(pfCharacterBattle4, position, Quaternion.identity);
 
             partyMemberTurn = 1;
+            Debug.Log("Load character 4");
         }
         else if (enemyPartyMemberTurn == 1)
         {
             position = new Vector3(+5, 0);
+            Debug.Log("Load enemy 1");
             characterTransform = Instantiate(pfEnemyBattle1, position, Quaternion.identity);
+            Debug.Log("Load enemy 2");
             enemyPartyMemberTurn++;
+            Debug.Log("Load enemy 3");
         }
         else if (enemyPartyMemberTurn == 2)
         {
