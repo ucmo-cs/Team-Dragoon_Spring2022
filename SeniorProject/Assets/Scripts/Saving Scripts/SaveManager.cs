@@ -103,9 +103,9 @@ public class SaveManager : MonoBehaviour
             player.transform.position = SaveManager.instance.activeSave.playerPosition;
         }
         else
-        {
+        {/*
             LoadImportantObjects();
-            SetupCamera();
+            SetupCamera();*/
         }
 
         PlayerPrefs.SetFloat("BG Music", instance.activeSave.BGMSoundLevel);
@@ -119,7 +119,7 @@ public class SaveManager : MonoBehaviour
         LoadAudioManager();
         LoadOverworldObjectPool();
         LoadSpawner();
-        LoadCamera();
+        //LoadCamera();
     }
 
     public void LoadPlayerCharacter()
@@ -152,6 +152,9 @@ public class SaveManager : MonoBehaviour
     {
         Instantiate(spawner);
         spawner.GetComponent<Spawner>().playerEncounterPrefab1 = partyMember1;
+        spawner.GetComponent<Spawner>().playerEncounterPrefab2 = partyMember2;
+        spawner.GetComponent<Spawner>().playerEncounterPrefab3 = partyMember3;
+        spawner.GetComponent<Spawner>().playerEncounterPrefab4 = partyMember4;
     }
     public void LoadCamera()
     {
@@ -159,7 +162,7 @@ public class SaveManager : MonoBehaviour
 
     public void SetupCamera()
     {
-        GameObject playerCam = GameObject.Find("Player Cam");
+        GameObject playerCam = GameObject.FindGameObjectWithTag("VirtualCamera");
         GameObject mewPlayer = GameObject.FindGameObjectWithTag("Player");
         playerCam.GetComponent<CameraMovement>().tPlayer = mewPlayer;
         playerCam.GetComponent<CameraMovement>().tFollowTarget = mewPlayer.transform;

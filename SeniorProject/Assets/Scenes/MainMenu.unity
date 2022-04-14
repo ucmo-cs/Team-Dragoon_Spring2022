@@ -531,6 +531,11 @@ MonoBehaviour:
   audioManager: {fileID: 6333370045471688762, guid: 0b53766f60c9f7c42b29dad26891d944, type: 3}
   overworldObjectPool: {fileID: 3178048309305445409, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
   spawner: {fileID: 3017957216282095586, guid: 165fecd66d170c9449fbf47ec61207c5, type: 3}
+  camera: {fileID: 0}
+  partyMember1: {fileID: 2170256066786928609, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
+  partyMember2: {fileID: 6518400873151303996, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}
+  partyMember3: {fileID: 1462851409907038839, guid: 01113d9c43d46ec43a8d07ab59d05ac7, type: 3}
+  partyMember4: {fileID: 2170256066786928609, guid: 0327f11761884a141abed4fe6198d642, type: 3}
   gamePartialLoad: 0
 --- !u!4 &206356554
 Transform:

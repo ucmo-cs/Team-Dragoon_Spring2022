@@ -9,8 +9,13 @@ public class CameraMovement : MonoBehaviour
     public Transform tFollowTarget;
     private CinemachineVirtualCamera vcam;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+    }
+
+    private void FixedUpdate()
+    {
+
         var vcam = GetComponent<CinemachineVirtualCamera>();
 
         tPlayer = GameObject.FindWithTag("Player");

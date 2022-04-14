@@ -210,6 +210,7 @@ public class MainMenu : MonoBehaviour
     {
         //load scene and once in scene we can check which game objects need to be loaded
         SceneManager.LoadScene(SaveManager.instance.activeSave.sceneName.ToString());
+        SaveManager.instance.LoadImportantObjects();
         //Debug.Log(SceneManager.GetActiveScene().name + " 1");
         SaveManager.instance.gamePartialLoad = true;
     }
