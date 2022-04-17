@@ -63,6 +63,7 @@ public class MainMenu : MonoBehaviour
             {
                 SaveManager.instance.DeleteSave(1);
                 updateSaveNames();
+                DeleteButtonUnselected();
                 //Debug.Log("File1 deleted");
             }
             else if (EmptyTxt1.activeSelf == false)
@@ -83,6 +84,7 @@ public class MainMenu : MonoBehaviour
             {
                 SaveManager.instance.DeleteSave(2);
                 updateSaveNames();
+                DeleteButtonUnselected();
                 //Debug.Log("File2 deleted");
             }
             else if (EmptyTxt2.activeSelf == false)
@@ -102,6 +104,7 @@ public class MainMenu : MonoBehaviour
             {
                 SaveManager.instance.DeleteSave(3);
                 updateSaveNames();
+                DeleteButtonUnselected();
                 //Debug.Log("File3 deleted");
             }
             else if (EmptyTxt3.activeSelf == false)
@@ -191,26 +194,34 @@ public class MainMenu : MonoBehaviour
         deleteTxt.text = "Cancel";
 
         deleteSelected = true;
-        Debug.Log(deleteSelected);
+        //Debug.Log(deleteSelected);
     }
 
     private void DeleteButtonUnselected()
     {
+        deleteTxt.text = "Delete";
         file1Btn.colors = colorBlock;
         file2Btn.colors = colorBlock;
         file3Btn.colors = colorBlock;
 
-        deleteTxt.text = "Delete";
+        //deleteTxt.text = "Delete";
 
         deleteSelected = false;
-        Debug.Log(deleteSelected);
+        //Debug.Log("Delete Unselected() - called");
     }
 
     public void LoadFirstHalf()
     {
         //load scene and once in scene we can check which game objects need to be loaded
         SceneManager.LoadScene(SaveManager.instance.activeSave.sceneName.ToString());
-        SaveManager.instance.LoadImportantObjects();
+        
+        /*if (SaveManager.instance.activeSave.sceneName.ToString() != "PlayerHouse")
+        {
+            Debug.Log("load import obj - not player house");
+            SaveManager.instance.LoadImportantObjects();
+        }*/
+        
+        
         //Debug.Log(SceneManager.GetActiveScene().name + " 1");
         SaveManager.instance.gamePartialLoad = true;
     }

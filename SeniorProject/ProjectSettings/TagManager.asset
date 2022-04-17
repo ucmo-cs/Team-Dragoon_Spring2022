@@ -18,6 +18,7 @@ TagManager:
   - Rock
   - Breakable Rock
   - VirtualCamera
+  - PHRoomObjects
   layers:
   - Default
   - TransparentFX

@@ -33,7 +33,16 @@ public class StartBattle : MonoBehaviour
     {
         //DontDestroyOnLoad(this.gameObject);
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        gameObject.SetActive(ObjectPooling.instance.canSpawn[enemyIndexInPool]);
+        if (ObjectPooling.instance != null)
+        {
+            gameObject.SetActive(ObjectPooling.instance.canSpawn[enemyIndexInPool]);
+        }
+        else
+        {
+            GameObject objectpooling = SaveManager.instance.LoadOverworldObjectPool();
+            gameObject.SetActive(objectpooling.GetComponent<ObjectPooling>().canSpawn[enemyIndexInPool]);
+        }
+
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

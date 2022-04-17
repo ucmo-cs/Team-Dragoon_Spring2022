@@ -78,6 +78,12 @@ public class PauseMenu : MonoBehaviour
         SaveManager.instance.activeSave.playerPosition.y = CharacterOverworldController.instance.gameObject.transform.position.y;
         SaveManager.instance.activeSave.playerPosition.z = CharacterOverworldController.instance.gameObject.transform.position.z;
 
+        //get player story value
+        SaveManager.instance.activeSave.storyProgress = CharacterOverworldController.instance.storyProgress;
+
+        //get overworld object pool
+        SaveManager.instance.activeSave.overworldObjectPool = ObjectPooling.instance.canSpawn;
+
         //get active scene
         SaveManager.instance.activeSave.sceneName = SceneManager.GetActiveScene().name;
 

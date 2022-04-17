@@ -12,7 +12,7 @@ public class CharacterOverworldController : MonoBehaviour
     int idleFrameCt;
     public int currPlayer;
     public bool canSwitch, canInteract = true, canMove = true;
-    bool isDressed;
+    public bool isDressed;
     public GameObject interactableObject;
     public int storyProgress;
 

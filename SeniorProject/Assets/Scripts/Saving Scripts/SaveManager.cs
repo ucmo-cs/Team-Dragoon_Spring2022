@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
     public SaveData activeSave;
     public static SaveManager instance;
 
-    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPool, spawner, camera;
+    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPool, spawner;
     [SerializeField] GameObject partyMember1, partyMember2, partyMember3, partyMember4;
 
     public bool gamePartialLoad = false;
@@ -96,16 +96,17 @@ public class SaveManager : MonoBehaviour
     //load everything for the scene after the scene change
     public void LoadSecondHalf()
     {
+        Debug.Log("Loading second half. scene = " + SceneManager.GetActiveScene().name);
         gamePartialLoad = false;
         if (SceneManager.GetActiveScene().name == "PlayerHouse")
         {
-            GameObject player = GameObject.Find("PlayerCharacter");
-            player.transform.position = SaveManager.instance.activeSave.playerPosition;
+            GameObject player = GameObject.FindWithTag("Player");
+            LoadPlayerCharacter(player);
         }
         else
-        {/*
+        {
             LoadImportantObjects();
-            SetupCamera();*/
+            
         }
 
         PlayerPrefs.SetFloat("BG Music", instance.activeSave.BGMSoundLevel);
@@ -113,19 +114,87 @@ public class SaveManager : MonoBehaviour
 
     public void LoadImportantObjects()
     {
-        LoadPlayerCharacter();
+        Debug.Log("Loading important objs");
+        Instantiate(playerCharacter);
+        LoadPlayerCharacter(playerCharacter);
+
         LoadPlayerPartyPool();
+
         LoadSceneManager();
+
         LoadAudioManager();
-        LoadOverworldObjectPool();
+
+        //called in Start() of StartBattle script
+        //LoadOverworldObjectPool();
+
         LoadSpawner();
-        //LoadCamera();
     }
 
-    public void LoadPlayerCharacter()
+    public void LoadPlayerCharacter(GameObject player)
     {
-        Instantiate(playerCharacter);
-        playerCharacter.transform.position = SaveManager.instance.activeSave.playerPosition;
+        //Debug.Log();
+        player.transform.position = SaveManager.instance.activeSave.playerPosition;
+        player.GetComponent<CharacterOverworldController>().storyProgress = SaveManager.instance.activeSave.storyProgress;
+        
+        if (SceneManager.GetActiveScene().name == "PlayerHouse")
+        {
+            GameObject roomObjects = GameObject.FindWithTag("PHRoomObjects");
+
+            GameObject note = roomObjects.transform.GetChild(0).gameObject;
+            GameObject armorStand = roomObjects.transform.GetChild(1).gameObject;
+            GameObject tableEmpty = roomObjects.transform.GetChild(3).gameObject;
+            GameObject armorEmpty = roomObjects.transform.GetChild(4).gameObject;
+
+            //note collected
+            if (player.GetComponent<CharacterOverworldController>().storyProgress == 1)
+            {
+                //load note/tables
+                note.SetActive(false);
+                tableEmpty.SetActive(true);
+            }
+            //armor collected
+            else if (player.GetComponent<CharacterOverworldController>().storyProgress == 2)
+            {
+                //load armor stand
+                armorStand.SetActive(false);
+                armorEmpty.SetActive(true);
+
+                //set player armor values
+                player.GetComponent<CharacterOverworldController>().anim.SetBool("isDressed",true);
+                player.GetComponent<CharacterOverworldController>().currPlayer = 1;
+                player.GetComponent<CharacterOverworldController>().canSwitch = true;
+                player.GetComponent<CharacterOverworldController>().isDressed = true;
+            }
+            //note/armor both collected
+            else if (player.GetComponent<CharacterOverworldController>().storyProgress == 3)
+            {
+                //load note/tables and armor stands
+                note.SetActive(false);
+                tableEmpty.SetActive(true);
+                armorStand.SetActive(false);
+                armorEmpty.SetActive(true);
+
+                //set player armor values
+                player.GetComponent<CharacterOverworldController>().anim.SetBool("isDressed", true);
+                player.GetComponent<CharacterOverworldController>().currPlayer = 1;
+                player.GetComponent<CharacterOverworldController>().canSwitch = true;
+                player.GetComponent<CharacterOverworldController>().isDressed = true;
+            }
+        }
+        //loading any other scene but PlayerHouse
+        else
+        {
+            Debug.Log("loading player out of house");
+            
+            //Animator null at this point, but it is still playing proper animations
+            Debug.Log(player.GetComponent<CharacterOverworldController>().anim);
+            
+            //set player armor values
+            player.GetComponent<CharacterOverworldController>().anim.SetBool("isDressed", true);
+            player.GetComponent<CharacterOverworldController>().currPlayer = 1;
+            player.GetComponent<CharacterOverworldController>().canSwitch = true;
+            player.GetComponent<CharacterOverworldController>().isDressed = true;
+        }
     }
 
     public void LoadPlayerPartyPool()
@@ -143,9 +212,10 @@ public class SaveManager : MonoBehaviour
         Instantiate(audioManager);
     }
 
-    public void LoadOverworldObjectPool()
+    public GameObject LoadOverworldObjectPool()
     {
         Instantiate(overworldObjectPool);
+        return overworldObjectPool;
     }
 
     public void LoadSpawner()
@@ -155,9 +225,6 @@ public class SaveManager : MonoBehaviour
         spawner.GetComponent<Spawner>().playerEncounterPrefab2 = partyMember2;
         spawner.GetComponent<Spawner>().playerEncounterPrefab3 = partyMember3;
         spawner.GetComponent<Spawner>().playerEncounterPrefab4 = partyMember4;
-    }
-    public void LoadCamera()
-    {
     }
 
     public void SetupCamera()
@@ -178,11 +245,16 @@ public class SaveData
 
     public Vector3 playerPosition;
 
+    public int storyProgress;
+
     //need scene visited list as well, to not break the system
     public string sceneName;
 
     //pass volume slider from player prefs after main menu
     public float BGMSoundLevel;
 
-    //arrays for inventory and enemies not fought that are needed to be reloaded
+    //overworld object pooling
+    public bool[] overworldObjectPool;
+
+
 }
