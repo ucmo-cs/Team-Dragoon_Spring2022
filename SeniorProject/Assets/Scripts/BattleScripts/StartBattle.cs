@@ -24,9 +24,12 @@ public class StartBattle : MonoBehaviour
 
     public static StartBattle instance;
 
+    //Checking to see what is being linked
+    [SerializeField] private GameObject objectpooling;
+
     private void Awake()
     {
-        instance = this;
+        //instance = this;
     }
 
     private void Start()
@@ -39,7 +42,8 @@ public class StartBattle : MonoBehaviour
         }
         else
         {
-            GameObject objectpooling = SaveManager.instance.LoadOverworldObjectPool();
+            DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
+            objectpooling = ReturnObjectFromArray(DontDestroyOnLoadObjects, "ObjectPool");
             gameObject.SetActive(objectpooling.GetComponent<ObjectPooling>().canSpawn[enemyIndexInPool]);
         }
 

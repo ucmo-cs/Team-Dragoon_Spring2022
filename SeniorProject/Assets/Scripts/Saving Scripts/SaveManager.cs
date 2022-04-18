@@ -124,7 +124,7 @@ public class SaveManager : MonoBehaviour
         LoadAudioManager();
 
         //called in Start() of StartBattle script
-        //LoadOverworldObjectPool();
+        LoadOverworldObjectPool();
 
         LoadSpawner();
     }
@@ -208,10 +208,9 @@ public class SaveManager : MonoBehaviour
         Instantiate(audioManager);
     }
 
-    public GameObject LoadOverworldObjectPool()
+    public void LoadOverworldObjectPool()
     {
         Instantiate(overworldObjectPool);
-        return overworldObjectPool;
     }
 
     public void LoadSpawner()
