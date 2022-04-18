@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Slider volumeSlider;
+    public Slider volumeSlider, FX;
     public TMPro.TextMeshProUGUI pressAnyText, deleteTxt;
     public GameObject MainMenuPanel;
     public Button file1Btn, file2Btn, file3Btn;
@@ -34,13 +34,17 @@ public class MainMenu : MonoBehaviour
             }
             else if (volumeSlider.value != AudioListener.volume)
             {
-                ChangeMusicVolume();
+                ChangeVolume();
+            }
+            else if (PlayerPrefs.GetFloat("FX Level") == 0)
+            {
+                PlayerPrefs.SetFloat("FX Level", FX.value);
             }
         }
     }
 
     //changes BG music volume based on the appropriate slider
-    public void ChangeMusicVolume()
+    public void ChangeVolume()
     {
         AudioListener.volume = volumeSlider.value;
         PlayerPrefs.SetFloat("BG Music", volumeSlider.value);

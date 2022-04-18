@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel, optionsMenuPanel;
-    public Slider slider;
+    public Slider BGMSlider, FXSlider;
     public Image note, textbox;
 
     public bool isPaused;
@@ -15,7 +15,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        slider.value = PlayerPrefs.GetFloat("BG Music");
+        BGMSlider.value = PlayerPrefs.GetFloat("BG Music");
+        FXSlider.value = PlayerPrefs.GetFloat("FX Levels");
     }
 
     void Update()
@@ -27,17 +28,24 @@ public class PauseMenu : MonoBehaviour
             pauseMenuPanel.SetActive(true);
             isPaused = true;
 
-            //freeze player and inputs available to them
-            CharacterOverworldController.instance.canMove = false;
-            CharacterOverworldController.instance.canInteract = false;
-            CharacterOverworldController.instance.canSwitch = false;
+            Time.timeScale = 0;
         }
         //if BGM slider value is different than the actual levels
-        else if (slider.value != PlayerPrefs.GetFloat("BG Music"))
+        else if (BGMSlider.value != PlayerPrefs.GetFloat("BG Music") || FXSlider.value != PlayerPrefs.GetFloat("FX Levels"))
         {
-            PlayerPrefs.SetFloat("BG Music", slider.value);
+            PlayerPrefs.SetFloat("BG Music", BGMSlider.value);
+            PlayerPrefs.SetFloat("FX Levels", FXSlider.value);
+
+            if (FXSlider.value != AudioManager.instance.fireball.volume || FXSlider.value != AudioManager.instance.arrow.volume || FXSlider.value != AudioManager.instance.star.volume || FXSlider.value != AudioManager.instance.slap.volume)
+            {
+                AudioManager.instance.fireball.volume = PlayerPrefs.GetFloat("FX Levels");
+                AudioManager.instance.star.volume = PlayerPrefs.GetFloat("FX Levels");
+                AudioManager.instance.arrow.volume = PlayerPrefs.GetFloat("FX Levels");
+                AudioManager.instance.slap.volume = PlayerPrefs.GetFloat("FX Levels");
+            }
+
             //checks music sources and adjusts according to the slider value
-            if ((slider.value != AudioManager.instance.mainBGM.volume || slider.value != AudioManager.instance.battleMusic.volume) && AudioManager.instance != null)
+            if ((BGMSlider.value != AudioManager.instance.mainBGM.volume || BGMSlider.value != AudioManager.instance.battleMusic.volume) && AudioManager.instance != null)
             {
                 AudioManager.instance.mainBGM.volume = PlayerPrefs.GetFloat("BG Music");
                 AudioManager.instance.battleMusic.volume = PlayerPrefs.GetFloat("BG Music");
@@ -59,11 +67,14 @@ public class PauseMenu : MonoBehaviour
     public void setPauseFalse()
     {
         isPaused = false;
-        CharacterOverworldController.instance.canMove = true;
-        CharacterOverworldController.instance.canInteract = true;
-        CharacterOverworldController.instance.canSwitch = true;
-
+        Time.timeScale = 1;
         pauseMenuPanel.SetActive(false);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        SaveManager.instance = null;
     }
 
     public void QuitGame()
@@ -89,6 +100,9 @@ public class PauseMenu : MonoBehaviour
 
         //get volume levels
         SaveManager.instance.activeSave.BGMSoundLevel = PlayerPrefs.GetFloat("BG Music");
+
+        //get scene history
+        SaveManager.instance.activeSave.sceneList = SceneChanger.instance.sceneHistory;
 
         Debug.Log("game values saved");
         SaveManager.instance.Save(SaveManager.instance.activeSave.saveNumber);

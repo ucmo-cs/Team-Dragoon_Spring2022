@@ -17,6 +17,11 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
         allAudio = FindObjectsOfType<AudioSource>();
+
+        fireball.volume = PlayerPrefs.GetFloat("FX Levels");
+        arrow.volume = PlayerPrefs.GetFloat("FX Levels");
+        star.volume = PlayerPrefs.GetFloat("FX Levels");
+        slap.volume = PlayerPrefs.GetFloat("FX Levels");
     }
 
     // Update is called once per frame

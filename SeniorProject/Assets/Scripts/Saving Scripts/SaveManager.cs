@@ -106,7 +106,6 @@ public class SaveManager : MonoBehaviour
         else
         {
             LoadImportantObjects();
-            
         }
 
         PlayerPrefs.SetFloat("BG Music", instance.activeSave.BGMSoundLevel);
@@ -115,8 +114,8 @@ public class SaveManager : MonoBehaviour
     public void LoadImportantObjects()
     {
         Debug.Log("Loading important objs");
-        Instantiate(playerCharacter);
-        LoadPlayerCharacter(playerCharacter);
+        GameObject player = Instantiate(playerCharacter);
+        LoadPlayerCharacter(player);
 
         LoadPlayerPartyPool();
 
@@ -135,7 +134,8 @@ public class SaveManager : MonoBehaviour
         //Debug.Log();
         player.transform.position = SaveManager.instance.activeSave.playerPosition;
         player.GetComponent<CharacterOverworldController>().storyProgress = SaveManager.instance.activeSave.storyProgress;
-        
+
+        player.GetComponent<SpriteRenderer>().sortingOrder = 1;
         if (SceneManager.GetActiveScene().name == "PlayerHouse")
         {
             GameObject roomObjects = GameObject.FindWithTag("PHRoomObjects");
@@ -183,12 +183,7 @@ public class SaveManager : MonoBehaviour
         }
         //loading any other scene but PlayerHouse
         else
-        {
-            Debug.Log("loading player out of house");
-            
-            //Animator null at this point, but it is still playing proper animations
-            Debug.Log(player.GetComponent<CharacterOverworldController>().anim);
-            
+        {   
             //set player armor values
             player.GetComponent<CharacterOverworldController>().anim.SetBool("isDressed", true);
             player.GetComponent<CharacterOverworldController>().currPlayer = 1;
@@ -199,12 +194,13 @@ public class SaveManager : MonoBehaviour
 
     public void LoadPlayerPartyPool()
     {
-        Instantiate(playerPartyPool);
+        GameObject partyPool = Instantiate(playerPartyPool);
     }
 
     public void LoadSceneManager()
     {
         Instantiate(sceneManager);
+        SceneChanger.instance.sceneHistory = SaveManager.instance.activeSave.sceneList;
     }
 
     public void LoadAudioManager()
@@ -220,11 +216,11 @@ public class SaveManager : MonoBehaviour
 
     public void LoadSpawner()
     {
-        Instantiate(spawner);
-        spawner.GetComponent<Spawner>().playerEncounterPrefab1 = partyMember1;
-        spawner.GetComponent<Spawner>().playerEncounterPrefab2 = partyMember2;
-        spawner.GetComponent<Spawner>().playerEncounterPrefab3 = partyMember3;
-        spawner.GetComponent<Spawner>().playerEncounterPrefab4 = partyMember4;
+        GameObject instSpawner = Instantiate(spawner);
+        instSpawner.GetComponent<Spawner>().playerEncounterPrefab1 = partyMember1;
+        instSpawner.GetComponent<Spawner>().playerEncounterPrefab2 = partyMember2;
+        instSpawner.GetComponent<Spawner>().playerEncounterPrefab3 = partyMember3;
+        instSpawner.GetComponent<Spawner>().playerEncounterPrefab4 = partyMember4;
     }
 
     public void SetupCamera()
@@ -256,5 +252,6 @@ public class SaveData
     //overworld object pooling
     public bool[] overworldObjectPool;
 
-
+    //scenelist for scenechanger
+    public List<string> sceneList;
 }
