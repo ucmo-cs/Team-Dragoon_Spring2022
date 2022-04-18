@@ -73,8 +73,26 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        Destroy(SaveManager.instance);
+        Destroy(GameObject.Find("SaveManager"));
+
+        Destroy(GameObject.Find("PlayerPartyPool"));
+
+        Destroy(SceneChanger.instance);
+        Destroy(GameObject.Find("SceneManager"));
+        
+        Destroy(AudioManager.instance);
+        Destroy(GameObject.Find("AudioManager"));
+
+        Destroy(ObjectPooling.instance);
+        Destroy(GameObject.Find("OverworldObjectPool"));
+
+        Destroy(CharacterOverworldController.instance);
+        Destroy(GameObject.Find("PlayerCharacter"));
+
+        Destroy(GameObject.Find("Spawner"));
+
         SceneManager.LoadScene("MainMenu");
-        SaveManager.instance = null;
     }
 
     public void QuitGame()
