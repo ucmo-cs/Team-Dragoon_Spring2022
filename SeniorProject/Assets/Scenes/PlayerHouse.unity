@@ -11170,6 +11170,86 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[5]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[6]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[7]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[8]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[9]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[10]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[11]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[12]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[13]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[14]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[15]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[16]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[17]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[18]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: canSpawn.Array.data[19]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3178048309305445409, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
       propertyPath: m_Name
       value: OverworldObjectPool

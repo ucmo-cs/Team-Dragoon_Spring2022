@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
     public SaveData activeSave;
     public static SaveManager instance;
 
-    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPool, spawner;
+    public GameObject playerCharacter, playerPartyPool, sceneManager, audioManager, overworldObjectPoolGameObject, spawner;
     [SerializeField] GameObject partyMember1, partyMember2, partyMember3, partyMember4;
 
     public bool gamePartialLoad = false;
@@ -210,7 +210,9 @@ public class SaveManager : MonoBehaviour
 
     public void LoadOverworldObjectPool()
     {
-        Instantiate(overworldObjectPool);
+        Instantiate(overworldObjectPoolGameObject);
+        GameObject temp = GameObject.FindGameObjectWithTag("ObjectPool");
+        temp.GetComponent<ObjectPooling>().canSpawn = SaveManager.instance.activeSave.overworldObjectPool;
     }
 
     public void LoadSpawner()

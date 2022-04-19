@@ -533,7 +533,7 @@ MonoBehaviour:
   playerPartyPool: {fileID: 384498581242889653, guid: dc1c557550b6b7d4fa13e3e9c38daf9b, type: 3}
   sceneManager: {fileID: 4048033436074279515, guid: 9637c4b5dadf5b1408d8c8203d3a9fce, type: 3}
   audioManager: {fileID: 6333370045471688762, guid: 0b53766f60c9f7c42b29dad26891d944, type: 3}
-  overworldObjectPool: {fileID: 3178048309305445409, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+  overworldObjectPoolGameObject: {fileID: 3178048309305445409, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
   spawner: {fileID: 3017957216282095586, guid: 165fecd66d170c9449fbf47ec61207c5, type: 3}
   partyMember1: {fileID: 2170256066786928609, guid: f921f9079c10a3e4c8b645270b3b120b, type: 3}
   partyMember2: {fileID: 6518400873151303996, guid: 306cfb1fb122de54c8a18a2ed67a2bc1, type: 3}

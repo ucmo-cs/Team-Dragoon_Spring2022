@@ -36,17 +36,21 @@ public class StartBattle : MonoBehaviour
     {
         //DontDestroyOnLoad(this.gameObject);
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        if (ObjectPooling.instance != null)
+
+        /*if (ObjectPooling.instance != null)
         {
             gameObject.SetActive(ObjectPooling.instance.canSpawn[enemyIndexInPool]);
         }
         else
         {
-            DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-            objectpooling = ReturnObjectFromArray(DontDestroyOnLoadObjects, "ObjectPool");
-            gameObject.SetActive(objectpooling.GetComponent<ObjectPooling>().canSpawn[enemyIndexInPool]);
-        }
+        }*/
 
+    }
+    private void Update()
+    {
+        DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
+        objectpooling = ReturnObjectFromArray(DontDestroyOnLoadObjects, "ObjectPool");
+        gameObject.SetActive(objectpooling.GetComponent<ObjectPooling>().canSpawn[enemyIndexInPool]);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
