@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public AudioSource mainBGM, fireball, arrow, star, slap, battleMusic;
+    public AudioSource mainBGM, fireball, arrow, star, slap, battleMusic, collectItem;
     private AudioSource[] allAudio;
 
     // Start is called before the first frame update
