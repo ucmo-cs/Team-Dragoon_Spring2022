@@ -12,9 +12,12 @@ public class CharacterOverworldController : MonoBehaviour
     int idleFrameCt;
     public int currPlayer;
     public bool canSwitch, canInteract = true, canMove = true;
-    public bool isDressed;
+    public bool isDressed, canClimb, isClimbing, canBattle;
     public GameObject interactableObject;
+    public GameObject tree;
     public int storyProgress;
+    public Vector2 startPos;
+    private SpriteRenderer rend;
 
     private void Awake()
     {
@@ -24,12 +27,15 @@ public class CharacterOverworldController : MonoBehaviour
         }
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
         DontDestroyOnLoad(this);
         idleFrameCt = 0;
         currPlayer = 0;
         canSwitch = false;
         canMove = true;
         isDressed = false;
+        canClimb = false;
+        canBattle = true;
         storyProgress = 0;
     }
     // Start is called before the first frame update
@@ -44,6 +50,7 @@ public class CharacterOverworldController : MonoBehaviour
         PlayerWalk();
         SwitchAvatar();
         Interaction();
+        Climbing();
     }
 
     void PlayerWalk()
@@ -83,6 +90,14 @@ public class CharacterOverworldController : MonoBehaviour
 
             anim.SetFloat("PlayerSpeedHor", playerSpeedHor);
             anim.SetFloat("PlayerSpeedVert", playerSpeedVert);
+
+            if(isClimbing)
+            {
+                anim.SetFloat("PlayerSpeedHor", 0);
+                anim.SetFloat("PlayerSpeedVert", 1);
+                anim.SetBool("isMoveSide", false);
+            }
+
             if (playerSpeedHor == 0 && playerSpeedVert == 0)
             {
                 idleFrameCt++;
@@ -210,6 +225,43 @@ public class CharacterOverworldController : MonoBehaviour
             Debug.Log("Destroy the rock");
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "Tree")
+        {
+            canClimb = true;
+            tree = collision.gameObject;
+        }
     }
 
+    private void Climbing()
+    {
+        if (canClimb && currPlayer == 3)
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                startPos = gameObject.transform.position;
+                isClimbing = true;
+                Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), tree.GetComponent<Collider2D>());
+                rend.sortingOrder = 2;
+            }
+
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                gameObject.transform.position = new Vector2(startPos.x, startPos.y - 0.3f);
+                canClimb = false;
+                isClimbing = false;
+                Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), tree.GetComponent<Collider2D>(), false);
+                rend.sortingOrder = 1;
+            }
+        }
+    }
+
+    public void ReactivateBattleAbility()
+    {
+        canBattle = true;
+    }
+
+    public void ReactivateBattle2s()
+    {
+        Invoke("ReactivateBattleAbility", 2f);
+    }
 }

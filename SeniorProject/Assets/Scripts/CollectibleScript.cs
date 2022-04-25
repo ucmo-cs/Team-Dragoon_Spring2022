@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CollectibleScript : MonoBehaviour
 {
+    public bool isInTree;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,18 +21,25 @@ public class CollectibleScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            AudioManager.instance.PlayClip(AudioManager.instance.collectItem);
-            CharacterOverworldController.instance.storyProgress++;
-            Debug.Log(CharacterOverworldController.instance.storyProgress);
-            this.gameObject.SetActive(false);
+            if (isInTree)
+            {
+                if (CharacterOverworldController.instance.isClimbing)
+                {
+                    CollectItem();
+                }
+            }
+            else
+            {
+                CollectItem();
+            }
         }
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void CollectItem()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            this.gameObject.SetActive(false);
-        }
-    }*/
+        AudioManager.instance.PlayClip(AudioManager.instance.collectItem);
+        CharacterOverworldController.instance.storyProgress++;
+        Debug.Log(CharacterOverworldController.instance.storyProgress);
+        this.gameObject.SetActive(false);
+    }
 }

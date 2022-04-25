@@ -68,7 +68,7 @@ public class StartBattle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && CharacterOverworldController.instance.canBattle)
         {
             DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
             Debug.Log("Add to Don't Destroy on Load");
@@ -81,6 +81,7 @@ public class StartBattle : MonoBehaviour
             AudioManager.instance.StartCoroutine(AudioManager.FadeOut(AudioManager.instance.mainBGM, 2f));
             Debug.Log("Fade in Battle Music");
             AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.battleMusic, 3f));
+            CharacterOverworldController.instance.canBattle = false;
             Debug.Log("Load new scene");
             SceneChanger.instance.LoadScene(sceneName);
         }

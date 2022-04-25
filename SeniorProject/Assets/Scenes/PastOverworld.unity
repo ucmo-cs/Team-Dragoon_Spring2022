@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: suki_tree
       objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
 --- !u!4 &17119442 stripped
@@ -378,6 +382,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511817067}
     m_Modifications:
+    - target: {fileID: 34153931, guid: f1e612a79f9e3dc4d8f829c605be6d1f, type: 3}
+      propertyPath: isInTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410115727346844214, guid: f1e612a79f9e3dc4d8f829c605be6d1f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -608,6 +616,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -728,6 +740,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511817067}
     m_Modifications:
+    - target: {fileID: 97204152, guid: b3e399af305a31b4690290c892368f88, type: 3}
+      propertyPath: isInTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 206574998352446652, guid: b3e399af305a31b4690290c892368f88, type: 3}
       propertyPath: m_Name
       value: Fruits_8
@@ -1413,6 +1429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: red_maple_momji_tree
       objectReference: {fileID: 0}
+    - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
 --- !u!4 &157264297 stripped
@@ -1768,6 +1788,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -2100,6 +2124,10 @@ PrefabInstance:
     - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
@@ -2591,6 +2619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: matsu_pine_tree
       objectReference: {fileID: 0}
+    - target: {fileID: 3362543209823051464, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
 --- !u!4 &426500873 stripped
@@ -2870,6 +2902,10 @@ PrefabInstance:
     - target: {fileID: 3362543209823051464, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362543209823051464, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
@@ -24213,6 +24249,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511817067}
     m_Modifications:
+    - target: {fileID: 605612481, guid: 53c4cb5eb4de35e4b8b2c69e8b2b0c2f, type: 3}
+      propertyPath: isInTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 964179714970726578, guid: 53c4cb5eb4de35e4b8b2c69e8b2b0c2f, type: 3}
       propertyPath: m_Name
       value: Fruits_1
@@ -24475,7 +24515,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.018375397, y: -0.84526587}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -24486,7 +24526,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.65, y: 4.5}
+  m_Size: {x: 6.172241, y: 2.8094683}
   m_EdgeRadius: 0
 --- !u!212 &640549988
 SpriteRenderer:
@@ -24660,6 +24700,10 @@ PrefabInstance:
     - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
@@ -25880,6 +25924,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511817067}
     m_Modifications:
+    - target: {fileID: 907473703, guid: fd656efad4e2e4849913519349ecc0b9, type: 3}
+      propertyPath: isInTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7639121598087841734, guid: fd656efad4e2e4849913519349ecc0b9, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -25994,6 +26042,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
 --- !u!4 &955574614 stripped
@@ -26094,7 +26146,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.82689047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -26105,7 +26157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.65, y: 4.5}
+  m_Size: {x: 6.208992, y: 2.846219}
   m_EdgeRadius: 0
 --- !u!212 &967111493
 SpriteRenderer:
@@ -26522,6 +26574,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
 --- !u!4 &1064083144 stripped
@@ -26821,7 +26877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4297718898470492707, guid: bdc88ea1f22b51545a84c07811e928e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.950407
+      value: 5.78
       objectReference: {fileID: 0}
     - target: {fileID: 4297718898470492707, guid: bdc88ea1f22b51545a84c07811e928e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27053,6 +27109,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
 --- !u!4 &1176361205 stripped
@@ -27158,7 +27218,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0062146187, y: -0.86032283}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -27169,7 +27229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.65, y: 4.5}
+  m_Size: {x: 6.2089615, y: 2.7793543}
   m_EdgeRadius: 0
 --- !u!1001 &1210642487
 PrefabInstance:
@@ -27185,6 +27245,10 @@ PrefabInstance:
     - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_RootOrder
@@ -27557,6 +27621,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
 --- !u!4 &1228615853 stripped
@@ -27575,13 +27643,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: tall_tree
       objectReference: {fileID: 0}
+    - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_RootOrder
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.880123
+      value: 4.97
       objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28475,6 +28547,10 @@ PrefabInstance:
     - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
@@ -30082,7 +30158,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000047683716, y: -0.8251315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -30093,7 +30169,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.65, y: 4.5}
+  m_Size: {x: 6.1879263, y: 2.8497372}
   m_EdgeRadius: 0
 --- !u!212 &1728757157
 SpriteRenderer:
@@ -30443,6 +30519,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3362543209823051464, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
 --- !u!4 &1792207522 stripped
@@ -30695,6 +30775,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
 --- !u!4 &1847540901 stripped
@@ -30862,7 +30946,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000023841858, y: -0.8278141}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -30873,7 +30957,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.65, y: 4.5}
+  m_Size: {x: 6.212665, y: 2.8443718}
   m_EdgeRadius: 0
 --- !u!20 &1884918664 stripped
 Camera:
@@ -31281,6 +31365,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511817067}
     m_Modifications:
+    - target: {fileID: 2068561821, guid: 1718da2c76273064dba92b9bd5c40b66, type: 3}
+      propertyPath: isInTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1044233647673859008, guid: 1718da2c76273064dba92b9bd5c40b66, type: 3}
       propertyPath: m_Name
       value: Fruits_9
@@ -31367,7 +31455,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000023841858, y: -0.82689047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -31378,7 +31466,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.65, y: 4.5}
+  m_Size: {x: 6.2089934, y: 2.846219}
   m_EdgeRadius: 0
 --- !u!212 &2075915595
 SpriteRenderer:
@@ -31815,6 +31903,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
 --- !u!4 &2117193628 stripped
@@ -31905,6 +31997,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511817067}
     m_Modifications:
+    - target: {fileID: 2135205906, guid: 04ed706c71356af4e8d1cd00c4d24de6, type: 3}
+      propertyPath: isInTree
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6175083803734079849, guid: 04ed706c71356af4e8d1cd00c4d24de6, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -32019,6 +32115,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22062188057911812, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6911794dd1324e2488af682b26d64f44, type: 3}
 --- !u!4 &22062188158488232 stripped
@@ -32097,6 +32197,10 @@ PrefabInstance:
     - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426981466699630475, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 4232232668993729151, guid: ba94efb4ab4abb947822c7fbc6a03921, type: 3}
       propertyPath: m_RootOrder
@@ -32207,6 +32311,10 @@ PrefabInstance:
     - target: {fileID: 3362543209823051464, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362543209823051464, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78fd29ab34d6c5449afbbfdae4e0e7c8, type: 3}
@@ -32330,6 +32438,10 @@ PrefabInstance:
     - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008036264566111421, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa09f449e7cbda40a02d93e79b6b3a3, type: 3}

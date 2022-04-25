@@ -352,6 +352,7 @@ public class BattleHandler : MonoBehaviour
             Debug.Log("Resuming main BGM");
             AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.mainBGM, 6f));
             Debug.Log("Success");
+            CharacterOverworldController.instance.ReactivateBattle2s();
             return;
         }
         else if (TestBattleOverEnemyWin())
