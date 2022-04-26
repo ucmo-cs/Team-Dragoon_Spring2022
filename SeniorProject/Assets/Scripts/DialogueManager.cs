@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class DialogueManager : MonoBehaviour
         CharacterOverworldController.instance.anim.SetFloat("PlayerSpeedHor", 0);
         CharacterOverworldController.instance.anim.SetFloat("PlayerSpeedVert", 0);
         myDialogue = dialogue;
+        sentences = myDialogue.sentences;
         isObjectDeactivateAfter = isDeactivate;
         anim.SetBool("isOpen", true);
         isDialogueShown = true;
@@ -63,7 +65,8 @@ public class DialogueManager : MonoBehaviour
     public void ContinueDialogue()
     {
         Debug.Log("Continue Dialogue func");
-        if (currentSentenceNum == sentences.Length + 1)
+        Debug.Log("Showing sentence " + currentSentenceNum + " of " + sentences.Length);
+        if (currentSentenceNum == sentences.Length)
         {
             EndDialogue();
         }
@@ -120,6 +123,12 @@ public class DialogueManager : MonoBehaviour
             attachedObject.GetComponent<InteractionScript>().DeactivateObject();
         }
         Start();
+        if (SceneManager.GetActiveScene().name == "DojoCutscene")
+        {
+            SceneChanger.instance.PreviousScene();
+            CharacterOverworldController.instance.storyProgress++;
+            CharacterOverworldController.instance.canBattle = true;
+        }
     }
 
     public void ShowOnlySentence(int num)

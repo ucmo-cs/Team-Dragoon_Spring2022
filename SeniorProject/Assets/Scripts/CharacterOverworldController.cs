@@ -35,7 +35,7 @@ public class CharacterOverworldController : MonoBehaviour
         canMove = true;
         isDressed = false;
         canClimb = false;
-        canBattle = true;
+        canBattle = false;
         storyProgress = 0;
     }
     // Start is called before the first frame update
@@ -255,7 +255,7 @@ public class CharacterOverworldController : MonoBehaviour
 
     private void Climbing()
     {
-        if (canClimb && currPlayer == 3)
+        if (canClimb && canBattle && currPlayer == 3)
         {
             if (Input.GetKeyDown(KeyCode.C))
             {

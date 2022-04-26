@@ -19,7 +19,6 @@ public class DoorManager : MonoBehaviour
     public int storyRequirement;
 
     private SceneChanger sceneChanger;
-    public GameObject sceneManager;
     public GameObject playerChar;
 
     //add private variable to save the character that enters door
@@ -28,7 +27,8 @@ public class DoorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sceneChanger = sceneManager.GetComponent<SceneChanger>();
+        sceneChanger = SceneChanger.instance;
+        //sceneChanger = sceneManager.GetComponent<SceneChanger>();
         doorExitPos.x = exitPosX;
         doorExitPos.y = exitPosY;
     }
@@ -37,7 +37,24 @@ public class DoorManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (isStoryLocked && CharacterOverworldController.instance.storyProgress < storyRequirement)
+            if (gameObject.tag == "Dojo")
+            {
+                if (CharacterOverworldController.instance.storyProgress == 3)
+                {
+                    //Show first meeting cutscene with dialogue and return to overworld
+                    playerChar = collision.gameObject;
+                    DontDestroyOnLoad(playerChar);
+                    Debug.Log("Door/Player collision");
+                    sceneChanger.LoadScene(sceneName);
+                    playerChar.transform.position = new Vector2 (5.3877f, -25.7543f);
+                    CharacterOverworldController.instance.canMove = false;
+                }
+                else
+                {
+                    //Show dialogue with reminder of game mechanics
+                }
+            }
+            else if (isStoryLocked && CharacterOverworldController.instance.storyProgress < storyRequirement)
             {
                 //Display dialogue stating what needs to happen
                 //Handled within InteractionScript

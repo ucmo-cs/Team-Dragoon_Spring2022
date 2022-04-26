@@ -21,6 +21,8 @@ TagManager:
   - PHRoomObjects
   - Tree
   - ObjectPoolFruit
+  - Dojo
+  - Collection
   layers:
   - Default
   - TransparentFX
