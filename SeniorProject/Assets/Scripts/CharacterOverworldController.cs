@@ -62,21 +62,42 @@ public class CharacterOverworldController : MonoBehaviour
             float playerSpeedHor = 0;
             float playerSpeedVert = 0;
 
-            if (h > 0)
+            if (currPlayer == 4)
             {
-                playerSpeedHor = speed;
-                ChangeDirection(-1);
-                anim.SetBool("isMoveSide", true);
-            }
-            else if (h < 0)
-            {
-                playerSpeedHor = -speed;
                 ChangeDirection(1);
-                anim.SetBool("isMoveSide", true);
+                if (h > 0)
+                {
+                    playerSpeedHor = speed;
+                    anim.SetBool("isMoveSide", true);
+                }
+                else if (h < 0)
+                {
+                    playerSpeedHor = -speed;
+                    anim.SetBool("isMoveSide", true);
+                }
+                else
+                {
+                    anim.SetBool("isMoveSide", false);
+                }
             }
             else
             {
-                anim.SetBool("isMoveSide", false);
+                if (h > 0)
+                {
+                    playerSpeedHor = speed;
+                    ChangeDirection(-1);
+                    anim.SetBool("isMoveSide", true);
+                }
+                else if (h < 0)
+                {
+                    playerSpeedHor = -speed;
+                    ChangeDirection(1);
+                    anim.SetBool("isMoveSide", true);
+                }
+                else
+                {
+                    anim.SetBool("isMoveSide", false);
+                }
             }
 
             if (v > 0)
@@ -220,7 +241,7 @@ public class CharacterOverworldController : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (Input.GetKey(KeyCode.E) && collision.gameObject.tag == "Breakable Rock" && currPlayer == 3)
+        if (Input.GetKey(KeyCode.E) && collision.gameObject.tag == "Breakable Rock" && currPlayer == 4)
         {
             Debug.Log("Destroy the rock");
             Destroy(collision.gameObject);
