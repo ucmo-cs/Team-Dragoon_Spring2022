@@ -15,7 +15,7 @@ public class CollectibleScript : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoadObjects = GetDontDestroyOnLoadObjects();
-        objectpooling = ReturnObjectFromArray(DontDestroyOnLoadObjects, "ObjectPool");
+        objectpooling = ReturnObjectFromArray(DontDestroyOnLoadObjects, "ObjectPoolFruit");
         gameObject.SetActive(objectpooling.GetComponent<ObjectPoolingFruit>().canSpawn[poolIndex]);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,6 +42,7 @@ public class CollectibleScript : MonoBehaviour
         CharacterOverworldController.instance.storyProgress++;
         Debug.Log(CharacterOverworldController.instance.storyProgress);
         this.gameObject.SetActive(false);
+        objectpooling.GetComponent<ObjectPoolingFruit>().canSpawn[poolIndex] = false;
     }
     public static GameObject[] GetDontDestroyOnLoadObjects()
     {

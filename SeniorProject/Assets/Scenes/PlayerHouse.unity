@@ -4765,6 +4765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FruitOverworldObjectPoolFruit
       objectReference: {fileID: 0}
+    - target: {fileID: 3178048309305445409, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+      propertyPath: m_TagString
+      value: ObjectPoolFruit
+      objectReference: {fileID: 0}
     - target: {fileID: 3178048309305445423, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -4809,8 +4813,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3178048309305445408, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+--- !u!1 &766055111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3178048309305445409, guid: a06bb363d5b785e4aae3220838c27661, type: 3}
+  m_PrefabInstance: {fileID: 766055110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &766055112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766055111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c98599d3e12544583bf866437ce38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSpawn: 0101010101010101010101010101010101010101
 --- !u!1001 &806258023
 PrefabInstance:
   m_ObjectHideFlags: 0
