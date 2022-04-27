@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DojoCutscene.unity
     guid: 98a146719dfc5cc48bf598811af58885
+  - enabled: 1
+    path: Assets/Scenes/EndCredits.unity
+    guid: 0aec7da4905552e478c9d99896ed29f7
   m_configObjects: {}

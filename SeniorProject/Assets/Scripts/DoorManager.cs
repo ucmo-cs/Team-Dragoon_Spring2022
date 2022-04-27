@@ -58,6 +58,7 @@ public class DoorManager : MonoBehaviour
             {
                 //Display dialogue stating what needs to happen
                 //Handled within InteractionScript
+                Debug.Log("Inside DoorManager Script, not ready to proceed");
             }
             else
             {

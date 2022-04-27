@@ -82,6 +82,8 @@ public class StartBattle : MonoBehaviour
             Debug.Log("Fade in Battle Music");
             AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.battleMusic, 3f));
             CharacterOverworldController.instance.canBattle = false;
+            CharacterOverworldController.instance.storyProgress++;
+            Debug.Log(CharacterOverworldController.instance.storyProgress);
             Debug.Log("Load new scene");
             SceneChanger.instance.LoadScene(sceneName);
         }

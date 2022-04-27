@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public AudioSource mainBGM, fireball, arrow, star, slap, battleMusic, collectItem;
+    public AudioSource mainBGM, fireball, arrow, star, slap, battleMusic, collectItem, creditsMusic;
     private AudioSource[] allAudio;
 
     // Start is called before the first frame update
@@ -22,11 +22,15 @@ public class AudioManager : MonoBehaviour
         arrow.volume = PlayerPrefs.GetFloat("FX Levels");
         star.volume = PlayerPrefs.GetFloat("FX Levels");
         slap.volume = PlayerPrefs.GetFloat("FX Levels");
+        mainBGM.volume = PlayerPrefs.GetFloat("BG Music");
+        battleMusic.volume = PlayerPrefs.GetFloat("BG Music");
+        creditsMusic.volume = PlayerPrefs.GetFloat("BG Music");
     }
 
     // Update is called once per frame
     void Update()
     {
+        /* JUST FOR TESTING AUDIO
         if(Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Pausing all");
@@ -44,6 +48,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Fade Out from L");
             StartCoroutine(FadeOut(mainBGM, 5f));
         }
+        */
     }
 
     public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)

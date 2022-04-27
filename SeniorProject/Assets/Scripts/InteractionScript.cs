@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class InteractionScript : MonoBehaviour
 {
     public Text toolText;
-    public bool canInteract, isDeactivated, isTouchDialogueTrigger, isStoryLocked;
+    public bool canInteract, isDeactivated, isTouchDialogueTrigger, isStoryLocked, hasOneSent;
     public GameObject exclamation_mark, inactiveVersion;
     public DialogueTrigger dialogueTrigger;
-    public int storyRequirement;
+    public int storyRequirement, showSent;
 
     private void Awake()
     {
@@ -52,8 +52,17 @@ public class InteractionScript : MonoBehaviour
                 {
                     if (isStoryLocked && CharacterOverworldController.instance.storyProgress < storyRequirement)
                     {
+                        Debug.Log("Not ready to move on");
                         CancelInvoke();
-                        int sentenceToShow = storyRequirement - CharacterOverworldController.instance.storyProgress - 1;
+                        int sentenceToShow;
+                        if (hasOneSent)
+                        {
+                            sentenceToShow = showSent;
+                        }
+                        else
+                        { 
+                            sentenceToShow = storyRequirement - CharacterOverworldController.instance.storyProgress - 1;
+                        }
                         dialogueTrigger.TriggerDialogue(false, true, sentenceToShow);
                         isDeactivated = true;
                     }
