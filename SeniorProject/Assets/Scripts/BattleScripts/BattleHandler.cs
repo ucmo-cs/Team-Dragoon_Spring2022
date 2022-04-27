@@ -688,6 +688,7 @@ public class BattleHandler : MonoBehaviour
             //sceneChanger.LoadScene("DeathScene");
             //Player dead, enemy wins
             Debug.Log("Enemy wins");
+            AudioManager.instance.StartCoroutine(AudioManager.FadeOutAndStop(AudioManager.instance.battleMusic, 3f));
             return true;
         }
         return false;

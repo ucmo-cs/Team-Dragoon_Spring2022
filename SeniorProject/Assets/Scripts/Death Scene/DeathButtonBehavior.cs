@@ -6,6 +6,8 @@ public class DeathButtonBehavior : MonoBehaviour
 {
     public void Retry()
     {
+
+        AudioManager.instance.StartCoroutine(AudioManager.FadeIn(AudioManager.instance.battleMusic, 3f));
         SceneChanger.instance.PreviousScene();
     }
 
